@@ -5,6 +5,7 @@ class World{
         new chicken(),
         new chicken()
     ]
-
-    draw(){}  // Syntax: inside of a Class we dont need the word "function"; (normally its: function draw())
+// this is a Method (aka function): inside of a Class we dont need the word "function"; (normally its: function draw())
+    draw(){
+    }  
 }

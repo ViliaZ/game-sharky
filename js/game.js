@@ -8,5 +8,6 @@ function init() {
     canvas = document.getElementById('canvas');
     console.log('my character is', character)
 
+
 }
 
