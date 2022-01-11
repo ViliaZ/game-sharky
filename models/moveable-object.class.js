@@ -1,6 +1,8 @@
 class MoveableObject {
-x =120;
-y=400;
+x=120;
+y=220;
+width=150;
+height=100;
 img;
 
 loadImage(path){
@@ -9,7 +11,7 @@ loadImage(path){
     this.img.scr = path;
 }
 moveLeft(){
-    console.log('moving right')
+    console.log('moving left')
 };
 moveRight(){
     console.log('moving right')}
