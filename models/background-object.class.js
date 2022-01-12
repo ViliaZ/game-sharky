@@ -1,16 +1,12 @@
 
 
 class BackgroundObject extends MoveableObject{
+    width = 720;
+    height = 480; 
 
-    // y = 0;
-    // width = 720;
-    // width = 720;
-    // height = 480; 
-
-
-constructor(imagePath){
+constructor(imagePath, x){   // data for img path, x and y are given in world when creating new BackgroundObject
     super().loadImage(imagePath);
-    this.x = Math.random() * 500;// min = 0 max=700  
+    this.x = x;  
+    this.y = 480-this.height;  // this.height is height of the image - could also be hardcoded as "0" in this instance
 }
-
 }

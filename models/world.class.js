@@ -12,7 +12,7 @@ class World {
         new Barrier()
     ]
     backgroundObjects = [
-        new BackgroundObject('img/3. Background/Dark/1.png')
+        new BackgroundObject('img/3. Background/Dark/1.png',0,0)
     ]
 
     canvas; // variable declaring, needs to be here to be available also for draw()
@@ -28,16 +28,11 @@ class World {
         //clear Canvas each time for redrawing with parameters of canvas.width und canvas.height
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-        // calls the drawing function
-        this.addToMap(this.character);
-
-        this.enemies.forEach(enemy =>{
-            this.addToMap(enemy);
-        })
-
-        this.barriers.forEach(barrier =>{
-            this.addToMap(barrier);
-        })
+        // calling drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
+        this.addObjectsToMap(this.backgroundObjects); 
+        this.addObjectsToMap(this.barriers); 
+        this.addObjectsToMap(this.enemies);  
+        this.addToMap(this.character);  
 
 
         // set draw() on repeat (frequency id depending on users GUI)
@@ -47,8 +42,14 @@ class World {
         });
     }
 
+    addObjectsToMap(objectsArray) {
+        objectsArray.forEach(o => {
+            this.addToMap(o)
+        })
+    }
+
     addToMap(moveableObject) {   //drawImage() is a JS method: ctx.drawImage(image, dx, dy, dWidth, dHeight);
-        this.ctx.drawImage(moveableObject.img, moveableObject.x, moveableObject.y, moveableObject.width, moveableObject.height)
+        this.ctx.drawImage(moveableObject.img, moveableObject.x, moveableObject.y, moveableObject.width, moveableObject.height);
     };
 
 }
