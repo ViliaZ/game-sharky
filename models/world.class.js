@@ -3,33 +3,8 @@
 class World {
     // these are variables. Syntax; variables dont need "let" because they are written inside the Class (normally its: let character = new Character();)
     character = new Character();
-    enemies = [
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish()
-    ]
-
-    backgroundObjects = [ // Arguments: img, x, y
-        new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 0, 0),    
-        new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 0, 0),
-        new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 0, 0),
-        new BackgroundObject('img/3. Background/Layers/1. Light/COMPLETO.png', 0, 0),
-
-        new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', 719, 0),    
-        new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D2.png', 719, 0),
-        new BackgroundObject('img/3. Background/Layers/2. Floor/D2.png', 719, 0),
-        new BackgroundObject('img/3. Background/Layers/1. Light/COMPLETO.png', 719, 0),
-
-        new BackgroundObject('img/3. Background/Layers/5. Water/D1.png', 2*719, 0),    
-        new BackgroundObject('img/3. Background/Layers/3.Fondo 1/D1.png', 2*719, 0),
-        new BackgroundObject('img/3. Background/Layers/2. Floor/D1.png', 2*719, 0),
-        new BackgroundObject('img/3. Background/Layers/1. Light/COMPLETO.png', 2*719, 0),
-    ]
+    enemies = level1.enemies;
+    backgroundObjects = level1.backgroundObjects;
 
     canvas;             // variable declaring, needs to be here to be available also for draw()
     ctx;                // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
