@@ -57,11 +57,11 @@ class Character extends MoveableObject {
                 this.y -= this.speed;           // speed is a variable of MoveableObjects
             }
             if (this.world.keyboard.DOWN) {
-                this.y += this.speed;  // speed is a variable of MoveableObjects
+                this.y += this.speed;           // speed is a variable of MoveableObjects
             }
-
-            this.world.camera_x = -this.x
-        }, 1000 / 60)  // 60 times per second
+            // attach camera-movement to character-movement
+            this.world.character.world.camera_x = -this.x
+        }, 1000 / 60)                           // 60 times per second
 
 
         // IDLE ANIMATION
@@ -70,8 +70,8 @@ class Character extends MoveableObject {
             let path = this.IMAGES_IDLE[i]    // getting the key for laoding the image from imageCache >> path is the key to the variable in imageCache
             this.img = this.imageCache[path];  // loading the correct image from imageCache with the key of "path"
             this.currentImage++;
-    }, 250);
+        }, 250);
 
-}
+    }
 
 }
