@@ -43,29 +43,24 @@ class Character extends MoveableObject {
 
 
     animate() {
-
         // MOVING ANIMATIONS
         setInterval(() => {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speed;           // speed is a variable of MoveableObjects
                 this.otherDirection = false;
-
             }
-
             if (this.world.keyboard.LEFT) {
                 this.x -= this.speed;           // speed is a variable of MoveableObjects
                 this.otherDirection = true;     // mirroring img of character
             }
-
-
             if (this.world.keyboard.UP) {
                 this.y -= this.speed;           // speed is a variable of MoveableObjects
             }
-
-
             if (this.world.keyboard.DOWN) {
                 this.y += this.speed;  // speed is a variable of MoveableObjects
             }
+
+            this.world.camera_x = -this.x
         }, 1000 / 60)  // 60 times per second
 
 
