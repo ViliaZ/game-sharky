@@ -44,18 +44,31 @@ class Character extends MoveableObject {
 
     animate() {
 
-        // MOVING RIGHT ANIMATION
+        // MOVING ANIMATIONS
         setInterval(() => {
             if (this.world.keyboard.RIGHT) {
-                this.x += this.speed;  // speed is a variable of MoveableObjects
+                this.x += this.speed;           // speed is a variable of MoveableObjects
+                this.otherDirection = false;
+
             }
 
             if (this.world.keyboard.LEFT) {
-                this.x -= this.speed;  // speed is a variable of MoveableObjects
+                this.x -= this.speed;           // speed is a variable of MoveableObjects
+                this.otherDirection = true;     // mirroring img of character
+            }
+
+
+            if (this.world.keyboard.UP) {
+                this.y -= this.speed;           // speed is a variable of MoveableObjects
+            }
+
+
+            if (this.world.keyboard.DOWN) {
+                this.y += this.speed;  // speed is a variable of MoveableObjects
             }
         }, 1000 / 60)  // 60 times per second
 
-        // change img (defined in MoveableObjects every 250 ms)
+
         // IDLE ANIMATION
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_IDLE.length  // i is increasing ++ by every interval circle creates permanent circle of 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, ....)
