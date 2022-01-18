@@ -33,12 +33,8 @@ class Pufferfish extends MoveableObject {
     }
 
     animate() {
-        // change img (defined in MoveableObjects every 1000 ms)
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_SWIMMING.length  // creates permanent circle of 0 to 15
-            let path = this.IMAGES_SWIMMING[i]    // path is the key to the variable in imageCache
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            this.playAnimation(this.IMAGES_SWIMMING);
         }, 150);
     }
 

@@ -6,7 +6,7 @@ class MoveableObject {
     img;                                // if object is animated, this img is changed consistantly to create the animation
     imageCache = [];                    //array as storage of images animation
     currentImage = 0;                   // start animation here
-    speed = 0.20 + Math.random()*0.5;   // pixels to move
+    speed = 0.20 + Math.random() * 0.5;   // pixels to move
     otherDirection = false;             // mirroring object e.g. character looking to left
 
     loadImage(path) {
@@ -22,7 +22,12 @@ class MoveableObject {
         });
     }
 
-
+    playAnimation(imageArray) {
+        let i = this.currentImage % imageArray.length  // creates permanent circle of numbers from 0 to arraylength
+        let path = imageArray[i]    // path is the key to the variable in imageCache
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
 
     moveLeft() {
         setInterval(() => {
