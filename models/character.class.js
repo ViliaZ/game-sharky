@@ -45,7 +45,7 @@ class Character extends MoveableObject {
     animate() {
         // MOVING ANIMATIONS
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.x += this.speed;           // speed is a variable of MoveableObjects
                 this.otherDirection = false;
             }
