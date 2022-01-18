@@ -4,6 +4,7 @@ class World {
     // these are variables. Syntax; variables dont need "let" because they are written inside the Class (normally its: let character = new Character();)
     character = new Character();
     enemies = level1.enemies;
+    level = level1;   // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     backgroundObjects = level1.backgroundObjects;
 
     canvas;             // variable declaring, needs to be here to be available also for draw()
@@ -32,8 +33,8 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         // drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
-        this.addObjectsToMap(this.backgroundObjects);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
 
         // move context to original position again

@@ -45,11 +45,11 @@ class Character extends MoveableObject {
     animate() {
         // MOVING ANIMATIONS
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {
                 this.x += this.speed;           // speed is a variable of MoveableObjects
                 this.otherDirection = false;
             }
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.LEFT && this.x > -50) {  // if moving left AND x>0 (left borer isnt reached)
                 this.x -= this.speed;           // speed is a variable of MoveableObjects
                 this.otherDirection = true;     // mirroring img of character
             }
