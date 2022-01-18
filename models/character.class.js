@@ -60,7 +60,7 @@ class Character extends MoveableObject {
                 this.y += this.speed;           // speed is a variable of MoveableObjects
             }
             // attach camera-movement to character-movement
-            this.world.character.world.camera_x = -this.x
+            this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
         }, 1000 / 60)                           // 60 times per second
 
 
