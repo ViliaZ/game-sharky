@@ -73,5 +73,14 @@ class World {
             moveableObject.x = moveableObject.x * -1;
             this.ctx.restore();
         }
+
+        // Green rectangle around each object >> helping programming collisions
+        this.ctx.beginPath();
+        this.ctx.lineWidth = '4';
+        this.ctx.strokeStyle = 'orange';
+        //rect() is a JS function with 4 Paramters: x, y, width, height
+        this.ctx.rect(moveableObject.x, moveableObject.y, moveableObject.width, moveableObject.height);
+        this.ctx.stroke();
+
     };
 }
