@@ -25,7 +25,7 @@ class World {
         this.character.world = this;
     }
 
-    draw() {
+    draw() {  // draw() is a API Browser Function  that continuously executes the lines of code contained inside its block (depending on speed of your GUI)
         //clear Canvas each time for redrawing with parameters of canvas.width und canvas.height
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
@@ -42,6 +42,7 @@ class World {
 
 
         // set draw() on repeat (frequency id depending on users GUI)
+        // requestAnimationFrame() is a API Browser Function. NOTE: uses NO "THIS" to call this function!! its specific for this function! 
         let self = this;  // need to bind "this" to another variable so i can use it inside a nested function (otherwise "this" is not functioning)
         requestAnimationFrame(function () {
             self.draw();

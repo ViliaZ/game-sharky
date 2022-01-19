@@ -21,7 +21,6 @@ class Endboss extends MoveableObject {
         'img/2.Enemy/3 Final Enemy/2.floating/13.png'
     ]
 
-
     constructor() {
         super().loadImage(this.IMAGES_FLOATING[0])
         this.loadImages(this.IMAGES_FLOATING)

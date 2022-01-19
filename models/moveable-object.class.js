@@ -8,6 +8,23 @@ class MoveableObject {
     currentImage = 0;                   // start animation here
     speed = 0.20 + Math.random() * 0.5;   // pixels to move
     otherDirection = false;             // mirroring object e.g. character looking to left
+    speedY = 0;
+    acceleration = 2;
+
+    applyGravity(){
+        setInterval(() => {
+            if(this.objectIsAboveGround()){
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            };
+        },1000 / 25)
+    }
+
+    objectIsAboveGround(){
+        return this.y > 360;   // 360px are sea ground, if object is above ground gravity would apply
+    }
+
+
 
     loadImage(path) {
         this.img = new Image();         // new Image() is already a JS method!  (its the same as creating <img src="">)

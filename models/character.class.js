@@ -35,6 +35,7 @@ class Character extends MoveableObject {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.animate();
+        this.applyGravity();
     }
 
     // run through IMAGES_IDLE one by one to show each image as character img (variable img declared in MoveableObjects) 
