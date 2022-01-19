@@ -1,6 +1,6 @@
 class MoveableObject {
-    x = 0;
-    y = 0;
+    x=0;
+    y=50;
     width = 200;
     height = 150;
     img;                                // if object is animated, this img is changed consistantly to create the animation
@@ -21,7 +21,7 @@ class MoveableObject {
     }
 
     objectIsAboveGround(){
-        return this.y > 360;   // 360px are sea ground, if object is above ground gravity would apply
+        return this.y < 270;   // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
     }
 
 
