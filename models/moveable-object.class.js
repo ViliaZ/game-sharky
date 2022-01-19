@@ -11,11 +11,12 @@ class MoveableObject {
     speedY = 0;
     acceleration = 2;
 
+    // not active now, but maybe use the function later for dying fish
     applyGravity(){
         setInterval(() => {
             if(this.objectIsAboveGround()){
                 this.y -= this.speedY;
-                this.speedY -= this.acceleration;
+                this.speedY -= this.acceleration;  // speedY number changes with every Interval
             };
         },1000 / 25)
     }
@@ -23,7 +24,6 @@ class MoveableObject {
     objectIsAboveGround(){
         return this.y < 270;   // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
     }
-
 
 
     loadImage(path) {
@@ -47,12 +47,10 @@ class MoveableObject {
     }
 
     moveLeft() {
-        setInterval(() => {
             this.x -= this.speed;
-        }, 10)
     };
 
-    moveRight() {
-        console.log('moving right')
+    moveRight() {                
+        this.x += this.speed; 
     }
 }
