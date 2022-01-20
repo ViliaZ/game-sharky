@@ -61,10 +61,17 @@ class World {
             this.level.enemies.forEach((enemy) => 
             {
                 if(this.character.isColliding(enemy)){
-                    console.log('is colliding with this enemy:', enemy)
+                    this.character.hit();  // decrease energy
                 }
             });
+            this.checkDeath();
         }, 1000);
+    }
+
+    checkDeath(){
+if(this.character.energy <= 0)
+console.log('character is dead');
+
     }
 
     // draw Images on context

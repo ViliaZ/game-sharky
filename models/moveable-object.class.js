@@ -10,6 +10,7 @@ class MoveableObject {
     otherDirection = false;             // mirroring object e.g. character looking to left
     speedY = 0;
     acceleration = 2;
+    energy = 100;
 
     // not active now, but maybe use the function later for dying fish
     applyGravity() {
@@ -19,6 +20,18 @@ class MoveableObject {
                 this.speedY -= this.acceleration;  // speedY number changes with every Interval
             };
         }, 1000 / 25)
+    }
+
+    hit() {
+        this.energy -= 30;
+        // prevent from getting negative energy values
+        if (this.energy < 0) {
+            this.energy = 0
+        }
+    }
+
+    isDead() {
+      return this.energy == 0;  // if this condition is true, then isDead() returnes true
     }
 
     objectIsAboveGround() {
@@ -46,13 +59,13 @@ class MoveableObject {
 
     // Green rectangle around each object >> helping programming collisions
     drawFrames(ctx) {
-        if(this instanceof Character || this instanceof Endboss || this instanceof Pufferfish ){  // exclude backgroundObjects from frames
-        ctx.beginPath();
-        ctx.lineWidth = '4';
-        ctx.strokeStyle = 'orange';
-        //rect() is a JS function with 4 Paramters: x, y, width, height
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
+        if (this instanceof Character || this instanceof Endboss || this instanceof Pufferfish) {  // exclude backgroundObjects from frames
+            ctx.beginPath();
+            ctx.lineWidth = '4';
+            ctx.strokeStyle = 'orange';
+            //rect() is a JS function with 4 Paramters: x, y, width, height
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
         }
     }
 
@@ -71,12 +84,12 @@ class MoveableObject {
         this.x += this.speed;
     }
 
-    // detect if character is colliding with any moveableObject
-    isColliding(moveableObject){
-        return this.x + this.width > moveableObject.x && 
-        this.y + this.height  > moveableObject.y &&
-        this.x < moveableObject.x &&
-        this.y < moveableObject.y + moveableObject.height
+    // detects IF character is colliding with any moveableObject > boolean
+    isColliding(moveableObject) {
+        return this.x + this.width > moveableObject.x &&
+            this.y + this.height > moveableObject.y &&
+            this.x < moveableObject.x &&
+            this.y < moveableObject.y + moveableObject.height
 
     }
 }

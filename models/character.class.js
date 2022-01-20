@@ -31,9 +31,25 @@ class Character extends MoveableObject {
         'img/1.Sharkie/1.IDLE/18.png'
     ]
 
+    // Sharky, when dead
+    IMAGES_DEAD = [
+        'img/1.Sharkie/6.dead/2.Electro_shock/1.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/2.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/3.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/4.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/5.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/6.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/7.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/8.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/9.png',
+        'img/1.Sharkie/6.dead/2.Electro_shock/10.png'
+
+    ]
+
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_DEAD);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.animate();
     }
 
@@ -43,14 +59,27 @@ class Character extends MoveableObject {
 
 
     animate() {
-        // MOVING ANIMATIONS
+
+        // IDLE ANIMATION WHEN NO KEYS PRESSED
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
-                this.moveRight();    
+            let i = this.currentImage % this.IMAGES_IDLE.length  // i is increasing ++ by every interval circle creates permanent circle of 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, ....)
+            let path = this.IMAGES_IDLE[i]    // getting the key for laoding the image from imageCache >> path is the key to the variable in imageCache
+            this.img = this.imageCache[path];  // loading the correct image from imageCache with the key of "path"
+            this.currentImage++;
+        }, 250);
+
+        // MOVING ANIMATIONS ON KEY USAGE
+        setInterval(() => {
+
+            if(this.isDead()){
+                this.playAnimation(this.IMAGES_DEAD);
+            }
+            else if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
+                this.moveRight();
                 this.otherDirection = false;
             }
             if (this.world.keyboard.LEFT && this.x > -50) {  // if moving left AND x>0 (left borer isnt reached)
-                this.moveLeft();  
+                this.moveLeft();
                 this.otherDirection = true;     // mirroring img of character
             }
             if (this.world.keyboard.UP) {
@@ -62,16 +91,7 @@ class Character extends MoveableObject {
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
         }, 1000 / 60)                           // 60 times per second
-
-
-        // IDLE ANIMATION
-        setInterval(() => {
-            let i = this.currentImage % this.IMAGES_IDLE.length  // i is increasing ++ by every interval circle creates permanent circle of 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, ....)
-            let path = this.IMAGES_IDLE[i]    // getting the key for laoding the image from imageCache >> path is the key to the variable in imageCache
-            this.img = this.imageCache[path];  // loading the correct image from imageCache with the key of "path"
-            this.currentImage++;
-        }, 250);
-
+  
     }
 
 }
