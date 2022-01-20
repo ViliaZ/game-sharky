@@ -70,4 +70,13 @@ class MoveableObject {
     moveRight() {
         this.x += this.speed;
     }
+
+    // detect if character is colliding with any moveableObject
+    isColliding(moveableObject){
+        return this.x + this.width > moveableObject.x && 
+        this.y + this.height  > moveableObject.y &&
+        this.x < moveableObject.x &&
+        this.y < moveableObject.y + moveableObject.height
+
+    }
 }

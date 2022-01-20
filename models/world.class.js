@@ -1,4 +1,5 @@
 
+// this class contains most of the game logic (e.g. collision detection)
 
 class World {
     // these are variables. Syntax; variables dont need "let" because they are written inside the Class (normally its: let character = new Character();)
