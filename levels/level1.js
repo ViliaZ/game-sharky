@@ -1,4 +1,6 @@
-const level1 = new Level(
+// creating a new instance of Level and filling it with all objects content --> currently 2 Arrays: enemies-array, backgroundObjects-array
+
+const level1 = new Level(  
     [
         new Pufferfish(),
         new Pufferfish(),

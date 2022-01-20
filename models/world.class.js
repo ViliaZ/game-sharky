@@ -19,6 +19,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
 
     // hand over complete world to character instance >> make everything in world accessable to character
@@ -54,6 +55,18 @@ class World {
         })
     }
 
+    // Check Collisions with any moveableObject that is an enemy  // check this multiple times each second for each enemy
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => 
+            {
+                if(this.character.isColliding(enemy)){
+                    console.log('is colliding with this enemy:', enemy)
+                }
+            });
+        }, 1000);
+    }
+
     // draw Images on context
     addToMap(moveableObject) {
 
@@ -69,8 +82,6 @@ class World {
             this.flipImageBack(moveableObject);
         }
     };
-
-
 
     flipImage(moveableObject) {
         this.ctx.save();  // saves current (not mirrored) context to use it later for reverse mirrroring
