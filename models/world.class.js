@@ -58,9 +58,8 @@ class World {
     // Check Collisions with any moveableObject that is an enemy  // check this multiple times each second for each enemy
     checkCollisions() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => 
-            {
-                if(this.character.isColliding(enemy)){
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
                     this.character.hit();  // decrease energy
                 }
             });
@@ -68,22 +67,19 @@ class World {
         }, 1000);
     }
 
-    checkDeath(){
-if(this.character.energy <= 0)
-console.log('character is dead');
-
+    checkDeath() {
+        if (this.character.energy <= 0)
+            console.log('character is dead');
     }
 
     // draw Images on context
     addToMap(moveableObject) {
-
         //check if character moves in otherDirection >> mirroring the context (context is where the objects are drawn to)
         if (moveableObject.otherDirection) {
             this.flipImage(moveableObject);
         }
         moveableObject.draw(this.ctx);  // draw mirrored image on context
         moveableObject.drawFrames(this.ctx); // draw frames around each object for helping programming the collision effects
-
         // if we mirrored the context before drawing the image, reverse context to normal again after drawing
         if (moveableObject.otherDirection) {
             this.flipImageBack(moveableObject);

@@ -11,6 +11,7 @@ class MoveableObject {
     speedY = 0;
     acceleration = 2;
     energy = 100;
+    lastHit = 0;                         // time when character is last hit
 
     // not active now, but maybe use the function later for dying fish
     applyGravity() {
@@ -22,12 +23,21 @@ class MoveableObject {
         }, 1000 / 25)
     }
 
-    hit() {
-        this.energy -= 30;
+    hit() {   // is called in world
+        this.energy -= 5;
         // prevent from getting negative energy values
         if (this.energy < 0) {
             this.energy = 0
         }
+        else {
+            this.lastHit = new Date().getTime();  // saves timepoint (in milliseconds since 1.1.1970)
+        }
+    }
+
+    isHurt(){
+        let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
+        timepassed = timepassed / 1000; // timepassed in seconds
+        return timepassed < 1;    // duration of hurt-animation  >> as long as "timepassed" is < 1second, the function isHurt() returns true
     }
 
     isDead() {
