@@ -38,16 +38,20 @@ class World {
         // drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
         this.addObjectsToMap(this.level.backgroundObjects);
 
-     
-        // add all static (non moving) objects here
-        this.addToMap(this.Statusbar);
-        
+        //----------
+        this.ctx.translate(-this.camera_x, 0);  // move ctx back to insert static elements 
+        // ---------    add further static (non moveable) objects here   --------
+        this.addToMap(this.statusbar);
+        this.ctx.translate(this.camera_x, 0);  // move ctx forward again 
+        //-------------
+
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
 
 
         // move context to original position again
         this.ctx.translate(- this.camera_x, 0);
+
 
         // requestAnimationFrame() is a API Browser Function. NOTE: uses NO "THIS" to call this function!! its specific for this function! 
         let self = this;  // need to bind "this" to another variable so i can use it inside a nested function (otherwise "this" is not functioning)
@@ -68,6 +72,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();  // decrease energy
+                    this.statusbar.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
                 }
             });
             this.checkDeath();
