@@ -27,4 +27,17 @@ class Drawableobject {
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);  // drawImage() is a API Browser Function: ctx.drawImage(image, dx, dy, dWidth, dHeight)
     }
+
+    // Green rectangle around each object >> helping programming collisions
+    drawFrames(ctx) {
+        if (this instanceof Character || this instanceof Endboss || this instanceof Pufferfish) {  // exclude backgroundObjects from frames
+            ctx.beginPath();
+            ctx.lineWidth = '4';
+            ctx.strokeStyle = 'orange';
+            //rect() is a JS function with 4 Paramters: x, y, width, height
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
 }

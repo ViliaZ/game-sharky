@@ -43,20 +43,6 @@ class MoveableObject extends Drawableobject{
         return this.y < 270;   // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
     }
 
-
-
-    // Green rectangle around each object >> helping programming collisions
-    drawFrames(ctx) {
-        if (this instanceof Character || this instanceof Endboss || this instanceof Pufferfish) {  // exclude backgroundObjects from frames
-            ctx.beginPath();
-            ctx.lineWidth = '4';
-            ctx.strokeStyle = 'orange';
-            //rect() is a JS function with 4 Paramters: x, y, width, height
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
-
     playAnimation(imageArray) {
         let i = this.currentImage % imageArray.length  // creates permanent circle of numbers from 0 to arraylength
         let path = imageArray[i]    // path is the key to the variable in imageCache
