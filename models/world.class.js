@@ -37,9 +37,14 @@ class World {
 
         // drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
         this.addObjectsToMap(this.level.backgroundObjects);
+
+     
+        // add all static (non moving) objects here
+        this.addToMap(this.Statusbar);
+        
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
-        this.addToMap(this.statusbar)
+
 
         // move context to original position again
         this.ctx.translate(- this.camera_x, 0);

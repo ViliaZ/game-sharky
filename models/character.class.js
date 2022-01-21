@@ -83,11 +83,9 @@ class Character extends MoveableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             }
-
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             }
-
             if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.moveRight();
                 this.otherDirection = false;
