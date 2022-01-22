@@ -1,7 +1,6 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let throwableObject = new ThrowableObject();
 
 function init() {
     canvas = document.getElementById('canvas');

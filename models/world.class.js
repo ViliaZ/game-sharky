@@ -5,6 +5,7 @@ class World {
     // these are variables. Syntax; variables dont need "let" because they are written inside the Class (normally its: let character = new Character();)
     character = new Character();
     statusbar = new Statusbar();
+    bubble = new ThrowableObject();
     enemies = level1.enemies;
     level = level1;   // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     backgroundObjects = level1.backgroundObjects;
@@ -28,6 +29,7 @@ class World {
         this.character.world = this;
     }
 
+    // calling the addtoMap() draw any object onto context
     draw() {
         //clear Canvas each time for redrawing with parameters of canvas.width und canvas.height
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -38,15 +40,16 @@ class World {
         // drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
         this.addObjectsToMap(this.level.backgroundObjects);
 
-        //----------
+        //*********** */
         this.ctx.translate(-this.camera_x, 0);  // move ctx back to insert static elements 
-        // ---------    add further static (non moveable) objects here   --------
+        // ---- you can ADD FURTHER STATIC  (non moveable) objects here  -----
         this.addToMap(this.statusbar);
         this.ctx.translate(this.camera_x, 0);  // move ctx forward again 
-        //-------------
+        //*********** */
 
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
+        this.addToMap(this.bubble)
 
 
         // move context to original position again
@@ -84,7 +87,7 @@ class World {
             console.log('character is dead');
     }
 
-    // draw Images on context
+    // draw Images on context - function is called inside of draw()
     addToMap(moveableObject) {
         //check if character moves in otherDirection >> mirroring the context (context is where the objects are drawn to)
         if (moveableObject.otherDirection) {

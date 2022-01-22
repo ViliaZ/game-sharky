@@ -1,14 +1,15 @@
-class MoveableObject extends Drawableobject{
+class MoveableObject extends Drawableobject {
 
-             
+
     speed = 0.20 + Math.random() * 0.5;   // pixels to move
-    otherDirection = false;             // mirroring object e.g. character looking to left
+    otherDirection = false;               // mirroring object e.g. character looking to left
     speedY = 0;
     acceleration = 2;
     energy = 100;
     lastHit = 0;                         // time when character is last hit
 
-    // not active now, but maybe use the function later for dying fish
+
+
     applyGravity() {
         setInterval(() => {
             if (this.objectIsAboveGround()) {
@@ -29,18 +30,23 @@ class MoveableObject extends Drawableobject{
         }
     }
 
-    isHurt(){
+    isHurt() {
         let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
         timepassed = timepassed / 1000; // timepassed in seconds
         return timepassed < 1;    // duration of hurt-animation  >> as long as "timepassed" is < 1second, the function isHurt() returns true
     }
 
     isDead() {
-      return this.energy == 0;  // if this condition is true, then isDead() returnes true
+        return this.energy == 0;  // if this condition is true, then isDead() returnes true
     }
 
     objectIsAboveGround() {
-        return this.y < 270;   // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
+        if (this instanceof ThrowableObject) {  
+            return true;   // always true bc. bubbles should not stop at ground
+        }
+        else {
+            return this.y < 200;   // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
+        }
     }
 
     playAnimation(imageArray) {

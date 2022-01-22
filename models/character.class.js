@@ -7,7 +7,7 @@ class Character extends MoveableObject {
     height = 210;
     speed = 3;
 
-    // call world.character.world to access variables of the world class ( e.g. keyboard)
+    // call character.world to access variables of the world class ( e.g. keyboard)
     world;
 
     // Sharky, when chilling
