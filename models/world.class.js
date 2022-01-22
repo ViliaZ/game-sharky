@@ -5,7 +5,7 @@ class World {
     // these are variables. Syntax; variables dont need "let" because they are written inside the Class (normally its: let character = new Character();)
     character = new Character();
     statusbar = new Statusbar();
-    bubble = new ThrowableObject();
+    throwableObject = [new ThrowableObject(), new ThrowableObject()];
     enemies = level1.enemies;
     level = level1;   // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     backgroundObjects = level1.backgroundObjects;
@@ -21,7 +21,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.runChecks();  // regualarly check collisions etc. 
     }
 
     // hand over complete world to character instance >> make everything in world accessable to character
@@ -49,7 +49,7 @@ class World {
 
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
-        this.addToMap(this.bubble)
+        this.addObjectsToMap(this.throwableObject);  // throwableObject is an array >> therefore use addObjectstoMap insted addtoMap
 
 
         // move context to original position again
@@ -70,16 +70,26 @@ class World {
     }
 
     // Check Collisions with any moveableObject that is an enemy  // check this multiple times each second for each enemy
-    checkCollisions() {
+    runChecks() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();  // decrease energy
-                    this.statusbar.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
-                }
-            });
-            this.checkDeath();
-        }, 1000);
+            this.checkCollisions();
+            this.checkThrowing();
+        }, 1000/20);
+    }
+
+    checkThrowing(){
+        if(this.keyboard.KEYD){
+            this.throwableObject[0].throw(this.character.x, this.character.y)    
+        }
+    }
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();  // decrease energy
+                this.statusbar.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
+            }
+        });
+        this.checkDeath();
     }
 
     checkDeath() {
