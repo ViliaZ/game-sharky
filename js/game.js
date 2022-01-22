@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let throwableObject = new ThrowableObject();
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -11,6 +12,7 @@ function init() {
 window.addEventListener('keydown', event => {
     // Eventlistener is returning a JSON (console.log(event) >> the key "code" defines the key that was pressed)
 let pressedKey = event.code;
+console.log(event);
 
 if (pressedKey === 'Space') {
     keyboard.SPACE = true;
@@ -26,6 +28,9 @@ if (pressedKey === 'ArrowLeft') {
 }
 if (pressedKey === 'ArrowRight') {
     keyboard.RIGHT = true;
+}
+if (pressedKey === 'KeyD') {
+    keyboard.KEYD = true;
 }
 })
 
@@ -49,7 +54,9 @@ window.addEventListener('keyup', event => {
     }
     if (pressedKey === 'ArrowRight') {
         keyboard.RIGHT = false;
-
+    }    
+    if (pressedKey === 'KeyD') {
+        keyboard.KEYD = false;
     }
 })
 
