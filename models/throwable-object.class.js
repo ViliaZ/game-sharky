@@ -15,7 +15,7 @@ constructor(){
 }
 
 throw(characterX,characterY){  // when method is called, its giben the x and y of character as parameters
-    this.x = characterX+200;
+    this.x = characterX+220;   // bubbles should come out ot sharkys mouth
     this.y = characterY;
 
 
