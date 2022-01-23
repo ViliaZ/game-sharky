@@ -4,7 +4,7 @@
 class World {
     // these are variables. Syntax; variables dont need "let" because they are written inside the Class (normally its: let character = new Character();)
     character = new Character();
-    // statusbar = new Statusbar();
+    statusbar = new Statusbar();
     throwableObject = [new ThrowableObject(), new ThrowableObject()];
     enemies = level1.enemies;
     level = level1;   // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
@@ -43,7 +43,7 @@ class World {
         //*********** */
         this.ctx.translate(-this.camera_x, 0);  // move ctx back to insert static elements 
         // ---- you can ADD FURTHER STATIC  (non moveable) objects here  -----
-        // this.addToMap(this.statusbar);
+        this.addToMap(this.statusbar);
         this.ctx.translate(this.camera_x, 0);  // move ctx forward again 
         //*********** */
 

@@ -4,15 +4,16 @@ class Statusbar extends Drawableobject {
     y = 20;
     width = 200;
     height = 60;
-    percentage = 100;  // initially 100% life energy
+    percentage;  // initially 100% life energy
 
 
     IMAGES = [
-        'img/4. Marcadores/1. Coins/1.png',  // 0
-        'img/4. Marcadores/1. Coins/2.png',
-        'img/4. Marcadores/1. Coins/3.png',
-        'img/4. Marcadores/1. Coins/4.png',
-        'img/4. Marcadores/1. Coins/5.png'  // 5
+        'img/4. Marcadores/green/Life/0_  copia 3.png',  // 0
+        'img/4. Marcadores/green/Life/20_ copia 4.png',
+        'img/4. Marcadores/green/Life/40_  copia 3.png',
+        'img/4. Marcadores/green/Coin/60_  copia 4.png',
+        'img/4. Marcadores/green/Life/80_  copia 3.png',
+        'img/4. Marcadores/green/Life/100_  copia 2.png'  // 5
     ]
 
     constructor() {
