@@ -1,6 +1,7 @@
 // this class contains MoveableObject
 
 class Drawableobject {
+    
     x = 0;
     y = 50;
     width = 200;
