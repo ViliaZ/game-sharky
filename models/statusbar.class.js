@@ -1,7 +1,7 @@
 class Statusbar extends Drawableobject {
 
-    x = 20;
-    y = 20;
+    x = 0;
+    y = 0;
     width = 200;
     height = 60;
     percentage;  // initially 100% life energy
