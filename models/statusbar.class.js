@@ -1,7 +1,7 @@
 class Statusbar extends Drawableobject {
 
-    x = 0;
-    y = 0;
+    x = 20;
+    y = 20;
     width = 200;
     height = 60;
     percentage = 100;  // initially 100% life energy
@@ -12,11 +12,11 @@ class Statusbar extends Drawableobject {
         'img/4. Marcadores/1. Coins/2.png',
         'img/4. Marcadores/1. Coins/3.png',
         'img/4. Marcadores/1. Coins/4.png',
-        'img/4. Marcadores/1. Coins/5.png'   // 5
+        'img/4. Marcadores/1. Coins/5.png'  // 5
     ]
 
     constructor() {
-        super();                            // initialize all mehtods and variable from overarching class
+        super();                           // initialize all mehtods and variable from overarching class
         this.loadImages(this.IMAGES);       // load images to imageCache
         this.setPercentage(100);            // initially load img with 100 percent life energy
     }
