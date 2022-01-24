@@ -7,6 +7,7 @@ class ThrowableObject extends MoveableObject {
     height = 18;
 
 
+
     IMAGE = 'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png';
 
     constructor(x, y) {  // input is coordinates of character (bit adjusted)
@@ -22,5 +23,16 @@ class ThrowableObject extends MoveableObject {
         }, 1000 / 80);
         this.applyGravity();
     }
+
+    // detects IF character is colliding with any object > boolean
+    isCollidingEnemy(enemy) {
+        return this.x + this.width > enemy.x 
+        // &&
+        //     this.y + this.height > enemy.y &&
+        //     this.x < enemy.x &&
+        //     this.y < enemy.y + enemy.height
+    }
+
+
 
 }

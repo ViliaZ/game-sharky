@@ -6,7 +6,7 @@ class StatusbarCoins extends Drawableobject {
     y = 40;
     width = 175;
     height = 50;
-    percentage = 0;       // default by game start - each coin is worth 10%
+    percentage = 0;       // default game start, max: 100
 
     IMAGES = [
         'img/4. Marcadores/green/Coin/0_  copia 4.png',  // 0
@@ -24,18 +24,15 @@ class StatusbarCoins extends Drawableobject {
     }
 
 
-
-
-    // Trigger: when collision with a coin was detected, call this function (class world)
+    // Trigger:  collision with a coin, function for calling: in class world
     increaseStatusbarCoins() {
-        this.percentage += 20;  // each coin is worth 20% 
+        this.percentage += 20;      // each coin equals 20% 
         this.resolvePercentage();
         this.setPercentage();
     }
 
-    // Trigger: 
+    // Trigger: tbd
     decreaseStatusbarCoins() {
-        console.log('remove Coin from statusbarCoins')
         this.percentage -= 20;  // each coin is worth 20% 
         this.resolvePercentage();
         this.setPercentage();
@@ -44,13 +41,13 @@ class StatusbarCoins extends Drawableobject {
     resolvePercentage() {
         if (this.percentage === 100) {
             return 5;
-        } if (this.percentage === 80) {
+        } else if (this.percentage === 80) {
             return 4;
-        } if (this.percentage === 60) {
+        } else if (this.percentage === 60) {
             return 3;
-        } if (this.percentage === 40) {
+        } else if (this.percentage === 40) {
             return 2;
-        } if (this.percentage === 20) {
+        } else if (this.percentage === 20) {
             return 1;
         } else {
             return 0;

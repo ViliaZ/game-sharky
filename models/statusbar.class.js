@@ -22,31 +22,24 @@ class Statusbar extends Drawableobject {
         this.setPercentage(100);            // initially load img with 100 percent life energy
     }
 
-
     setPercentage(percentage){
         this.percentage = percentage;       // applies argument to local variable (this.percentage)
         let path = this.IMAGES[this.resolvePercentage()]    // path is the key to the variable in imageCache
         this.img = this.imageCache[path];
     }
 
-
     // will return a number >> used as index for Images Array
     resolvePercentage() {   
         if (this.percentage == 100) {
-            return 5;    
-        }
+            return 5; }
         else if (this.percentage > 80) {
-            return 4;
-        } 
+            return 4; } 
         else if (this.percentage > 60) {
-            return 3;
-        } 
+            return 3; } 
         else if (this.percentage > 40) {
-            return 2;
-        } 
+            return 2; } 
         else if (this.percentage > 20) {
-            return 1;
-        } 
+            return 1; } 
         else
             return 0;
     }

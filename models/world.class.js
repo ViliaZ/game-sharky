@@ -86,12 +86,25 @@ class World {
         if (this.keyboard.KEYD) {
             let bubble = new ThrowableObject(this.character.x + 200, this.character.y + 30);
             this.throwableObjects.push(bubble);
+            setInterval(() => {
+                this.checkIfEnemyHurt(bubble);
+            }, 1000 / 20);
         }
     }
+
+    // Collision Enemy and Bubble
+    checkIfEnemyHurt(bubble) {
+        this.enemies.forEach((enemy) => {
+            if (bubble.isCollidingEnemy(enemy)) {
+                console.log('bubble hurt Enemy')
+            }
+        })
+    }
+
     checkCollisionsEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();  // decrease energy
+                this.character.hit();                               // decrease energy
                 this.statusbar.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
             }
         });
