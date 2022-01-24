@@ -106,23 +106,12 @@ class World {
     checkCollisionsCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
-                console.log(this.level.coins);
-               let indexCurrentCoin = this.level.coins.indexOf(coin)
-               console.log(this.level.coins);
-               this.level.coins.splice(indexCurrentCoin,1)
-               console.log(this.level.coins);
-
-
-                // this.statusbarCoins.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
-            }
+                let indexCurrentCoin = this.level.coins.indexOf(coin);  // get index of the coin that was hit
+                this.level.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
+                this.statusbarCoins.increaseStatusbarCoins();  // this.character.energy is the number that we need to set our percentage of the statusbar
+            };
         });
     }
-
-    // hideCoin(coin){
-    //     // this.level.coins.slice(1,1)
-    //     // console.log(  this.level.coins)
-    // }
-
 
 
     // draw Images on context - function is called inside of draw()
