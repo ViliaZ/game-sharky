@@ -5,7 +5,7 @@ class World {
     // these are variables. Syntax; variables dont need "let" because they are written inside the Class (normally its: let character = new Character();)
     character = new Character();
     statusbar = new Statusbar();
-    throwableObject = [new ThrowableObject(), new ThrowableObject()];
+    throwableObjects = [];
     enemies = level1.enemies;
     level = level1;   // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     backgroundObjects = level1.backgroundObjects;
@@ -49,7 +49,7 @@ class World {
 
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.throwableObject);  // throwableObject is an array >> therefore use addObjectstoMap insted addtoMap
+        this.addObjectsToMap(this.throwableObjects);  // throwableObject is an array >> therefore use addObjectstoMap insted addtoMap
 
 
         // move context to original position again
@@ -79,7 +79,8 @@ class World {
 
     checkThrowing(){
         if(this.keyboard.KEYD){
-            this.throwableObject[0].throw(this.character.x, this.character.y)    
+            let bubble = new ThrowableObject(this.character.x+200, this.character.y+30);
+            this.throwableObjects.push(bubble);
         }
     }
     checkCollisions() {
