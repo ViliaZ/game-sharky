@@ -6,10 +6,10 @@ class World {
     character = new Character();
     statusbar = new Statusbar();
     statusbarCoins = new StatusbarCoins();
-    coins = [new Coins(), new Coins(), new Coins(), new Coins(), new Coins(), new Coins()]
     throwableObjects = [];
-    enemies = level1.enemies;
     level = level1;   // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
+    coins = level1.coins;
+    enemies = level1.enemies;
     backgroundObjects = level1.backgroundObjects;
 
     canvas;             // variable declaring, needs to be here to be available also for draw()
@@ -41,8 +41,7 @@ class World {
 
         // drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
         this.addObjectsToMap(this.level.backgroundObjects);
-
-        this.addObjectsToMap(this.coins);
+        this.addObjectsToMap(this.level.coins);
 
         //*********** */
         this.ctx.translate(-this.camera_x, 0);  // move ctx back to insert static elements 
@@ -77,7 +76,8 @@ class World {
     // Check Collisions with any moveableObject that is an enemy  // check this multiple times each second for each enemy
     runChecks() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionsEnemies();
+            this.checkCollisionCoins();
             this.checkThrowing();
         }, 1000/20);
     }
@@ -88,7 +88,7 @@ class World {
             this.throwableObjects.push(bubble);
         }
     }
-    checkCollisions() {
+    checkCollisionsEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();  // decrease energy
@@ -102,6 +102,14 @@ class World {
         if (this.character.energy <= 0)
             console.log('character is dead');
     }
+    
+    // checkCollisionCoins(){
+    //     this.level.coins.forEach(coin) =>{
+
+    //     }
+    // }
+
+
 
     // draw Images on context - function is called inside of draw()
     addToMap(moveableObject) {
