@@ -6,6 +6,7 @@ class World {
     character = new Character();
     statusbar = new Statusbar();
     statusbarCoins = new StatusbarCoins();
+    coins = [new Coins(), new Coins(), new Coins(), new Coins(), new Coins(), new Coins()]
     throwableObjects = [];
     enemies = level1.enemies;
     level = level1;   // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
@@ -40,6 +41,8 @@ class World {
 
         // drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
         this.addObjectsToMap(this.level.backgroundObjects);
+
+        this.addObjectsToMap(this.coins);
 
         //*********** */
         this.ctx.translate(-this.camera_x, 0);  // move ctx back to insert static elements 
