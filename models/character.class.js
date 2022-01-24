@@ -68,7 +68,6 @@ class Character extends MoveableObject {
 
 
     animate() {
-
         // IDLE ANIMATION WHEN NO KEYS PRESSED
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_IDLE.length  // i is increasing ++ by every interval circle creates permanent circle of 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, ....)

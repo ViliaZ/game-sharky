@@ -77,14 +77,14 @@ class World {
     runChecks() {
         setInterval(() => {
             this.checkCollisionsEnemies();
-            this.checkCollisionCoins();
+            this.checkCollisionsCoins();
             this.checkThrowing();
-        }, 1000/20);
+        }, 1000 / 20);
     }
 
-    checkThrowing(){
-        if(this.keyboard.KEYD){
-            let bubble = new ThrowableObject(this.character.x+200, this.character.y+30);
+    checkThrowing() {
+        if (this.keyboard.KEYD) {
+            let bubble = new ThrowableObject(this.character.x + 200, this.character.y + 30);
             this.throwableObjects.push(bubble);
         }
     }
@@ -102,11 +102,25 @@ class World {
         if (this.character.energy <= 0)
             console.log('character is dead');
     }
-    
-    // checkCollisionCoins(){
-    //     this.level.coins.forEach(coin) =>{
 
-    //     }
+    checkCollisionsCoins() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                console.log(this.level.coins);
+               let indexCurrentCoin = this.level.coins.indexOf(coin)
+               console.log(this.level.coins);
+               this.level.coins.splice(indexCurrentCoin,1)
+               console.log(this.level.coins);
+
+
+                // this.statusbarCoins.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
+            }
+        });
+    }
+
+    // hideCoin(coin){
+    //     // this.level.coins.slice(1,1)
+    //     // console.log(  this.level.coins)
     // }
 
 

@@ -75,11 +75,11 @@ class MoveableObject extends Drawableobject {
             this.x += this.speed;
         }
 
-        // detects IF character is colliding with any moveableObject > boolean
-        isColliding(moveableObject) {
-            return this.x + this.width > moveableObject.x &&
-                this.y + this.height > moveableObject.y &&
-                this.x < moveableObject.x &&
-                this.y < moveableObject.y + moveableObject.height
+        // detects IF character is colliding with any object > boolean
+        isColliding(object) {
+            return this.x + this.width > object.x &&
+                this.y + this.height > object.y &&
+                this.x < object.x &&
+                this.y < object.y + object.height
         }
     }

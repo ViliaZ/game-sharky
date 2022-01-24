@@ -1,9 +1,9 @@
 
 
-class StatusbarCoins extends Drawableobject{
+class StatusbarCoins extends Drawableobject {
 
-    x=10;
-    y=40;
+    x = 10;
+    y = 40;
     width = 175;
     height = 50;
 
@@ -18,10 +18,19 @@ class StatusbarCoins extends Drawableobject{
     ]
 
 
-    constructor(){
+    constructor() {
         super().loadImage(this.IMAGES[0]);
         this.loadImages(this.IMAGES);
     }
+
+    increaseStatusbarCoins() {
+        console.log('addCoin to statusbarCoins')
+    }
+
+    decreaseStatusbarCoins() {
+        console.log('remove Coin from statusbarCoins')
+    }
+
 
 
 }
