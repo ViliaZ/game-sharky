@@ -3,8 +3,8 @@
 class ThrowableObject extends MoveableObject {
     x;
     y;
-    width = 18;
-    height = 18;
+    width = 24;
+    height = 24;
 
 
 

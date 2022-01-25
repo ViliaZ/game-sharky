@@ -31,6 +31,34 @@ class Character extends MoveableObject {
         'img/1.Sharkie/1.IDLE/18.png'
     ]
 
+    IMAGES_THROWING_BUBBLE= [
+'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
+    ]
+
+    IMAGES_IDLE_SLEEPY = [
+        'img/1.Sharkie/2.Long_IDLE/i1.png',
+        'img/1.Sharkie/2.Long_IDLE/I2.png',
+        'img/1.Sharkie/2.Long_IDLE/i3.png',
+        'img/1.Sharkie/2.Long_IDLE/i4.png',
+        'img/1.Sharkie/2.Long_IDLE/i5.png',
+        'img/1.Sharkie/2.Long_IDLE/i6.png',
+        'img/1.Sharkie/2.Long_IDLE/i7.png',
+        'img/1.Sharkie/2.Long_IDLE/i8.png',
+        'img/1.Sharkie/2.Long_IDLE/i9.png',
+        'img/1.Sharkie/2.Long_IDLE/i10.png',
+        'img/1.Sharkie/2.Long_IDLE/i11.png',
+        'img/1.Sharkie/2.Long_IDLE/i12.png',
+        'img/1.Sharkie/2.Long_IDLE/i13.png',
+        'img/1.Sharkie/2.Long_IDLE/i14.png'
+    ]
+
     // Sharky, when hurt
     IMAGES_HURT = [
         'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
