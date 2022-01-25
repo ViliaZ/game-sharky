@@ -10,6 +10,10 @@ class ThrowableObject extends MoveableObject {
 
     IMAGE = 'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png';
 
+    // IMAGES_THROWBUBBLE = [
+    //     ''
+    // ]
+
     constructor(x, y) {  // input is coordinates of character (bit adjusted)
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
         this.x = x;
@@ -17,11 +21,11 @@ class ThrowableObject extends MoveableObject {
         this.throw();
     }
 
-    throw() {  // when method is called, its giben the x and y of character as parameters
+    throw() {  // when method is called, its given the x and y of character as parameters
         setInterval(() => {
-            this.x += 2;
-        }, 1000 / 80);
-        this.applyGravity();
+            this.x += 4;
+        }, 1000 / 50);
+        super.applyGravity();
     }
 
     // detects IF character is colliding with any object > boolean

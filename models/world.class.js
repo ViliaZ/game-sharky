@@ -85,7 +85,7 @@ class World {
     checkThrowing() {
         // only throw Bubble if Coins are available
         if (this.keyboard.KEYD && this.statusbarCoins.percentage > 0) {
-            let bubble = new ThrowableObject(this.character.x + 200, this.character.y + 30);
+            let bubble = new ThrowableObject(this.character.x + 240, this.character.y + 130);
             this.throwableObjects.push(bubble);
             setInterval(() => {
                 this.checkIfEnemyHurt(bubble);

@@ -3,8 +3,8 @@ class MoveableObject extends Drawableobject {
 
     speed = 0.20 + Math.random() * 0.5;   // pixels to move
     otherDirection = false;               // mirroring object e.g. character looking to left
-    speedY = 8;
-    acceleration = 0.5;
+    speedY = 2;
+    acceleration = 0.1;
     energy = 100;
     lastHit = 0;                         // time when character is last hit
 
@@ -14,6 +14,8 @@ class MoveableObject extends Drawableobject {
         setInterval(() => {
             if (this.objectIsAboveGround()) {
                 this.y -= this.speedY;
+                // this.y -= this.speedY;
+                
                 this.speedY -= this.acceleration;  // speedY number changes with every Interval
             };
         }, 1000 / 25)
