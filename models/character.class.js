@@ -31,15 +31,27 @@ class Character extends MoveableObject {
         'img/1.Sharkie/1.IDLE/18.png'
     ]
 
-    IMAGES_THROWING_BUBBLE= [
-'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
-'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
-'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
-'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
-'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
-'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
-'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
-'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
+    IMAGES_THROWING_BUBBLE = [
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
+    ]
+
+    IMAGES_FINSLAP = [
+        'img/1.Sharkie/4.Attack/Fin slap/1.png',
+        'img/1.Sharkie/4.Attack/Fin slap/2.png',
+        'img/1.Sharkie/4.Attack/Fin slap/3.png',
+        'img/1.Sharkie/4.Attack/Fin slap/4.png',
+        'img/1.Sharkie/4.Attack/Fin slap/5.png',
+        'img/1.Sharkie/4.Attack/Fin slap/6.png',
+        'img/1.Sharkie/4.Attack/Fin slap/7.png',
+        'img/1.Sharkie/4.Attack/Fin slap/8.png'
     ]
 
     IMAGES_IDLE_SLEEPY = [
@@ -85,8 +97,11 @@ class Character extends MoveableObject {
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_IDLE_SLEEPY);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_THROWING_BUBBLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_HURT);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_DEAD);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_FINSLAP);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.animate();
     }
 
