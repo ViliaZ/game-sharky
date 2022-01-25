@@ -94,18 +94,21 @@ class World {
         else { return }
     }
 
-    // Collision Enemy and Bubble
+    // Collision Enemy and Bubble  >> bubble remove and hurt-animation Enemy initiated
     checkIfEnemyHurt(bubble) {
         this.enemies.forEach((enemy) => {
-            if (bubble.isCollidingEnemy(enemy)) {
-                console.log('bubble hurt Enemy')
+            if (bubble.isCollidingEnemy(enemy) && enemy instanceof Endboss) {
+                console.log('bubble hurt ENDBOSS')
+                enemy.playAnimation(enemy.IMAGES_HURT)
+
+                // bubbles dissappear after colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
                 let indexBubble = this.throwableObjects.indexOf(bubble);
-                // bubbles dissappear if colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
                 setTimeout(() => { this.throwableObjects.splice(indexBubble, 1) }, 300)
             }
         })
     }
-
+ 
+    // character hurt via collision enemy
     checkCollisionsEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {

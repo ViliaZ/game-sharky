@@ -39,7 +39,7 @@ class Endboss extends MoveableObject {
         'img/2.Enemy/3 Final Enemy/Hurt/1.png',
         'img/2.Enemy/3 Final Enemy/Hurt/2.png',
         'img/2.Enemy/3 Final Enemy/Hurt/3.png',
-        'img/2.Enemy/3 Final Enemy/Hurt/4.png'
+        'img/2.Enemy/3 Final Enemy/Hurt/4.png',
     ]
 
     IMAGES_ATTACK = [
@@ -72,7 +72,7 @@ class Endboss extends MoveableObject {
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_FLOATING);
-        }, 150);
+        }, 1000/10);
     }
 
 }
