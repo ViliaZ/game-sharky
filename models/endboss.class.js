@@ -5,6 +5,20 @@ class Endboss extends MoveableObject {
     height = 250;
     width = 340;
 
+    IMAGES_INTRODUCE = [
+        'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/3.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/4.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/5.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/6.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/7.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/8.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/9.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/10.png'
+
+    ]
+
     IMAGES_FLOATING = [
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
         'img/2.Enemy/3 Final Enemy/2.floating/2.png',
@@ -21,9 +35,37 @@ class Endboss extends MoveableObject {
         'img/2.Enemy/3 Final Enemy/2.floating/13.png'
     ]
 
+    IMAGES_HURT = [
+        'img/2.Enemy/3 Final Enemy/Hurt/1.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/2.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/3.png',
+        'img/2.Enemy/3 Final Enemy/Hurt/4.png'
+    ]
+
+    IMAGES_ATTACK = [
+        'img/2.Enemy/3 Final Enemy/Attack/1.png',
+        'img/2.Enemy/3 Final Enemy/Attack/2.png',
+        'img/2.Enemy/3 Final Enemy/Attack/3.png',
+        'img/2.Enemy/3 Final Enemy/Attack/4.png',
+        'img/2.Enemy/3 Final Enemy/Attack/5.png',
+        'img/2.Enemy/3 Final Enemy/Attack/6.png',
+    ]
+
+    IMAGES_DEAD = [
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png'
+    ]
+
     constructor() {
         super().loadImage(this.IMAGES_FLOATING[0])
         this.loadImages(this.IMAGES_FLOATING)
+        this.loadImages(this.IMAGES_ATTACK)
+        this.loadImages(this.IMAGES_HURT)
+        this.loadImages(this.IMAGES_DEAD)
+        this.playAnimation(this.IMAGES_INTRODUCE);
         this.animate();
     }
 

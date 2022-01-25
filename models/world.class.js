@@ -83,13 +83,15 @@ class World {
     }
 
     checkThrowing() {
-        if (this.keyboard.KEYD) {
+        // only throw Bubble if Coins are available
+        if (this.keyboard.KEYD && this.statusbarCoins.percentage > 0) {
             let bubble = new ThrowableObject(this.character.x + 200, this.character.y + 30);
             this.throwableObjects.push(bubble);
             setInterval(() => {
                 this.checkIfEnemyHurt(bubble);
             }, 1000 / 20);
         }
+        else { return }
     }
 
     // Collision Enemy and Bubble
@@ -97,6 +99,9 @@ class World {
         this.enemies.forEach((enemy) => {
             if (bubble.isCollidingEnemy(enemy)) {
                 console.log('bubble hurt Enemy')
+                let indexBubble = this.throwableObjects.indexOf(bubble);
+                // bubbles dissappear if colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
+                setTimeout(() => { this.throwableObjects.splice(indexBubble, 1) }, 300)
             }
         })
     }

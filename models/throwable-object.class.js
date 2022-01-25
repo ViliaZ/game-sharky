@@ -26,11 +26,10 @@ class ThrowableObject extends MoveableObject {
 
     // detects IF character is colliding with any object > boolean
     isCollidingEnemy(enemy) {
-        return this.x + this.width > enemy.x 
-        // &&
-        //     this.y + this.height > enemy.y &&
-        //     this.x < enemy.x &&
-        //     this.y < enemy.y + enemy.height
+        return this.x + this.width > enemy.x &&
+            this.y + this.height > enemy.y &&
+            this.x < enemy.x &&
+            this.y < enemy.y + enemy.height
     }
 
 
