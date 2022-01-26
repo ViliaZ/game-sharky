@@ -122,6 +122,7 @@ class Character extends MoveableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                showLoosingPage();  // in game.js
             }
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
@@ -147,5 +148,5 @@ class Character extends MoveableObject {
     }
 
 
-    
+
 }

@@ -59,3 +59,11 @@ window.addEventListener('keyup', event => {
     }
 })
 
+function showSuccessPage(){
+    console.log('you have successfully suvived - SUCESS PAGE')
+}
+
+function showLoosingPage(){
+    console.log('try again - YOU LOST PAGE');
+}
+
