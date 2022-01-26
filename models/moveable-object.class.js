@@ -5,7 +5,7 @@ class MoveableObject extends Drawableobject {
     otherDirection = false;               // mirroring object e.g. character looking to left
     speedY = 2;
     acceleration = 0.1;
-    energy = 100;
+    energy = 100;                        // for character and endboss
     lastHit = 0;                         // time when character is last hit
 
 
@@ -32,8 +32,9 @@ class MoveableObject extends Drawableobject {
         //     }, 1000 / 25)
         // }
 
-        hit() {   // is called in world
-            this.energy -= 5;
+
+        hit() {   // is called in world on collision detection 
+            this.energy -= 25;
             // prevent from getting negative energy values
             if (this.energy < 0) {
                 this.energy = 0

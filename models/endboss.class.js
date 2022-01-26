@@ -4,7 +4,7 @@ class Endboss extends MoveableObject {
     y = 0;
     height = 250;
     width = 340;
-    lifeEnergy = 100;  // default with start  - minus 20 with every hurt
+    lifeEnergy = 100;  // default with start  - minus 25 with every hurt
 
     IMAGES_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -67,13 +67,15 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGES_HURT)
         this.loadImages(this.IMAGES_DEAD)
         this.playAnimation(this.IMAGES_INTRODUCE);
-        this.animate();
+        this.animate(this.IMAGES_FLOATING);
     }
 
-    animate() {
+    animate(imageArrayEndboss) {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_FLOATING);
+            this.playAnimation(imageArrayEndboss);
         }, 1000/10);
     }
+
+
 
 }

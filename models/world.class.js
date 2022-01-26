@@ -7,14 +7,14 @@ class World {
     statusbar = new Statusbar();
     statusbarCoins = new StatusbarCoins();
     throwableObjects = [];
-    level = level1;   // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
+    level = level1;         // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     coins = level1.coins;
     enemies = level1.enemies;
     backgroundObjects = level1.backgroundObjects;
 
-    canvas;             // variable declaring, needs to be here to be available also for draw()
-    ctx;                // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
-    camera_x = 0;       // moves world (context) on x axis
+    canvas;                 // variable declaring, needs to be here to be available also for draw()
+    ctx;                    // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
+    camera_x = 0;           // moves world (context) on x axis
     keyboard;
 
     constructor(canvas, keyboard) {  // this is the id="canvas" div which is defined in game.js and the variable keyboard from game.js
@@ -35,14 +35,11 @@ class World {
     draw() {
         //clear Canvas each time for redrawing with parameters of canvas.width und canvas.height
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-
         // move context on x axis (when character is moving) >> all following elements are now drawn e.g. 100px to right >> after drawing the context be put on original position
         this.ctx.translate(this.camera_x, 0);
-
         // drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.coins);
-
         //*********** */
         this.ctx.translate(-this.camera_x, 0);  // move ctx back to insert static elements 
         // ---- you can ADD FURTHER STATIC  (non moveable) objects here  -----
@@ -50,16 +47,11 @@ class World {
         this.addToMap(this.statusbarCoins);
         this.ctx.translate(this.camera_x, 0);  // move ctx forward again 
         //*********** */
-
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.addObjectsToMap(this.throwableObjects);  // throwableObject is an array >> therefore use addObjectstoMap insted addtoMap
-
-
         // move context to original position again
         this.ctx.translate(- this.camera_x, 0);
-
-
         // requestAnimationFrame() is a API Browser Function. NOTE: uses NO "THIS" to call this function!! its specific for this function! 
         let self = this;  // need to bind "this" to another variable so i can use it inside a nested function (otherwise "this" is not functioning)
         requestAnimationFrame(function () {
@@ -98,6 +90,7 @@ class World {
     checkIfEnemyHurt(bubble) {
         this.enemies.forEach((enemy) => {
             if (bubble.isCollidingEnemy(enemy) && enemy instanceof Endboss) {
+                enemy.hit();  // in moveableObjects
                 enemy.playAnimation(enemy.IMAGES_HURT);
                 this.checkEndbossDead(enemy);
                 this.bubblesDissappear(bubble);
@@ -124,17 +117,17 @@ class World {
 
     checkEndbossDead(enemy) {
         if (enemy.lifeEnergy > 0) {
-            console.log('lost 20 energy points')
             enemy.lifeEnergy -= 20;
         }
         else {
             console.log('Death ENDBOSS')
+            enemy.playAnimation(enemy.IMAGES_DEAD)
         }
     }
 
     checkDeathCharacter() {
         if (this.character.energy <= 0)
-            console.log('character is dead');
+            console.log('Death CHARACTER');
     }
 
     checkCollisionsCoins() {

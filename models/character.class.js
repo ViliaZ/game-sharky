@@ -7,6 +7,7 @@ class Character extends MoveableObject {
     height = 210;
     speed = 3;
 
+
     // call character.world to access variables of the world class ( e.g. keyboard)
     world;
 
@@ -71,7 +72,6 @@ class Character extends MoveableObject {
         'img/1.Sharkie/2.Long_IDLE/i14.png'
     ]
 
-    // Sharky, when hurt
     IMAGES_HURT = [
         'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
         'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
@@ -80,7 +80,6 @@ class Character extends MoveableObject {
         'img/1.Sharkie/5.Hurt/1.Poisoned/5.png',
     ]
 
-    // Sharky, when dead
     IMAGES_DEAD = [
         'img/1.Sharkie/6.dead/2.Electro_shock/1.png',
         'img/1.Sharkie/6.dead/2.Electro_shock/2.png',
@@ -121,7 +120,6 @@ class Character extends MoveableObject {
 
         // MOVING ANIMATIONS ON KEY USAGE
         setInterval(() => {
-
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             }
@@ -145,8 +143,9 @@ class Character extends MoveableObject {
 
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
-        }, 1000 / 60)                           // 60 times per second
-
+        }, 1000 / 60)
     }
 
+
+    
 }
