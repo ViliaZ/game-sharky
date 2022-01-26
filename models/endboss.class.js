@@ -70,11 +70,29 @@ class Endboss extends MoveableObject {
         this.animate(this.IMAGES_FLOATING);
     }
 
-    animate(imageArrayEndboss) {
+    animate() {
+        // initial animation 
         setInterval(() => {
-            this.playAnimation(imageArrayEndboss);
+            this.playAnimation(this.IMAGES_FLOATING);
         }, 1000/10);
+
+        setInterval(() => {
+            if (this.isDead()) {
+                console.log('endboss is DEAD - new')
+                this.playAnimation(this.IMAGES_DEAD);
+            }
+            else if (this.isHurt()){
+                this.playAnimation(this.IMAGES_HURT);
+                console.log('endboss is HURT - new')
+            }
+
+        }, 1000 / 60)
+
+
+
     }
+
+
 
 
 

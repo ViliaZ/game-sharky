@@ -44,10 +44,11 @@ class MoveableObject extends Drawableobject {
             }
         }
 
+        // returns boolean: true or false
         isHurt() {
             let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
             timepassed = timepassed / 1000; // timepassed in seconds
-            return timepassed < 1;    // duration of hurt-animation  >> as long as "timepassed" is < 1second, the function isHurt() returns true
+            return timepassed < 1;    //  true or fals >> duration of hurt-animation >> as long as "timepassed" is <1sec 
         }
 
         isDead() {
