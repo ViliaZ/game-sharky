@@ -4,6 +4,7 @@ class Endboss extends MoveableObject {
     y = 0;
     height = 250;
     width = 340;
+    lifeEnergy = 100;  // default with start  - minus 20 with every hurt
 
     IMAGES_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',

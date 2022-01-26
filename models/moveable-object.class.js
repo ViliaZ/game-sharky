@@ -63,8 +63,8 @@ class MoveableObject extends Drawableobject {
         }
 
         playAnimation(imageArray) {
-            let i = this.currentImage % imageArray.length  // creates permanent circle of numbers from 0 to arraylength
-            let path = imageArray[i]    // path is the key to the variable in imageCache
+            let i = this.currentImage % imageArray.length   // creates permanent circle of numbers from 0 to arraylength
+            let path = imageArray[i]                        // path is the key to the variable in imageCache
             this.img = this.imageCache[path];
             this.currentImage++;
         }

@@ -98,16 +98,19 @@ class World {
     checkIfEnemyHurt(bubble) {
         this.enemies.forEach((enemy) => {
             if (bubble.isCollidingEnemy(enemy) && enemy instanceof Endboss) {
-                console.log('bubble hurt ENDBOSS')
-                enemy.playAnimation(enemy.IMAGES_HURT)
-
-                // bubbles dissappear after colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
-                let indexBubble = this.throwableObjects.indexOf(bubble);
-                setTimeout(() => { this.throwableObjects.splice(indexBubble, 1) }, 300)
+                enemy.playAnimation(enemy.IMAGES_HURT);
+                this.checkEndbossDead(enemy);
+                this.bubblesDissappear(bubble);
             }
         })
     }
- 
+
+    bubblesDissappear(bubble){
+        // bubbles dissappear after colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
+        let indexBubble = this.throwableObjects.indexOf(bubble);
+        setTimeout(() => { this.throwableObjects.splice(indexBubble, 1) }, 300)
+        }
+
     // character hurt via collision enemy
     checkCollisionsEnemies() {
         this.level.enemies.forEach((enemy) => {
@@ -116,10 +119,20 @@ class World {
                 this.statusbar.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
             }
         });
-        this.checkDeath();
+        this.checkDeathCharacter();
     }
 
-    checkDeath() {
+    checkEndbossDead(enemy) {
+        if (enemy.lifeEnergy > 0) {
+            console.log('lost 20 energy points')
+            enemy.lifeEnergy -= 20;
+        }
+        else {
+            console.log('Death ENDBOSS')
+        }
+    }
+
+    checkDeathCharacter() {
         if (this.character.energy <= 0)
             console.log('character is dead');
     }
