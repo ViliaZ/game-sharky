@@ -111,14 +111,7 @@ class World {
                 this.statusbar.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
             }
         });
-        // this.checkDeathCharacter();
     }
-
-
-    // checkDeathCharacter() {
-    //     if (this.character.energy <= 0)
-    //         console.log('Death CHARACTER');
-    // }
 
     checkCollisionsCoins() {
         this.level.coins.forEach((coin) => {
@@ -129,7 +122,6 @@ class World {
             };
         });
     }
-
 
     // draw Images on context - function is called inside of draw()
     addToMap(moveableObject) {
@@ -151,6 +143,7 @@ class World {
         this.ctx.scale(-1, 1);  // mirroring on y-Scale
         moveableObject.x = moveableObject.x * -1; // because context is mirrored, the x coordinate starts at other side of canvas
     }
+
 
     flipImageBack(moveableObject) {
         moveableObject.x = moveableObject.x * -1;
