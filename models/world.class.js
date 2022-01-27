@@ -7,6 +7,7 @@ class World {
     statusbar = new Statusbar();
     statusbarCoins = new StatusbarCoins();
     throwableObjects = [];
+    jellyfishes = level1.jellyfish;
     level = level1;         // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     coins = level1.coins;
     enemies = level1.enemies;
@@ -38,8 +39,9 @@ class World {
         // move context on x axis (when character is moving) >> all following elements are now drawn e.g. 100px to right >> after drawing the context be put on original position
         this.ctx.translate(this.camera_x, 0);
         // drawing functions for each object (character) or array of objects (e.g. enemies, backgroundObjects ..)
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.jellyfishes);
+        this.addObjectsToMap(this.coins);
         //*********** */
         this.ctx.translate(-this.camera_x, 0);  // move ctx back to insert static elements 
         // ---- you can ADD FURTHER STATIC  (non moveable) objects here  -----
@@ -47,7 +49,7 @@ class World {
         this.addToMap(this.statusbarCoins);
         this.ctx.translate(this.camera_x, 0);  // move ctx forward again 
         //*********** */
-        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
         this.addObjectsToMap(this.throwableObjects);  // throwableObject is an array >> therefore use addObjectstoMap insted addtoMap
         // move context to original position again
@@ -68,9 +70,10 @@ class World {
     // Check Collisions with any moveableObject that is an enemy  // check this multiple times each second for each enemy
     runChecks() {
         setInterval(() => {
-            this.checkCollisionsEnemies();
-            this.checkCollisionsCoins();
-            this.checkThrowing();
+            this.checkCollisionsEnemies();  // character gets hurt
+            this.checkCollisionJellyfish(); // jellyfish changes animation, but nothing happens. just for fun
+            this.checkCollisionsCoins();    // statusbar coins increases
+            this.checkThrowing();   
         }, 1000 / 20);
     }
 
@@ -105,22 +108,33 @@ class World {
 
     // character hurt via collision enemy
     checkCollisionsEnemies() {
-        this.level.enemies.forEach((enemy) => {
+        this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();                               // decrease energy
-                this.statusbar.setPercentage(this.character.energy)  // this.character.energy is the number that we need to set our percentage of the statusbar
+                this.character.hit();                                   // decrease energy
+                this.statusbar.setPercentage(this.character.energy)     // this.character.energy is the number that we need to set our percentage of the statusbar
             }
         });
     }
 
     checkCollisionsCoins() {
-        this.level.coins.forEach((coin) => {
+        this.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
-                let indexCurrentCoin = this.level.coins.indexOf(coin);  // get index of the coin that was hit
-                this.level.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
+                let indexCurrentCoin = this.coins.indexOf(coin);  // get index of the coin that was hit
+                this.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
                 this.statusbarCoins.increaseStatusbarCoins();  // this.character.energy is the number that we need to set our percentage of the statusbar
             };
         });
+    }
+
+    checkCollisionJellyfish(){
+        this.jellyfishes.forEach((jellyfish) => {
+            if (this.character.isColliding(jellyfish)) {
+                console.log('jellyfish hurt')
+                // let indexCurrentJellyfish = this.level.jellyfish.indexOf(jellyfish);  // get index of the coin that was hit
+                // jellyfish.playAnimation(this.jellyfish.IMAGES_HURT)
+            };
+        });
+   
     }
 
     // draw Images on context - function is called inside of draw()

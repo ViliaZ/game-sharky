@@ -6,6 +6,7 @@ class Character extends MoveableObject {
     width = 300;
     height = 210;
     speed = 3;
+    jellyfish = level1.jellyfish;
 
 
     // call character.world to access variables of the world class ( e.g. keyboard)
@@ -123,6 +124,9 @@ class Character extends MoveableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 showLoosingPage();  // in game.js
+            }
+            else if(this.isColliding(this.jellyfish)){
+                this.playAnimation(this.IMAGES_HURT)
             }
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
