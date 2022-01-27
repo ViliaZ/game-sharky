@@ -17,9 +17,6 @@ const level1 = new Level(
         new Endboss()
     ],
     [
-        new Jellyfish(),
-        new Jellyfish(),
-        new Jellyfish(),
         new Jellyfish(),        
         new Jellyfish(),
         new Jellyfish()

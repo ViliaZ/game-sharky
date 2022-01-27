@@ -129,12 +129,11 @@ class World {
     checkCollisionJellyfish(){
         this.jellyfishes.forEach((jellyfish) => {
             if (this.character.isColliding(jellyfish)) {
-                console.log('jellyfish hurt')
-                // let indexCurrentJellyfish = this.level.jellyfish.indexOf(jellyfish);  // get index of the coin that was hit
-                // jellyfish.playAnimation(this.jellyfish.IMAGES_HURT)
+                let currIndex = this.jellyfishes.indexOf(jellyfish);
+                let currentJellyfish = this.jellyfishes[currIndex];
+                currentJellyfish.playAnimation(currentJellyfish.IMAGES_HURT)
             };
         });
-   
     }
 
     // draw Images on context - function is called inside of draw()
