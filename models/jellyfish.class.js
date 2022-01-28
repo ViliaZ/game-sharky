@@ -34,10 +34,10 @@ class Jellyfish extends MoveableObject {
         setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE)
             if (this.swimUp === true) {
-                this.y -= 3;    // go up
+                this.y -= 5;    // go up
             }
             if(this.swimUp === false){
-                this.y += 3;  // swim down
+                this.y += 5;  // swim down
             }
             if(this.y <=50){
                 this.swimUp = false;

@@ -17,7 +17,6 @@ canvas{
 h1{
     font-size: 48px;
     font-kerning: normal;
-
 }
 
 body{
@@ -28,6 +27,13 @@ body{
     align-items: center;
     flex-direction: column;
     height: 100vh;
+}
+
+#fullscreenBtn{
+    position: absolute;
+    right: 50px; 
+    bottom: 50px;
+    height: 40px;
 }
 
 #startScreen{
