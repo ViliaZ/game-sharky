@@ -1,12 +1,42 @@
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/***** use own font (e.g. as tff) ******/
+@font-face {
+    font-family: luckiestGuy;
+    src: url(img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf);
+  }
+
 canvas{
     background-color: black;
+}
+
+h1{
+    font-size: 48px;
+    font-kerning: normal;
 
 }
 
 body{
+    font-family: luckiestGuy;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 100vh;
+}
+
+#startScreen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    background-image: linear-gradient(to right top, #0cf4eb, #00d2ee, #00afea, #008ada, #0063bd);
+        width: 100vw;
     height: 100vh;
 }
