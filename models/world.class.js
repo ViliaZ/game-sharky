@@ -128,10 +128,10 @@ class World {
 
     checkCollisionJellyfish(){
         this.jellyfishes.forEach((jellyfish) => {
-            if (this.character.isColliding(jellyfish)) {
-                let currIndex = this.jellyfishes.indexOf(jellyfish);
-                let currentJellyfish = this.jellyfishes[currIndex];
-                currentJellyfish.playAnimation(currentJellyfish.IMAGES_HURT)
+            if (this.character.isColliding(jellyfish) && this.keyboard.KEYF ) {
+                // let currIndex = this.jellyfishes.indexOf(jellyfish);
+                // let currentJellyfish = this.jellyfishes[currIndex];
+                jellyfish.playAnimation(jellyfish.IMAGES_HURT);
             };
         });
     }

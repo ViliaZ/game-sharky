@@ -6,13 +6,7 @@ class ThrowableObject extends MoveableObject {
     width = 24;
     height = 24;
 
-
-
     IMAGE = 'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png';
-
-    // IMAGES_THROWBUBBLE = [
-    //     ''
-    // ]
 
     constructor(x, y) {  // input is coordinates of character (bit adjusted)
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
