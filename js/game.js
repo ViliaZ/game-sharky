@@ -31,6 +31,9 @@ if (pressedKey === 'ArrowRight') {
 if (pressedKey === 'KeyD') {
     keyboard.KEYD = true;
 }
+if (pressedKey === 'KeyF') {
+    keyboard.KEYF = true;
+}
 })
 
 
@@ -56,6 +59,9 @@ window.addEventListener('keyup', event => {
     }    
     if (pressedKey === 'KeyD') {
         keyboard.KEYD = false;
+    }    
+    if (pressedKey === 'KeyF') {
+        keyboard.KEYF = false;
     }
 })
 

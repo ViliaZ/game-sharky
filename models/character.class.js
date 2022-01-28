@@ -145,6 +145,9 @@ class Character extends MoveableObject {
             if (this.world.keyboard.DOWN) {
                 this.y += this.speed;           // speed is a variable of MoveableObjects
             }
+            if (this.world.keyboard.KEYF) {
+                this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
+            }
 
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border

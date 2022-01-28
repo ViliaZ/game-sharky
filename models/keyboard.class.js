@@ -7,4 +7,5 @@ class Keyboard {
     LEFT = false;
     RIGHT = false;
     KEYD = false;
+    KEYF = false;
 }
