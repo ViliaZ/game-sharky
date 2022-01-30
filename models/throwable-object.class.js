@@ -5,6 +5,7 @@ class ThrowableObject extends MoveableObject {
     y;
     width = 24;
     height = 24;
+    direction = () => { this.x += 4 };  // default when character looks to right side
 
     IMAGE = 'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png';
 
@@ -16,9 +17,14 @@ class ThrowableObject extends MoveableObject {
     }
 
     throw() {  // when method is called, its given the x and y of character as parameters
-        setInterval(() => {
-            this.x += 4;
-        }, 1000 / 50);
+        if (world.character.otherDirection === true) {  //character is looking to left side
+            this.x -= 200;  // to shoot out of sharkys mouth
+            this.direction = () => { this.x -= 4 };  // redefine to other shooting direction  (minus 4 instead of plus 4)
+        }
+            setInterval(() => {
+                this.direction();
+            }, 1000 / 50)
+        
         super.applyGravity();
     }
 

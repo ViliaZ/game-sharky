@@ -12,11 +12,14 @@
 
 canvas{
     background-color: black;
+    box-shadow: 1px 2px 13px -2px rgba(0,0,0,0.75);
 }
 
 h1{
     font-size: 48px;
     font-kerning: normal;
+    margin-bottom: 24px;
+    filter: drop-shadow(10px -2px 29px #eaf8f8);
 }
 
 body{
@@ -29,11 +32,19 @@ body{
     height: 100vh;
 }
 
+
+/* Game Instructions */
+
 #fullscreenBtn{
     position: absolute;
-    right: 50px; 
+    left: 50%; 
     bottom: 50px;
     height: 40px;
+    transform: translateX(-50%)
+}
+
+#keysBtn{
+    height: 84px;
 }
 
 #startScreen{
@@ -42,7 +53,13 @@ body{
     align-items: center;
     flex-direction: column;
     position: relative;
-    background-image: linear-gradient(to right top, #0cf4eb, #00d2ee, #00afea, #008ada, #0063bd);
+    background-image: url('img/3. Background/Layers/5. Water/D2.png');
         width: 100vw;
     height: 100vh;
+}
+
+.welcomeScreen img{
+    margin-top: 80px;
+    height: 40px;
+    filter: drop-shadow(10px -2px 29px #eaf8f8);
 }
