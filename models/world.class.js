@@ -10,7 +10,8 @@ class World {
     jellyfishes = level1.jellyfish;
     level = level1;         // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     coins = level1.coins;
-    enemies = level1.enemies;
+    enemies = level1.enemies
+
     backgroundObjects = level1.backgroundObjects;
 
     canvas;                 // variable declaring, needs to be here to be available also for draw()
@@ -61,11 +62,7 @@ class World {
         });
     }
 
-    addObjectsToMap(objectsArray) {
-        objectsArray.forEach(o => {
-            this.addToMap(o)
-        })
-    }
+
 
     // Check Collisions with any moveableObject that is an enemy  // check this multiple times each second for each enemy
     runChecks() {
@@ -132,6 +129,12 @@ class World {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
             };
         });
+    }
+
+    addObjectsToMap(objectsArray) {
+        objectsArray.forEach(o => {
+            this.addToMap(o)
+        })
     }
 
     // draw Images on context - function is called inside of draw()

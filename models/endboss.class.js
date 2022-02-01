@@ -5,6 +5,10 @@ class Endboss extends MoveableObject {
     height = 250;
     width = 340;
     lifeEnergy = 100;  // default with start  - minus 25 with every hurt
+    speed = 1;
+    acceleration = 0.4;
+
+
 
     IMAGES_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -70,22 +74,50 @@ class Endboss extends MoveableObject {
         this.animate();
     }
 
-    animate() {
 
+
+
+    animate() {
         setInterval(() => {
-            if (this.isDead()) {
+            if (this.isDead() && this.objectIsAboveGround()) {
+                // if (this.y > 100) {
+                //     this.otherDirection = true;
+                // }
                 this.playAnimation(this.IMAGES_DEAD);
-                showSuccessPage();  // in game.js
+                this.applyGravity();
+                setTimeout(() => {
+                    this.otherDirection = true;
+                    setInterval(() => {
+                        this.x += this.speed;
+                        this.speed += this.acceleration;
+                    }, 1000 / 10);
+                }, 500)
             }
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             }
-            else{
-            this.playAnimation(this.IMAGES_FLOATING);
+            else if (this.y != this.objectIsAboveGround()) {
+                this.playAnimation(this.IMAGES_FLOATING);
             }
-        }, 1000/5);
-
+        }, 1000 / 5);
     }
+
+    //     turnAndRun(){
+    // this.otherDirection = true;
+    //     }
+
+    // animateDeath(animateInterval) {
+    //     clearInterval(animateInterval);
+
+    //     setInterval(() => {
+    //         if(this.y>300){
+    //         this.playAnimation(this.IMAGES_DEAD);
+    //         this.applyGravity();
+    //         }
+    //     }, 1000 / 5)
+    //     setTimeout(showSuccessPage(), 1000/5)  // in game.js --> withouth this.
+
+    // }
 
 
 
