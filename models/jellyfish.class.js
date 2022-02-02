@@ -5,6 +5,10 @@ class Jellyfish extends MoveableObject {
     width = 50;
     height = 70;
     swimUp = true;
+    escape = false; //turns true if get hurt
+    speedY = 3;  // for escape
+    acceleration = 2.5; // for escape
+    interval;
 
 
     IMAGES_IDLE = [
@@ -31,23 +35,34 @@ class Jellyfish extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => {
+       this.interval = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE)
-            if (this.swimUp === true) {
-                this.y -= 5;    // go up
+
+            if (this.escape === true) {
+                this.speedEscaping();   
             }
-            if(this.swimUp === false){
-                this.y += 5;  // swim down
+            else if (this.swimUp === true) {
+                this.y -= 5;    // move up
             }
-            if(this.y <=50){
+            else if(this.swimUp === false){
+                this.y += 5;  // move down
+            }
+            if(this.y <=50){  // should not go over top screen border
                 this.swimUp = false;
             }
-            if(this.y >=400){
+            if(this.y >=400){  // should not go beneath bottom screen border
                 this.swimUp = true;
             }
-        }, 350);
+        }, 450);
     }
 
-
+    speedEscaping(){
+        clearInterval(this.interval);
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_IDLE)
+            this.y -= this.speedY; 
+            this.speedY += this.acceleration;
+        },1000/10);
+    }
 
 }

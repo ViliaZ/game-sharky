@@ -80,18 +80,9 @@ class Endboss extends MoveableObject {
     animate() {
         setInterval(() => {
             if (this.isDead() && this.objectIsAboveGround()) {
-                // if (this.y > 100) {
-                //     this.otherDirection = true;
-                // }
                 this.playAnimation(this.IMAGES_DEAD);
                 this.applyGravity();
-                setTimeout(() => {
-                    this.otherDirection = true;
-                    setInterval(() => {
-                        this.x += this.speed;
-                        this.speed += this.acceleration;
-                    }, 1000 / 10);
-                }, 500)
+                this.turnAndRun();
             }
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -102,22 +93,15 @@ class Endboss extends MoveableObject {
         }, 1000 / 5);
     }
 
-    //     turnAndRun(){
-    // this.otherDirection = true;
-    //     }
-
-    // animateDeath(animateInterval) {
-    //     clearInterval(animateInterval);
-
-    //     setInterval(() => {
-    //         if(this.y>300){
-    //         this.playAnimation(this.IMAGES_DEAD);
-    //         this.applyGravity();
-    //         }
-    //     }, 1000 / 5)
-    //     setTimeout(showSuccessPage(), 1000/5)  // in game.js --> withouth this.
-
-    // }
+    turnAndRun() {
+        setTimeout(() => {
+            this.otherDirection = true;
+            setInterval(() => {
+                this.x += this.speed;
+                this.speed += this.acceleration;
+            }, 1000 / 10);
+        }, 500)
+    }
 
 
 

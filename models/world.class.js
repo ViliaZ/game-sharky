@@ -127,6 +127,7 @@ class World {
         this.jellyfishes.forEach((jellyfish) => {
             if (this.character.isColliding(jellyfish) && this.keyboard.KEYF ) {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
+                jellyfish.escape = true;
             };
         });
     }
