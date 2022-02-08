@@ -6,6 +6,7 @@ class MoveableObject extends Drawableobject {
     acceleration;                           // throwableObj. and Endboss have their own values
     energy = 100;                           // for character and endboss
     lastHit = 0;                            // time when character is last hit
+    index = 0;                              // needed for playAnimationOnce function
 
     // for bubbles out of sharkys mouth
     applyGravity() {
@@ -57,26 +58,13 @@ class MoveableObject extends Drawableobject {
         this.currentImage++;
     }
 
-    index = 0;
-    playAnimationOnce(imageArray, intervalEndboss) {
-
-        // setInterval(()=>{
-            let path = imageArray[this.index];     
+    playAnimationOnce(imageArray, interval) {
+            let path = imageArray[this.index];     // index is 0 with start
             this.img = this.imageCache[path];
             this.index++;
-
-            if (this.index === 10){
-                clearInterval(intervalEndboss);
+            if (this.index === imageArray.length-1){
+                clearInterval(interval);
             }
-        // }, 1000/30)
- 
-
-        // setInterval(() => {
-        //     for (let i = 0; i < 9; i++) {
-        //         this.img.src = imageArray[i];
-        //     }
-        // }, 1000 / 5)
-
     }
 
     moveLeft() {

@@ -5,14 +5,15 @@ class Endboss extends MoveableObject {
     height = 250;
     width = 340;
     lifeEnergy = 100;  // default with start  - minus 25 with every hurt
-    speedEscape = 3;
-    accelerationEscape = 1;
+    speedEscape = 0.9;
+    accelerationEscape = 0.3;
     speedY = 0.4;
     acceleration = 1.5;
+    
 
     introAnimationDone = false;  // intro animation should only play once
     isNearCharacter = false;  // is checked in world
-
+    hurtAnimationPlays = false;
 
 
     IMAGES_INTRODUCE = [
@@ -81,12 +82,15 @@ class Endboss extends MoveableObject {
     animate() {
         setInterval(() => {
             if (this.isDead() && this.objectIsAboveGround()) {
-                this.playAnimation(this.IMAGES_DEAD);
+                this.hurtAnimationPlays = true;  // prevent hurt Animation from playing again
                 this.applyGravity();
+                this.playAnimation(this.IMAGES_DEAD);
                 this.turnAndRun();
             }
-            else if (this.isHurt()) {
+            else if (this.isHurt() && !this.isDead() && this.hurtAnimationPlays === false) {
+                this.hurtAnimationPlays = true;
                 this.playAnimation(this.IMAGES_HURT);
+                this.startAttack();
             }
             // start Intro Animation (is running only ONCE)
             else if (this.isNearCharacter === true && this.introAnimationDone === false) {
@@ -99,10 +103,26 @@ class Endboss extends MoveableObject {
         }, 1000 / 5);
     }
 
+    startAttack() {
+        this.index = 0;
+        let intervalAttack = setInterval(() => {
+            this.playAnimationOnce(this.IMAGES_ATTACK, intervalAttack)
+        }, 1000 / 10);
+        setTimeout(() => { this.hurtAnimationPlays = false; }, 500);
+        // setInterval(() => {
+        //     let i = this.currentImage % this.IMAGES_ATTACK.length   // creates permanent circle of numbers from 0 to arraylength
+        //     let path = this.IMAGES_ATTACK[i];                       // path is the key to the variable in imageCache
+        //     this.img = this.imageCache[path];
+        //     this.currentImage++;
+        //     this.x -= 2;
+        // }, 1000 / 5);
+    };
+
     playIntro() {
+ this.index = 0; // index of image array where the animation starts
         let intervalEndboss = setInterval(() => {
             this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
-        }, 1000 / 5);
+        }, 1000 / 10);
         this.introAnimationDone = true;
     }
 
@@ -114,8 +134,8 @@ class Endboss extends MoveableObject {
             setInterval(() => {
                 this.playAnimation(this.IMAGES_FLOATING);
                 this.x += this.speedEscape;
-                this.speed += this.accelerationEscape;
-            }, 1000 / 40);
+                this.speedEscape += this.accelerationEscape;
+            }, 1000 / 10);
         }, 700)
     }
 }
