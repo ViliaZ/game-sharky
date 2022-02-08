@@ -1,4 +1,4 @@
-class Statusbar extends Drawableobject {
+class Statusbar extends Drawableobject {  // statusbar for character
 
     x = 10;
     y = 0;

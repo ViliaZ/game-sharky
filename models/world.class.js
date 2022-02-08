@@ -10,7 +10,8 @@ class World {
     jellyfishes = level1.jellyfish;
     level = level1;         // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     coins = level1.coins;
-    enemies = level1.enemies
+    enemies = level1.enemies;
+    endboss = level1.enemies[level1.enemies.length-1];
 
     backgroundObjects = level1.backgroundObjects;
 
@@ -70,8 +71,20 @@ class World {
             this.checkCollisionsEnemies();  // character gets hurt
             this.checkCollisionJellyfish(); // jellyfish changes animation, but nothing happens. just for fun
             this.checkCollisionsCoins();    // statusbar coins increases
-            this.checkThrowing();   
+            this.checkThrowing();
+            this.checkDistanceToEndboss();
         }, 1000 / 20);
+    }
+
+    checkDistanceToEndboss() {
+        let distanceEndboss = this.endboss.x - this.character.x;
+        if (distanceEndboss < 350){
+            this.endboss.isNearCharacter = true;
+            // console.log('distance to Endboss',distanceEndboss)
+        }
+        else{
+            this.endboss.isNearCharacter = false;
+        }
     }
 
     checkThrowing() {
@@ -91,17 +104,16 @@ class World {
         this.enemies.forEach((enemy) => {
             if (bubble.isCollidingEnemy(enemy) && enemy instanceof Endboss) {
                 enemy.hit();  // in moveableObjects, >> energy decrease 
-                // this.checkEndbossDead(enemy);
                 this.bubblesDissappear(bubble);
             }
         })
     }
 
-    bubblesDissappear(bubble){
+    bubblesDissappear(bubble) {
         // bubbles dissappear after colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
         let indexBubble = this.throwableObjects.indexOf(bubble);
         setTimeout(() => { this.throwableObjects.splice(indexBubble, 1) }, 10)
-        }
+    }
 
     // character hurt via collision enemy
     checkCollisionsEnemies() {
@@ -123,9 +135,9 @@ class World {
         });
     }
 
-    checkCollisionJellyfish(){
+    checkCollisionJellyfish() {
         this.jellyfishes.forEach((jellyfish) => {
-            if (this.character.isColliding(jellyfish) && this.keyboard.KEYF ) {
+            if (this.character.isColliding(jellyfish) && this.keyboard.KEYF) {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
                 jellyfish.escape = true;
             };

@@ -7,6 +7,7 @@ class Character extends MoveableObject {
     height = 210;
     speed = 3;
     jellyfish = level1.jellyfish;
+    intervalSleeping;
 
 
     // call character.world to access variables of the world class ( e.g. keyboard)
@@ -56,7 +57,7 @@ class Character extends MoveableObject {
         'img/1.Sharkie/4.Attack/Fin slap/8.png'
     ]
 
-    IMAGES_IDLE_SLEEPY = [
+    IMAGES_SLEEPING = [
         'img/1.Sharkie/2.Long_IDLE/i1.png',
         'img/1.Sharkie/2.Long_IDLE/I2.png',
         'img/1.Sharkie/2.Long_IDLE/i3.png',
@@ -97,7 +98,7 @@ class Character extends MoveableObject {
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_IDLE_SLEEPY);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_SLEEPING);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_THROWING_BUBBLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_HURT);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_DEAD);   // method defined in moveable objects (cannot use super() because Parameter is an array)
@@ -108,24 +109,34 @@ class Character extends MoveableObject {
     // run through IMAGES_IDLE one by one to show each image as character img (variable img declared in MoveableObjects) 
     // Goal: quickly go through each image in IDLE Array and only change img to current array image
 
+    // else if(){
+    //     setInterval(() => {
+    //         let i = this.currentImage % this.IMAGES_SLEEPING.length  // i is increasing ++ by every interval circle creates permanent circle of 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, ....)
+    //         let path = this.IMAGES_SLEEPING[i]    // getting the key for laoding the image from imageCache >> path is the key to the variable in imageCache
+    //         this.img = this.imageCache[path];  // loading the correct image from imageCache with the key of "path"
+    //         this.currentImage++;
+    //     }, 250);
+    // }
+
+    // this.intervalSleeping = setInterval(() => {
+    //     this.playAnimation(this.IMAGES_SLEEPING);
+    // }, 250);
 
 
-    animate() {
-        // IDLE ANIMATION WHEN NO KEYS PRESSED
+
+    animate() {    
+        // Idle Animation per default
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_IDLE.length  // i is increasing ++ by every interval circle creates permanent circle of 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, ....)
-            let path = this.IMAGES_IDLE[i]    // getting the key for laoding the image from imageCache >> path is the key to the variable in imageCache
-            this.img = this.imageCache[path];  // loading the correct image from imageCache with the key of "path"
-            this.currentImage++;
+            this.playAnimation(this.IMAGES_IDLE);
         }, 250);
-
+    
         // MOVING ANIMATIONS ON KEY USAGE
-        setInterval(() => {
+        setInterval( () => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 showLoosingPage();  // in game.js
             }
-            else if(this.isColliding(this.jellyfish)){
+            else if (this.isColliding(this.jellyfish)) {
                 this.playAnimation(this.IMAGES_HURT)
             }
             else if (this.isHurt()) {
@@ -154,6 +165,10 @@ class Character extends MoveableObject {
         }, 1000 / 60)
     }
 
-
+    sleepAnimation() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_IDLE_SLEEPY)
+        }, 8000)
+    }
 
 }

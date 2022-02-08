@@ -1,40 +1,26 @@
 class MoveableObject extends Drawableobject {
 
-
-    speed = 0.20 + Math.random() * 0.5;   // pixels to move
-    otherDirection = false;               // mirroring object e.g. character looking to left
-    speedY = 2;
-    acceleration = 0.1;
-    energy = 100;                        // for character and endboss
-    lastHit = 0;                         // time when character is last hit
-
+    speed = 0.20 + Math.random() * 0.5;     // pixels to move
+    otherDirection = false;                 // mirroring object e.g. character looking to left
+    speedY;                                 // throwableObj. and Endboss have their own values
+    acceleration;                           // throwableObj. and Endboss have their own values
+    energy = 100;                           // for character and endboss
+    lastHit = 0;                            // time when character is last hit
 
     // for bubbles out of sharkys mouth
     applyGravity() {
         setInterval(() => {
             if (this.objectIsAboveGround()) {
-                this.y -= this.speedY;
-                // this.y -= this.speedY;
-
-                this.speedY -= this.acceleration;  // speedY number changes with every Interval
+                this.y += this.speedY;
+                this.speedY += this.acceleration;  // speedY number changes with every Interval
             };
         }, 1000 / 25)
     }
 
-
-    //     // for falling to ground
-    // }    applyGravity() {
-    //     setInterval(() => {
-    //         if (this.objectIsAboveGround()) {
-    //             this.y -= this.speedY;
-    //             this.speedY -= this.acceleration;  // speedY number changes with every Interval
-    //         };
-    //     }, 1000 / 25)
-    // }
-
-
+    // decrease Energy
     hit() {   // is called in world on collision detection 
-        this.energy -= 25;
+        this.energy -= 5;
+        console.log(world.character.energy)
         // prevent from getting negative energy values
         if (this.energy < 0) {
             this.energy = 0
@@ -66,9 +52,31 @@ class MoveableObject extends Drawableobject {
 
     playAnimation(imageArray) {
         let i = this.currentImage % imageArray.length   // creates permanent circle of numbers from 0 to arraylength
-        let path = imageArray[i]                        // path is the key to the variable in imageCache
+        let path = imageArray[i];                       // path is the key to the variable in imageCache
         this.img = this.imageCache[path];
         this.currentImage++;
+    }
+
+    index = 0;
+    playAnimationOnce(imageArray, intervalEndboss) {
+
+        // setInterval(()=>{
+            let path = imageArray[this.index];     
+            this.img = this.imageCache[path];
+            this.index++;
+
+            if (this.index === 10){
+                clearInterval(intervalEndboss);
+            }
+        // }, 1000/30)
+ 
+
+        // setInterval(() => {
+        //     for (let i = 0; i < 9; i++) {
+        //         this.img.src = imageArray[i];
+        //     }
+        // }, 1000 / 5)
+
     }
 
     moveLeft() {
@@ -78,6 +86,8 @@ class MoveableObject extends Drawableobject {
     moveRight() {
         this.x += this.speed;
     }
+
+
 
     // detects IF character is colliding with any object > boolean
     isColliding(object) {

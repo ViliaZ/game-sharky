@@ -8,7 +8,7 @@ class Jellyfish extends MoveableObject {
     escape = false; //turns true if get hurt
     speedY = 3;  // for escape
     acceleration = 2.5; // for escape
-    interval;
+    intervalJellyfish;
 
 
     IMAGES_IDLE = [
@@ -35,7 +35,7 @@ class Jellyfish extends MoveableObject {
     }
 
     animate() {
-       this.interval = setInterval(() => {
+       this.intervalJellyfish = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE)
 
             if (this.escape === true) {
@@ -56,8 +56,8 @@ class Jellyfish extends MoveableObject {
         }, 450);
     }
 
-    speedEscaping(){
-        clearInterval(this.interval);
+    speedEscaping(){  // increase speed to escape
+        clearInterval(this.intervalJellyfish);
         setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE)
             this.y -= this.speedY; 

@@ -5,6 +5,8 @@ class ThrowableObject extends MoveableObject {
     y;
     width = 24;
     height = 24;
+    speedY = 0.3;
+    acceleration = 0.1;
     direction = () => { this.x += 4 };  // default when character looks to right side
 
     IMAGE = 'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png';
@@ -24,11 +26,10 @@ class ThrowableObject extends MoveableObject {
             setInterval(() => {
                 this.direction();
             }, 1000 / 50)
-        
         super.applyGravity();
     }
 
-    // detects IF character is colliding with any object > boolean
+    // check collision with enemy
     isCollidingEnemy(enemy) {
         return this.x + this.width > enemy.x &&
             this.y + this.height > enemy.y &&

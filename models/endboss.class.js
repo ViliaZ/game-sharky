@@ -5,8 +5,13 @@ class Endboss extends MoveableObject {
     height = 250;
     width = 340;
     lifeEnergy = 100;  // default with start  - minus 25 with every hurt
-    speed = 1;
-    acceleration = 0.4;
+    speedEscape = 3;
+    accelerationEscape = 1;
+    speedY = 0.4;
+    acceleration = 1.5;
+
+    introAnimationDone = false;  // intro animation should only play once
+    isNearCharacter = false;  // is checked in world
 
 
 
@@ -21,7 +26,6 @@ class Endboss extends MoveableObject {
         'img/2.Enemy/3 Final Enemy/1.Introduce/8.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/10.png'
-
     ]
 
     IMAGES_FLOATING = [
@@ -65,17 +69,14 @@ class Endboss extends MoveableObject {
     ]
 
     constructor() {
-        super().loadImage(this.IMAGES_FLOATING[0])
-        this.loadImages(this.IMAGES_FLOATING)
-        this.loadImages(this.IMAGES_ATTACK)
-        this.loadImages(this.IMAGES_HURT)
-        this.loadImages(this.IMAGES_DEAD)
-        this.playAnimation(this.IMAGES_INTRODUCE);
+        super().loadImage(this.IMAGES_INTRODUCE[0]);
+        this.loadImages(this.IMAGES_INTRODUCE);
+        this.loadImages(this.IMAGES_FLOATING);
+        this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
         this.animate();
     }
-
-
-
 
     animate() {
         setInterval(() => {
@@ -87,24 +88,34 @@ class Endboss extends MoveableObject {
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             }
-            else if (this.y != this.objectIsAboveGround()) {
+            // start Intro Animation (is running only ONCE)
+            else if (this.isNearCharacter === true && this.introAnimationDone === false) {
+                this.playIntro();
+            }
+            // start normal floating when Intro Animation was done
+            else if (this.introAnimationDone === true) {
                 this.playAnimation(this.IMAGES_FLOATING);
             }
         }, 1000 / 5);
     }
 
+    playIntro() {
+        let intervalEndboss = setInterval(() => {
+            this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
+        }, 1000 / 5);
+        this.introAnimationDone = true;
+    }
+
+    // when endboss is defeated 
     turnAndRun() {
+        // this.isDead = false;
         setTimeout(() => {
             this.otherDirection = true;
             setInterval(() => {
-                this.x += this.speed;
-                this.speed += this.acceleration;
-            }, 1000 / 10);
-        }, 500)
+                this.playAnimation(this.IMAGES_FLOATING);
+                this.x += this.speedEscape;
+                this.speed += this.accelerationEscape;
+            }, 1000 / 40);
+        }, 700)
     }
-
-
-
-
-
 }
