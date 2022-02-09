@@ -9,7 +9,6 @@ class Endboss extends MoveableObject {
     accelerationEscape = 0.3;
     speedY = 0.4;
     acceleration = 1.5;
-    
 
     introAnimationDone = false;  // intro animation should only play once
     isNearCharacter = false;  // is checked in world
@@ -107,8 +106,10 @@ class Endboss extends MoveableObject {
         this.index = 0;
         let intervalAttack = setInterval(() => {
             this.playAnimationOnce(this.IMAGES_ATTACK, intervalAttack)
+            this.x -= 8;
         }, 1000 / 10);
         setTimeout(() => { this.hurtAnimationPlays = false; }, 500);
+
         // setInterval(() => {
         //     let i = this.currentImage % this.IMAGES_ATTACK.length   // creates permanent circle of numbers from 0 to arraylength
         //     let path = this.IMAGES_ATTACK[i];                       // path is the key to the variable in imageCache
