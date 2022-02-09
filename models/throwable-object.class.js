@@ -23,9 +23,11 @@ class ThrowableObject extends MoveableObject {
             this.x -= 200;  // to shoot out of sharkys mouth
             this.direction = () => { this.x -= 4 };  // redefine to other shooting direction  (minus 4 instead of plus 4)
         }
-            setInterval(() => {
+            let throwInterval = setInterval(() => {
                 this.direction();
-            }, 1000 / 50)
+            }, 1000 / 50);
+
+            allIntervals.push(throwInterval);
         super.applyGravity();
     }
 

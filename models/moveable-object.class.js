@@ -10,18 +10,18 @@ class MoveableObject extends Drawableobject {
 
     // for bubbles out of sharkys mouth
     applyGravity() {
-        setInterval(() => {
+        let gravityInterval = setInterval(() => {
             if (this.objectIsAboveGround()) {
                 this.y += this.speedY;
                 this.speedY += this.acceleration;  // speedY number changes with every Interval
             };
         }, 1000 / 25)
+        allIntervals.push(gravityInterval);
     }
 
     // decrease Energy
     hit() {   // is called in world on collision detection 
         this.energy -= 5;
-        console.log(world.character.energy)
         // prevent from getting negative energy values
         if (this.energy < 0) {
             this.energy = 0

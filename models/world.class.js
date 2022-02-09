@@ -72,7 +72,7 @@ class World {
 
     // Check Collisions with any moveableObject that is an enemy  // check this multiple times each second for each enemy
     runChecks() {
-        setInterval(() => {
+        let runCheckInterval = setInterval(() => {
             this.checkCollisionsEnemies();  // character gets hurt
             this.checkCollisionJellyfish(); // jellyfish changes animation, but nothing happens. just for fun
             this.checkCollisionsCoins();    // statusbar coins increases
@@ -80,6 +80,7 @@ class World {
             this.checkDistanceToEndboss();
             this.checkGameOver();
         }, 1000 / 20);
+        allIntervals.push(runCheckInterval);
     }
 
     checkDistanceToEndboss() {
@@ -98,9 +99,10 @@ class World {
         if (this.keyboard.KEYD && this.statusbarCoins.percentage > 0) {
             let bubble = new ThrowableObject(this.character.x + 240, this.character.y + 130);
             this.throwableObjects.push(bubble);
-            setInterval(() => {
+            let checkThrowingInterval = setInterval(() => {
                 this.checkIfEnemyHurt(bubble);
             }, 1000 / 20);
+            allIntervals.push(checkThrowingInterval);
         }
         else { return }
     }

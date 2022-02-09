@@ -79,7 +79,7 @@ class Endboss extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => {
+        let animateEndbossInterval = setInterval(() => {
             if (this.isDead() && this.objectIsAboveGround()) {
                 this.hurtAnimationPlays = true;  // prevent hurt Animation from playing again
                 this.applyGravity();
@@ -101,6 +101,7 @@ class Endboss extends MoveableObject {
                 this.playAnimation(this.IMAGES_FLOATING);
             }
         }, 1000 / 5);
+        allIntervals.push(animateEndbossInterval);
     }
 
     startAttack() {
@@ -111,21 +112,17 @@ class Endboss extends MoveableObject {
         }, 1000 / 10);
         setTimeout(() => { this.hurtAnimationPlays = false; }, 500);
 
-        // setInterval(() => {
-        //     let i = this.currentImage % this.IMAGES_ATTACK.length   // creates permanent circle of numbers from 0 to arraylength
-        //     let path = this.IMAGES_ATTACK[i];                       // path is the key to the variable in imageCache
-        //     this.img = this.imageCache[path];
-        //     this.currentImage++;
-        //     this.x -= 2;
-        // }, 1000 / 5);
+        allIntervals.push(intervalAttack);
     };
 
     playIntro() {
- this.index = 0; // index of image array where the animation starts
+        this.index = 0; // index of image array where the animation starts
         let intervalEndboss = setInterval(() => {
             this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
         }, 1000 / 10);
         this.introAnimationDone = true;
+
+        allIntervals.push(intervalEndboss);
     }
 
     // when endboss is defeated 
@@ -133,11 +130,12 @@ class Endboss extends MoveableObject {
         // this.isDead = false;
         setTimeout(() => {
             this.otherDirection = true;
-            setInterval(() => {
+            let intervalEscape = setInterval(() => {
                 this.playAnimation(this.IMAGES_FLOATING);
                 this.x += this.speedEscape;
                 this.speedEscape += this.accelerationEscape;
             }, 1000 / 10);
+            allIntervals.push(intervalEscape);
         }, 700)
     }
 }

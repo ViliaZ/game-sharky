@@ -166,9 +166,10 @@ class Character extends MoveableObject {
     }
 
     sleepAnimation() {
-        setInterval(() => {
+        let sleepInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE_SLEEPY)
-        }, 8000)
+        }, 8000);
+        allIntervals.push(sleepInterval);
     }
 
 }

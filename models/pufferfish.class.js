@@ -30,16 +30,19 @@ class Pufferfish extends MoveableObject {
         this.x = 400 + Math.random() * 500;// min = 400 max=700  
         this.y = 1 + Math.random() * 700;// min = 1 max=700  
         this.animate();
-        setInterval(() => {
+        let moveInterval = setInterval(() => {
             this.moveLeft();
         }, 1000 / 60)
+        allIntervals.push(moveInterval);
 
     }
 
     animate() {
-        setInterval(() => {
+        let pufferfishInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_SWIMMING);
         }, 150);
+        allIntervals.push(pufferfishInterval);
+
     }
 
 

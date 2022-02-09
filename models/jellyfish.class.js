@@ -54,15 +54,17 @@ class Jellyfish extends MoveableObject {
                 this.swimUp = true;
             }
         }, 450);
+        // allIntervals.push(this.intervalJellyfish);
     }
 
     speedEscaping(){  // increase speed to escape
         clearInterval(this.intervalJellyfish);
-        setInterval(() => {
+        let escapeInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE)
             this.y -= this.speedY; 
             this.speedY += this.acceleration;
         },1000/10);
+        allIntervals.push(escapeInterval);
     }
 
 }
