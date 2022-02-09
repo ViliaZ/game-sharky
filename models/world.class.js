@@ -11,7 +11,8 @@ class World {
     level = level1;         // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     coins = level1.coins;
     enemies = level1.enemies;
-    endboss = level1.enemies[level1.enemies.length-1];
+    endboss = level1.enemies[level1.enemies.length - 1];
+    gameOver = false;
 
     backgroundObjects = level1.backgroundObjects;
 
@@ -63,7 +64,11 @@ class World {
         });
     }
 
-
+    checkGameOver() {
+        if (gameOver) {  // defined in Game.js
+            showGameOver(win);  
+        }
+    }
 
     // Check Collisions with any moveableObject that is an enemy  // check this multiple times each second for each enemy
     runChecks() {
@@ -73,16 +78,17 @@ class World {
             this.checkCollisionsCoins();    // statusbar coins increases
             this.checkThrowing();
             this.checkDistanceToEndboss();
+            this.checkGameOver();
         }, 1000 / 20);
     }
 
     checkDistanceToEndboss() {
         let distanceEndboss = this.endboss.x - this.character.x;
-        if (distanceEndboss < 450){
+        if (distanceEndboss < 450) {
             this.endboss.isNearCharacter = true;
             // console.log('distance to Endboss',distanceEndboss)
         }
-        else{
+        else {
             this.endboss.isNearCharacter = false;
         }
     }

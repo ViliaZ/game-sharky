@@ -1,5 +1,5 @@
 * {
-    margin:0;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -8,21 +8,25 @@
 @font-face {
     font-family: luckiestGuy;
     src: url(img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf);
-  }
-
-canvas{
-    background-color: black;
-    box-shadow: 1px 2px 13px -2px rgba(0,0,0,0.75);
 }
 
-h1{
+.d-none {
+    display: none!important;
+}
+
+canvas {
+    background-color: black;
+    box-shadow: 1px 2px 13px -2px rgba(0, 0, 0, 0.75);
+}
+
+h1 {
     font-size: 48px;
     font-kerning: normal;
     margin-bottom: 24px;
     filter: drop-shadow(10px -2px 29px #eaf8f8);
 }
 
-body{
+body {
     font-family: luckiestGuy;
     color: white;
     display: flex;
@@ -32,33 +36,63 @@ body{
     height: 100vh;
 }
 
-
 /* Game Instructions */
 
-#fullscreenBtn{
+#fullscreenBtn {
     position: absolute;
-    left: 50%; 
+    left: 50%;
     bottom: 50px;
     height: 40px;
-    transform: translateX(-50%)
+    transform: translateX(-50%);
 }
 
-#keysBtn{
+#keysBtn {
     height: 84px;
 }
 
-#startScreen{
+.btn-startAgain {
+    height: 40px;
+    z-index:3;
+}
+
+#looseImage {
+    height: 80px;
+}
+
+#winImage{
+    width: 800px;
+    height: 500px;
+}
+
+#startScreen {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: relative;
-    background-image: url('img/3. Background/Layers/5. Water/D2.png');
-        width: 100vw;
+    background-image: url("img/3. Background/Layers/5. Water/D2.png");
+    width: 100vw;
     height: 100vh;
 }
 
-.welcomeScreen img{
+.canvaswrapper {
+    position: relative;
+    width: 720px;
+    height: 480px;
+}
+#endScreen {
+    background-color: aquamarine;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.welcomeScreen img {
     margin-top: 80px;
     height: 40px;
     filter: drop-shadow(10px -2px 29px #eaf8f8);

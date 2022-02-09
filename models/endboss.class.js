@@ -85,6 +85,7 @@ class Endboss extends MoveableObject {
                 this.applyGravity();
                 this.playAnimation(this.IMAGES_DEAD);
                 this.turnAndRun();
+                showGameOver("sharkyWin");
             }
             else if (this.isHurt() && !this.isDead() && this.hurtAnimationPlays === false) {
                 this.hurtAnimationPlays = true;

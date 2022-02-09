@@ -122,19 +122,17 @@ class Character extends MoveableObject {
     //     this.playAnimation(this.IMAGES_SLEEPING);
     // }, 250);
 
-
-
     animate() {    
         // Idle Animation per default
-        setInterval(() => {
+        let intervalSharky1 = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
         }, 250);
     
         // MOVING ANIMATIONS ON KEY USAGE
-        setInterval( () => {
+        let intervalSharky2 = setInterval( () => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                showLoosingPage();  // in game.js
+                showGameOver("sharkyLoose");
             }
             else if (this.isColliding(this.jellyfish)) {
                 this.playAnimation(this.IMAGES_HURT)
@@ -163,6 +161,8 @@ class Character extends MoveableObject {
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
         }, 1000 / 60)
+
+        allIntervals.push(intervalSharky1,intervalSharky2);
     }
 
     sleepAnimation() {
