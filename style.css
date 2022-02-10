@@ -51,12 +51,16 @@ body {
 }
 
 .btn-startAgain {
-    height: 40px;
+    height: 60px;
+    filter: drop-shadow(10px -2px 29px #eaf8f8);
     z-index:3;
+
 }
 
 #looseImage {
     height: 80px;
+    filter: drop-shadow(10px -2px 29px #eaf8f8);
+
 }
 
 #winImage{

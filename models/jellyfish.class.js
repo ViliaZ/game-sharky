@@ -10,7 +10,6 @@ class Jellyfish extends MoveableObject {
     acceleration = 2.5; // for escape
     intervalJellyfish;
 
-
     IMAGES_IDLE = [
         'img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png',
         'img/2.Enemy/2 Jelly fish/Regular damage/Lila 2.png',
@@ -18,14 +17,12 @@ class Jellyfish extends MoveableObject {
         'img/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png'
     ]
 
-
     IMAGES_HURT = [
         'img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png',
         'img/2.Enemy/2 Jelly fish/Regular damage/Yellow 2.png',
         'img/2.Enemy/2 Jelly fish/Regular damage/Yellow 3.png',
         'img/2.Enemy/2 Jelly fish/Regular damage/Yellow 4.png',
     ]
-
 
     constructor() {   // data for img path, x and y are given in world when creating new BackgroundObject
         super().loadImage('img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png');
@@ -35,7 +32,7 @@ class Jellyfish extends MoveableObject {
     }
 
     animate() {
-       this.intervalJellyfish = setInterval(() => {
+       let intervalJellyfish = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE)
 
             if (this.escape === true) {
@@ -64,6 +61,7 @@ class Jellyfish extends MoveableObject {
             this.y -= this.speedY; 
             this.speedY += this.acceleration;
         },1000/10);
+        
         allIntervals.push(escapeInterval);
     }
 

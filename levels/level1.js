@@ -11,9 +11,9 @@ const level1 = new Level(
         new Coins(),
     ],
     [
-        // new Pufferfish(),
-        // new Pufferfish(),
-        // new Pufferfish(),
+        new Pufferfish(),
+        new Pufferfish(),
+        new Pufferfish(),
         new Endboss(),
     ],
     [

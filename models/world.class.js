@@ -87,7 +87,6 @@ class World {
         let distanceEndboss = this.endboss.x - this.character.x;
         if (distanceEndboss < 450) {
             this.endboss.isNearCharacter = true;
-            // console.log('distance to Endboss',distanceEndboss)
         }
         else {
             this.endboss.isNearCharacter = false;

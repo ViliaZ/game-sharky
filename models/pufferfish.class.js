@@ -1,6 +1,5 @@
 // "extends" states that class chicken is part of MovableObject >> gets all variables of Moveableobjects
 
-
 class Pufferfish extends MoveableObject {
     width = 65;
     height = 55;
@@ -30,20 +29,22 @@ class Pufferfish extends MoveableObject {
         this.x = 400 + Math.random() * 500;// min = 400 max=700  
         this.y = 1 + Math.random() * 700;// min = 1 max=700  
         this.animate();
-        let moveInterval = setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60)
-        allIntervals.push(moveInterval);
-
     }
 
     animate() {
         let pufferfishInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_SWIMMING);
+            this.moveLeft();
         }, 150);
-        allIntervals.push(pufferfishInterval);
+        // allIntervals.push(pufferfishInterval);
 
+        // this.move();
     }
 
-
+    move() {
+        let moveInterval = setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60)
+        // allIntervals.push(moveInterval);
+    }
 }

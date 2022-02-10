@@ -10,6 +10,7 @@ class Endboss extends MoveableObject {
     speedY = 0.4;
     acceleration = 1.5;
 
+
     introAnimationDone = false;  // intro animation should only play once
     isNearCharacter = false;  // is checked in world
     hurtAnimationPlays = false;
@@ -79,7 +80,7 @@ class Endboss extends MoveableObject {
     }
 
     animate() {
-        let animateEndbossInterval = setInterval(() => {
+        let intervalEndbossAnimation = setInterval(() => {
             if (this.isDead() && this.objectIsAboveGround()) {
                 this.hurtAnimationPlays = true;  // prevent hurt Animation from playing again
                 this.applyGravity();
@@ -101,7 +102,7 @@ class Endboss extends MoveableObject {
                 this.playAnimation(this.IMAGES_FLOATING);
             }
         }, 1000 / 5);
-        allIntervals.push(animateEndbossInterval);
+        // allIntervals.push(intervalEndbossAnimation);
     }
 
     startAttack() {
@@ -111,8 +112,8 @@ class Endboss extends MoveableObject {
             this.x -= 8;
         }, 1000 / 10);
         setTimeout(() => { this.hurtAnimationPlays = false; }, 500);
+        // allIntervals.push(intervalAttack);
 
-        allIntervals.push(intervalAttack);
     };
 
     playIntro() {
@@ -121,8 +122,7 @@ class Endboss extends MoveableObject {
             this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
         }, 1000 / 10);
         this.introAnimationDone = true;
-
-        allIntervals.push(intervalEndboss);
+        // allIntervals.push(intervalEndboss);
     }
 
     // when endboss is defeated 
@@ -135,7 +135,7 @@ class Endboss extends MoveableObject {
                 this.x += this.speedEscape;
                 this.speedEscape += this.accelerationEscape;
             }, 1000 / 10);
-            allIntervals.push(intervalEscape);
         }, 700)
+        // allIntervals.push(intervalEscape);
     }
 }

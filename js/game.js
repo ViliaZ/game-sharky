@@ -77,28 +77,29 @@ function showGameOver(sharkyStatus) {
     canvas.classList.add('d-none');
     endscreen.classList.remove('d-none');
 
+    //sharky wins
     if (sharkyStatus === "sharkyWin") {
         endscreen.innerHTML = '';
         endscreen.innerHTML = `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">
-        <img class="btn-startAgain" onclick = "startGameAgain(canvas, endscreen)" src="img/6.Botones/Try again/Recurso 15.png" alt="">
-        `
-    }
+        <img class="btn-startAgain" onclick = "startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png" alt="">
+        ` } 
+    // sharky looses
     else {
         endscreen.innerHTML = '';
         endscreen.innerHTML += `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">
-        <img class="btn-startAgain" onclick = "startGameAgain(canvas, endscreen)" src="img/6.Botones/Try again/Recurso 15.png">
-        `
-    }
+        <img class="btn-startAgain" onclick = "startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">
+        `}
 }
 
-    function startGameAgain(canvas) {
+    function startGameAgain() {
         let endscreen = document.getElementById('endScreen');
-
+        let canvas = document.getElementById('canvas');
         canvas.classList.remove('d-none');
         endscreen.classList.add('d-none');
     }
 
     function stopAllIntervals(){
-        clearInterval(allIntervals);
+        console.log("all Intervals",allIntervals)
+        // clearInterval(allIntervals);
     }
 

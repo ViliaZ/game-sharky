@@ -9,7 +9,6 @@ class Character extends MoveableObject {
     jellyfish = level1.jellyfish;
     intervalSleeping;
 
-
     // call character.world to access variables of the world class ( e.g. keyboard)
     world;
 
@@ -106,22 +105,6 @@ class Character extends MoveableObject {
         this.animate();
     }
 
-    // run through IMAGES_IDLE one by one to show each image as character img (variable img declared in MoveableObjects) 
-    // Goal: quickly go through each image in IDLE Array and only change img to current array image
-
-    // else if(){
-    //     setInterval(() => {
-    //         let i = this.currentImage % this.IMAGES_SLEEPING.length  // i is increasing ++ by every interval circle creates permanent circle of 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, ....)
-    //         let path = this.IMAGES_SLEEPING[i]    // getting the key for laoding the image from imageCache >> path is the key to the variable in imageCache
-    //         this.img = this.imageCache[path];  // loading the correct image from imageCache with the key of "path"
-    //         this.currentImage++;
-    //     }, 250);
-    // }
-
-    // this.intervalSleeping = setInterval(() => {
-    //     this.playAnimation(this.IMAGES_SLEEPING);
-    // }, 250);
-
     animate() {    
         // Idle Animation per default
         let intervalSharky1 = setInterval(() => {
@@ -157,12 +140,11 @@ class Character extends MoveableObject {
             if (this.world.keyboard.KEYF) {
                 this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
             }
-
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
         }, 1000 / 60)
-
-        allIntervals.push(intervalSharky1,intervalSharky2);
+        allIntervals.push(intervalSharky1);
+        allIntervals.push(intervalSharky2);
     }
 
     sleepAnimation() {
