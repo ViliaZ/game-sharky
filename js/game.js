@@ -82,7 +82,7 @@ function showGameOver(sharkyStatus) {
         endscreen.innerHTML = '';
         endscreen.innerHTML = `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">
         <img class="btn-startAgain" onclick = "startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png" alt="">
-        ` } 
+        ` }
     // sharky looses
     else {
         endscreen.innerHTML = '';
@@ -91,15 +91,19 @@ function showGameOver(sharkyStatus) {
         `}
 }
 
-    function startGameAgain() {
-        let endscreen = document.getElementById('endScreen');
-        let canvas = document.getElementById('canvas');
-        canvas.classList.remove('d-none');
-        endscreen.classList.add('d-none');
-    }
+function startGameAgain() {
+    let endscreen = document.getElementById('endScreen');
+    let canvas = document.getElementById('canvas');
+    canvas.classList.remove('d-none');
+    endscreen.classList.add('d-none');
+}
 
-    function stopAllIntervals(){
-        console.log("all Intervals",allIntervals)
-        // clearInterval(allIntervals);
-    }
+function stopAllIntervals() {
+    allIntervals.forEach(interval => {
+        clearInterval(interval);
+        allIntervals.shift();
+    });
+
+
+}
 
