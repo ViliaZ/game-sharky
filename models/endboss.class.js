@@ -5,7 +5,7 @@ class Endboss extends MoveableObject {
     height = 250;
     width = 340;
     lifeEnergy = 100;  // default with start  - minus 25 with every hurt
-    speedGravity = 0.1;
+    speedGravity = 0.8;
     speedEscape = 4;
     accelerationEscape = 0.6;
     speedY = 0.4;

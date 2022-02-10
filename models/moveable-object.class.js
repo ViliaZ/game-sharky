@@ -45,11 +45,9 @@ class MoveableObject extends Drawableobject {
 
     objectIsAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true;   // always true bc. bubbles should not stop at ground
-        }
+            return true; }  // always true bc. bubbles should not stop at ground
         else {
-            return this.y < 200;   // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
-        }
+            return this.y < 200;}  // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
     }
 
     playAnimation(imageArray) {
