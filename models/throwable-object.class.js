@@ -5,7 +5,8 @@ class ThrowableObject extends MoveableObject {
     y;
     width = 24;
     height = 24;
-    speedY = 0.3;
+    // speedY = 0.3;
+    speedGravity = 0.3;
     acceleration = 0.1;
     direction = () => { this.x += 4 };  // default when character looks to right side
 

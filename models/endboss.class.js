@@ -5,8 +5,9 @@ class Endboss extends MoveableObject {
     height = 250;
     width = 340;
     lifeEnergy = 100;  // default with start  - minus 25 with every hurt
-    speedEscape = 0.9;
-    accelerationEscape = 0.3;
+    speedGravity = 0.1;
+    speedEscape = 4;
+    accelerationEscape = 0.6;
     speedY = 0.4;
     acceleration = 1.5;
 
@@ -86,7 +87,7 @@ class Endboss extends MoveableObject {
                 this.applyGravity();
                 this.playAnimation(this.IMAGES_DEAD);
                 this.turnAndRun();
-                showGameOver("sharkyWin");
+                setTimeout(showGameOver,2200,"sharkyWin");  // when calling a timout funtion with parameters, its written like this
             }
             else if (this.isHurt() && !this.isDead() && this.hurtAnimationPlays === false) {
                 this.hurtAnimationPlays = true;
@@ -134,7 +135,7 @@ class Endboss extends MoveableObject {
                 this.playAnimation(this.IMAGES_FLOATING);
                 this.x += this.speedEscape;
                 this.speedEscape += this.accelerationEscape;
-            }, 1000 / 10);
+            }, 1000 / 8);
         }, 700)
         // allIntervals.push(intervalEscape);
     }

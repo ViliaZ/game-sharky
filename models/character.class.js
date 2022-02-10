@@ -97,7 +97,6 @@ class Character extends MoveableObject {
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_SLEEPING);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_THROWING_BUBBLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_HURT);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_DEAD);   // method defined in moveable objects (cannot use super() because Parameter is an array)
@@ -105,17 +104,16 @@ class Character extends MoveableObject {
         this.animate();
     }
 
-    animate() {    
+   animate() {    
         // Idle Animation per default
         let intervalSharky1 = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
         }, 250);
-    
-        // MOVING ANIMATIONS ON KEY USAGE
+
         let intervalSharky2 = setInterval( () => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                showGameOver("sharkyLoose");
+                setTimeout(showGameOver,800,"sharkyLoose");  // when calling a timout funtion with parameters, its written like this
             }
             else if (this.isColliding(this.jellyfish)) {
                 this.playAnimation(this.IMAGES_HURT)
@@ -146,12 +144,4 @@ class Character extends MoveableObject {
         allIntervals.push(intervalSharky1);
         allIntervals.push(intervalSharky2);
     }
-
-    sleepAnimation() {
-        let sleepInterval = setInterval(() => {
-            this.playAnimation(this.IMAGES_IDLE_SLEEPY)
-        }, 8000);
-        allIntervals.push(sleepInterval);
-    }
-
 }

@@ -2,6 +2,7 @@ class MoveableObject extends Drawableobject {
 
     speed = 0.20 + Math.random() * 0.5;     // pixels to move
     otherDirection = false;                 // mirroring object e.g. character looking to left
+    speedGravity;
     speedY;                                 // throwableObj. and Endboss have their own values
     acceleration;                           // throwableObj. and Endboss have their own values
     energy = 100;                           // for character and endboss
@@ -12,7 +13,7 @@ class MoveableObject extends Drawableobject {
     applyGravity() {
         let gravityInterval = setInterval(() => {
             if (this.objectIsAboveGround()) {
-                this.y += this.speedY;
+                this.y += this.speedGravity;
                 this.speedY += this.acceleration;  // speedY number changes with every Interval
             };
         }, 1000 / 25)
@@ -59,16 +60,20 @@ class MoveableObject extends Drawableobject {
     }
 
     playAnimationOnce(imageArray, interval) {
-            let path = imageArray[this.index];     // index is 0 with start
-            this.img = this.imageCache[path];
-            this.index++;
-            if (this.index === imageArray.length-1){
-                clearInterval(interval);
-            }
+        let path = imageArray[this.index];     // index is 0 with start
+        this.img = this.imageCache[path];
+        this.index++;
+        if (this.index === imageArray.length - 1) {
+            clearInterval(interval);
+        }
     }
 
-    moveLeft() {
-        this.x -= this.speed;
+    moveLeft(fish) {
+        if (fish === 'pufferfish') {
+            let speedPufferfish = 0.20 + Math.random() * 1.5;
+            this.x -= speedPufferfish;        }
+        else {
+            this.x -= this.speed;        }
     };
 
     moveRight() {
@@ -77,9 +82,10 @@ class MoveableObject extends Drawableobject {
 
     // detects IF character is colliding with any object > boolean
     isColliding(object) {
-        return this.x + this.width > object.x &&
-            this.y + this.height > object.y &&
-            this.x < object.x &&
+        // give the corrdinates an offset to compensate for empty space around images
+        return (this.x-30) + this.width > object.x &&   
+            this.y-40 + (this.height-40) > object.y &&
+            (this.x-45) < object.x &&
             this.y < object.y + object.height
     }
 }
