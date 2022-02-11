@@ -9,22 +9,24 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- important order of JS data - drawableObject before moveableObject and statusbar must be before world -->
+
     <script src="models/drawable-object.class.js"></script>
     <script src="models/moveable-object.class.js"></script>
     <script src="models/statusbar.class.js"></script>
     <script src="models/statusbarCoins.class.js"></script>
     <script src="models/pufferfish.class.js"></script>
-    <script src="models/jellyfish.class.js"></script>
     <script src="models/character.class.js"></script>
     <script src="models/world.class.js"></script>
+    <script src="models/jellyfish.class.js"></script>
     <script src="models/background-object.class.js"></script>
     <script src="models/keyboard.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="models/endboss.class.js"></script>
     <script src="models/coins.class.js"></script>
     <script src="levels/level1.js"></script>
-    <script src="js/game.js"></script>
     <script src="models/throwable-object.class.js"></script>
+    <script src="js/game.js"></script>
+
 
 </head>
 
@@ -36,14 +38,14 @@
 
         <canvas width="720px" height="480px" id="canvas">
         </canvas>
-        <img id="fullscreenBtn" src="img/6.Botones/Full Screen/Mesa de trabajo 9.png" alt="">
+        <img id="fullscreenBtn" class="button" src="img/6.Botones/Full Screen/Mesa de trabajo 9.png" alt="">
 
 
-        <div class="welcomeScreen">
-            <img id="startBtn" src="img/6.Botones/Start/3.png" alt="">
-            <img id="keysBtn" src="img/6.Botones/Key/arrow keys.png" alt="">
-            <img id="attackBtn" src="img/6.Botones/Key/D key.png" alt="">
-            <img id="spaceBtn" src="img/6.Botones/Key/Space Bar key.png" alt="">
+        <div id="welcomeScreen d-none">
+            <img onclick="startGame()" id="startBtn" class="button" src="img/6.Botones/Start/3.png">
+            <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
+            <img id="attackBtn" class="button" src="img/6.Botones/Key/D key.png">
+            <img id="spaceBtn" class="button" src="img/6.Botones/Key/Space Bar key.png">
         </div>
 
         <div id="endScreen" class="d-none">            

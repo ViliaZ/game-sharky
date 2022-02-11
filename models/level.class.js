@@ -6,7 +6,7 @@ class Level {
     canvas_end_x = 2*720; // end of the level
     
 
-    constructor(coins, enemies,jellyfish, backgroundObjects) {  // 2 array are given by creating a new instance --> in level1.js
+    constructor(coins, enemies, jellyfish, backgroundObjects) { 
         this.coins = coins;
         this.enemies = enemies;
         this.jellyfish = jellyfish;

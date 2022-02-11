@@ -16,6 +16,7 @@ class World {
 
     backgroundObjects = level1.backgroundObjects;
 
+
     canvas;                 // variable declaring, needs to be here to be available also for draw()
     ctx;                    // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
     camera_x = 0;           // moves world (context) on x axis
@@ -79,6 +80,7 @@ class World {
             this.checkThrowing();
             this.checkDistanceToEndboss();
             this.checkGameOver();
+
         }, 1000 / 20);
         allIntervals.push(runCheckInterval);
     }

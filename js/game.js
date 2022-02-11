@@ -3,13 +3,18 @@ let world;
 let keyboard = new Keyboard();
 
 let gameOver = false;
-
 let allIntervals = [];
-
+let background_sound = new Audio('audios/bg.mp3');
 
 function init() {
+    document.getElementById('startScreen').classList.remove('d-none');
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);  // transfer the two variables to world class, >> make them accessable there
+    background_sound.play();
+}
+
+function startGame(){
+    console.log('start intervals')
 }
 
 window.addEventListener('keydown', event => {
@@ -81,13 +86,13 @@ function showGameOver(sharkyStatus) {
     if (sharkyStatus === "sharkyWin") {
         endscreen.innerHTML = '';
         endscreen.innerHTML = `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">
-        <img class="btn-startAgain" onclick = "startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png" alt="">
+        <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">
         ` }
     // sharky looses
     else {
         endscreen.innerHTML = '';
         endscreen.innerHTML += `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">
-        <img class="btn-startAgain" onclick = "startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">
+        <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">
         `}
 }
 
@@ -95,7 +100,9 @@ function startGameAgain() {
     let endscreen = document.getElementById('endScreen');
     let canvas = document.getElementById('canvas');
     canvas.classList.remove('d-none');
-    endscreen.classList.add('d-none');
+    endscreen.innerHTML = '';
+    endscreen.style.display = "none";
+    init();
 }
 
 function stopAllIntervals() {

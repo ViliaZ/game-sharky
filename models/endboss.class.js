@@ -11,6 +11,7 @@ class Endboss extends MoveableObject {
     speedY = 0.4;
     acceleration = 1.5;
 
+    characterNearEndboss_Sound = new Audio('audios/scare.mp3')
 
     introAnimationDone = false;  // intro animation should only play once
     isNearCharacter = false;  // is checked in world
@@ -97,6 +98,7 @@ class Endboss extends MoveableObject {
             // start Intro Animation (is running only ONCE)
             else if (this.isNearCharacter === true && this.introAnimationDone === false) {
                 this.playIntro();
+                this.characterNearEndboss_Sound.play();
             }
             // start normal floating when Intro Animation was done
             else if (this.introAnimationDone === true) {

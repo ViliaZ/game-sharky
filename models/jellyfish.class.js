@@ -8,7 +8,7 @@ class Jellyfish extends MoveableObject {
     escape = false; //turns true if get hurt
     speedY = 3;  // for escape
     acceleration = 2.5; // for escape
-    intervalJellyfish;
+    world;
 
     IMAGES_IDLE = [
         'img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png',
@@ -51,7 +51,7 @@ class Jellyfish extends MoveableObject {
                 this.swimUp = true;
             }
         }, 450);
-        // allIntervals.push(this.intervalJellyfish);
+        // allIntervals.push(intervalJellyfish);
     }
 
     speedEscaping(){  // increase speed to escape
@@ -61,8 +61,7 @@ class Jellyfish extends MoveableObject {
             this.y -= this.speedY; 
             this.speedY += this.acceleration;
         },1000/10);
-        
-        allIntervals.push(escapeInterval);
+        // allIntervals.push(escapeInterval);
     }
 
 }

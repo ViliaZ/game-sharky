@@ -54,13 +54,11 @@ body {
     height: 60px;
     filter: drop-shadow(10px -2px 29px #eaf8f8);
     z-index:3;
-
 }
 
 #looseImage {
     height: 80px;
     filter: drop-shadow(10px -2px 29px #eaf8f8);
-
 }
 
 #winImage{
@@ -79,25 +77,24 @@ body {
     height: 100vh;
 }
 
-.canvaswrapper {
-    position: relative;
-    width: 720px;
-    height: 480px;
-}
 #endScreen {
     background-color: aquamarine;
     position: absolute;
     display: flex;
     flex-direction: column;
-    gap: 50px;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+    gap: 50px;
 }
 
-.welcomeScreen img {
-    margin-top: 80px;
+#welcomeScreen{
+    background-color: blueviolet;   
+    width: 720px;
+    height: 480px;
+}
+
+.button{
     height: 40px;
-    filter: drop-shadow(10px -2px 29px #eaf8f8);
 }

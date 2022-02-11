@@ -26,7 +26,7 @@ class StatusbarCoins extends Drawableobject {
 
     // Trigger:  collision with a coin, function for calling: in class world
     increaseStatusbarCoins() {
-        this.percentage += 10;      // each coin equals 20% 
+        this.percentage += 20;      // each coin equals 20% 
         this.resolvePercentage();
         this.setPercentage();
     }
