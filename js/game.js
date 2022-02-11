@@ -4,16 +4,37 @@ let keyboard = new Keyboard();
 
 let gameOver = false;
 let allIntervals = [];
-let background_sound = new Audio('audios/bg.mp3');
+let allAudioPlaying = [];
+
+
 
 function init() {
     document.getElementById('startScreen').classList.remove('d-none');
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);  // transfer the two variables to world class, >> make them accessable there
-    background_sound.play();
+    playAudio(AUDIOS.background);
 }
 
-function startGame(){
+function playAudio(soundData) {
+    let sound = new Audio(soundData);
+    sound.play();
+    allAudioPlaying.push(sound);
+}
+
+// function pauseAudio(soundData){
+//     let newAudio = new Audio (soundData);
+//     newAudio.pause();
+// }
+
+function stopAllAudio() {
+    allAudioPlaying.forEach(sound => {
+        sound.pause();
+    });
+    allAudioPlaying = [];
+}
+
+
+function startGame() {
     console.log('start intervals')
 }
 
@@ -76,6 +97,7 @@ window.addEventListener('keyup', event => {
 
 function showGameOver(sharkyStatus) {
     stopAllIntervals();
+    stopAllAudio();
 
     let endscreen = document.getElementById('endScreen');
     let canvas = document.getElementById('canvas');
