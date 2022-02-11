@@ -105,7 +105,7 @@ class Endboss extends MoveableObject {
                 this.playAnimation(this.IMAGES_FLOATING);
             }
         }, 1000 / 5);
-        // allIntervals.push(intervalEndbossAnimation);
+        allIntervals.push(intervalEndbossAnimation);
     }
 
     startAttack() {
@@ -115,7 +115,7 @@ class Endboss extends MoveableObject {
             this.x -= 8;
         }, 1000 / 10);
         setTimeout(() => { this.hurtAnimationPlays = false; }, 500);
-        // allIntervals.push(intervalAttack);
+        allIntervals.push(intervalAttack);
 
     };
 
@@ -125,7 +125,7 @@ class Endboss extends MoveableObject {
             this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
         }, 1000 / 10);
         this.introAnimationDone = true;
-        // allIntervals.push(intervalEndboss);
+        allIntervals.push(intervalEndboss);
     }
 
     // when endboss is defeated 
@@ -139,6 +139,6 @@ class Endboss extends MoveableObject {
                 this.speedEscape += this.accelerationEscape;
             }, 1000 / 8);
         }, 700)
-        // allIntervals.push(intervalEscape);
+        allIntervals.push(intervalEscape);
     }
 }

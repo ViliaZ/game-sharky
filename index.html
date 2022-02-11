@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- important order of JS data - drawableObject before moveableObject and statusbar must be before world -->
-
+    <script>
+        let allIntervals = [];
+        let allAudioPlaying = [];  
+    </script>
+    
     <script src="models/drawable-object.class.js"></script>
     <script src="models/moveable-object.class.js"></script>
     <script src="models/statusbar.class.js"></script>
@@ -49,7 +53,7 @@
             <img id="spaceBtn" class="button" src="img/6.Botones/Key/Space Bar key.png">
         </div>
 
-        <div id="endScreen" class="d-none">            
+        <div id="endScreen" class="d-none">
         </div>
 
     </div>

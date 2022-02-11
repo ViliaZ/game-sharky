@@ -141,7 +141,7 @@ class Character extends MoveableObject {
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
         }, 1000 / 60)
-        // allIntervals.push(intervalSharky1);
-        // allIntervals.push(intervalSharky2);
+        allIntervals.push(intervalSharky1);
+        allIntervals.push(intervalSharky2);
     }
 }

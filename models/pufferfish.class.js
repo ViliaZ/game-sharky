@@ -36,6 +36,6 @@ class Pufferfish extends MoveableObject {
             this.playAnimation(this.IMAGES_SWIMMING);
             this.moveLeft('pufferfish')
         }, 150);
-        // allIntervals.push(pufferfishInterval);
+        allIntervals.push(pufferfishInterval);
     }
 }

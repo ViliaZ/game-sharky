@@ -51,7 +51,7 @@ class Jellyfish extends MoveableObject {
                 this.swimUp = true;
             }
         }, 450);
-        // allIntervals.push(intervalJellyfish);
+        allIntervals.push(intervalJellyfish);
     }
 
     speedEscaping(){  // increase speed to escape
