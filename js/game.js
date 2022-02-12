@@ -15,7 +15,7 @@ function init() {
 function playAudio(soundData) {
     let sound = new Audio(soundData);
     sound.play();
-    allAudioPlaying.push(sound);
+    allAudioPlaying.push(sound);    
 }
 
 // function pauseAudio(soundData){
