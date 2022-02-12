@@ -115,7 +115,6 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 setTimeout(showGameOver,800,"sharkyLoose");  // when calling a timout funtion with parameters, its written like this
                 playAudio(AUDIOS.characterHurt);
-                allAudioPlaying.push(AUDIOS.characterHurt);
             }
             else if (this.isColliding(this.jellyfish)) {
                 this.playAnimation(this.IMAGES_HURT)
@@ -123,7 +122,6 @@ class Character extends MoveableObject {
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
                 playAudio(AUDIOS.characterHurt);
-                allAudioPlaying.push(AUDIOS.characterHurt);
             }
             if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.moveRight();

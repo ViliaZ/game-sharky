@@ -141,7 +141,6 @@ class World {
                 this.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
                 this.statusbarCoins.increaseStatusbarCoins();  // this.character.energy is the number that we need to set our percentage of the statusbar
                 playAudio(AUDIOS.collectCoin);
-                allAudioPlaying.push(AUDIOS.collectCoin);
 
             };
         });
@@ -153,7 +152,6 @@ class World {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
                 jellyfish.escape = true;
                 playAudio(AUDIOS.hitJellyfish);
-                allAudioPlaying.push(AUDIOS.hitJellyfish);
             };
         });
     }

@@ -61,7 +61,7 @@ class Jellyfish extends MoveableObject {
             this.y -= this.speedY; 
             this.speedY += this.acceleration;
         },1000/10);
-        // allIntervals.push(escapeInterval);
+        allIntervals.push(escapeInterval);
     }
 
 }

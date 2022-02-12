@@ -124,7 +124,6 @@ class Endboss extends MoveableObject {
         this.introAnimationDone = true;
         allIntervals.push(intervalEndboss);
         playAudio(AUDIOS.characterNearEndboss);
-        allAudioPlaying.push(AUDIOS.characterNearEndboss);
     }
 
     // when endboss is defeated 
