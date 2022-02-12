@@ -26,6 +26,10 @@ h1 {
     filter: drop-shadow(10px -2px 29px #eaf8f8);
 }
 
+h3{
+    font-size: 38px;
+}
+
 body {
     font-family: luckiestGuy;
     color: white;
@@ -36,7 +40,51 @@ body {
     height: 100vh;
 }
 
-/* Game Instructions */
+/*** SCREENS ***/
+
+.screen{
+    width: 100%;
+    height: 100%; 
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#welcomeScreen{
+    background-image: url('img/3. Background/Light/2.png');
+}
+
+#welcomeScreen .screenLeft{
+    flex: 2
+}
+
+#welcomeScreen .screenRight{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper-instructions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(241, 241, 227, 0.431);
+    min-height: 40vh;
+    width: fit-content;
+    padding: 40px;
+    border-radius: 20px;
+    gap: 10px;
+}
+
+
+#startBtn{
+    width: 180%;
+    height: unset!important;
+}
 
 #fullscreenBtn {
     position: absolute;
@@ -44,10 +92,6 @@ body {
     bottom: 50px;
     height: 40px;
     transform: translateX(-50%);
-}
-
-#keysBtn {
-    height: 84px;
 }
 
 .btn-startAgain {
@@ -66,7 +110,7 @@ body {
     height: 500px;
 }
 
-#startScreen {
+#bgScreen {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,12 +133,12 @@ body {
     gap: 50px;
 }
 
-#welcomeScreen{
-    background-color: blueviolet;   
-    width: 720px;
-    height: 480px;
-}
 
 .button{
+    margin-top: 20px;
     height: 40px;
+}
+
+#keysBtn{
+    height: 82px;
 }
