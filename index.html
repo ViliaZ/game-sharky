@@ -13,7 +13,7 @@
         let allIntervals = [];
         let allAudioPlaying = [];  
     </script>
-    
+
     <script src="models/drawable-object.class.js"></script>
     <script src="models/moveable-object.class.js"></script>
     <script src="models/statusbar.class.js"></script>
@@ -38,23 +38,36 @@
 
 
 <body onload="init()">
-    <div id="startScreen">
+    <div id="bgScreen">
         <h1>Life of Sharky</h1>
 
         <canvas width="720px" height="480px" id="canvas">
         </canvas>
+
+
+        <div id="welcomeScreen" class="screen">
+            <div class="screenLeft">
+
+            </div>            
+            
+            <div class="screenRight">
+                <div class="wrapper-instructions">
+                    <h3>Move Sharky</h3>
+                <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
+                <h3>Attack</h3>
+                <img id="attackBtn" class="button" src="img/6.Botones/Key/D key.png">
+                <img id="spaceBtn" class="button" src="img/6.Botones/Key/Space Bar key.png">
+            </div>
+            <img onclick="startGame()" id="startBtn" class="button" src="img/6.Botones/Start/3.png">
+
+            </div>
+        </div>
+
+        <div id="endScreen screen" class="screen d-none">
+        </div>
+
         <img id="fullscreenBtn" class="button" src="img/6.Botones/Full Screen/Mesa de trabajo 9.png" alt="">
 
-
-        <div id="welcomeScreen d-none">
-            <img onclick="startGame()" id="startBtn" class="button" src="img/6.Botones/Start/3.png">
-            <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
-            <img id="attackBtn" class="button" src="img/6.Botones/Key/D key.png">
-            <img id="spaceBtn" class="button" src="img/6.Botones/Key/Space Bar key.png">
-        </div>
-
-        <div id="endScreen" class="d-none">
-        </div>
 
     </div>
 
