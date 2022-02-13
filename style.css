@@ -10,6 +10,13 @@
     src: url(img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf);
 }
 
+.fbox-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .d-none {
     display: none!important;
 }
@@ -27,7 +34,8 @@ h1 {
 }
 
 h3{
-    font-size: 38px;
+    font-size: 32px;
+    text-align: center;
 }
 
 body {
@@ -68,22 +76,35 @@ body {
 }
 
 .wrapper-instructions{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     background-color: rgba(241, 241, 227, 0.431);
     min-height: 40vh;
     width: fit-content;
-    padding: 40px;
+    padding: 60px;
     border-radius: 20px;
-    gap: 10px;
+    gap: 50px;
 }
 
+.wrapper-startBtn{
+    /* background-color: rgba(248, 244, 1, 0.431); */
+    /* width: fit-content; */
+    padding: 10px;
+    border-radius: 20px;
+}
 
-#startBtn{
-    width: 180%;
-    height: unset!important;
+.btn-start{  /* span element */
+    height: 60px; 
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-top: 12px;
+    background-color: #FCEE21;
+    border-radius: 12px;
+    font-size:1.7em;
+    color: #531A82;
+    font-family: default;
+    font-family: luckiestGuy;
+    border: white 2px solid;
+
+
 }
 
 #fullscreenBtn {
@@ -135,7 +156,8 @@ body {
 
 
 .button{
-    margin-top: 20px;
+    margin-top: 10px;
+
     height: 40px;
 }
 
