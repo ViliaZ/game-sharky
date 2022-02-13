@@ -6,10 +6,19 @@ let gameOver = false;
 
 
 function init() {
-    document.getElementById('startScreen').classList.remove('d-none');
+
+}
+
+function startGame(){
+    welcomeScreen = document.getElementById('welcomeScreen');
+    welcomeScreen.classList.add('d-none');
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);  // transfer the two variables to world class, >> make them accessable there
     playAudio(AUDIOS.background);
+}
+
+function fullscreen(){
+    
 }
 
 function playAudio(soundData) {
@@ -28,11 +37,6 @@ function stopAllAudio() {
         sound.pause();
     });
     allAudioPlaying = [];
-}
-
-
-function startGame() {
-    console.log('start intervals')
 }
 
 window.addEventListener('keydown', event => {
