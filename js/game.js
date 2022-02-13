@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 
 let gameOver = false;
+let fullscreenmode = false;
 
 
 function init() {
@@ -18,7 +19,14 @@ function startGame(){
 }
 
 function fullscreen(){
-    
+    if(fullscreenmode === true){
+        canvas.exitFullscreen();
+        fullscreenmode === false;
+    }
+    else{
+        canvas.requestFullscreen()
+        fullscreenmode === true;
+    }
 }
 
 function playAudio(soundData) {

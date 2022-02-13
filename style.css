@@ -26,6 +26,14 @@ canvas {
     box-shadow: 1px 2px 13px -2px rgba(0, 0, 0, 0.75);
 }
 
+canvas:fullscreen{
+    padding:50px;
+    background-image: url("img/3. Background/Layers/5. Water/D2.png");
+    z-index: 90;
+}
+
+
+
 h1 {
     font-size: 48px;
     font-kerning: normal;
@@ -108,11 +116,12 @@ body {
 }
 
 #fullscreenBtn {
-    position: absolute;
+    position: fixed;
     left: 50%;
     bottom: 50px;
     height: 40px;
     transform: translateX(-50%);
+    z-index: 100;
 }
 
 .btn-startAgain {
