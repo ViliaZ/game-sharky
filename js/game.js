@@ -10,20 +10,21 @@ function init() {
 
 }
 
-function startGame(){
-    welcomeScreen = document.getElementById('welcomeScreen');
-    welcomeScreen.classList.add('d-none');
+function startGame() {
+    document.getElementById('welcomeScreen').classList.add('d-none');
+    document.getElementById('fullscreenBtn').classList.remove('d-none');
+
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);  // transfer the two variables to world class, >> make them accessable there
     playAudio(AUDIOS.background);
 }
 
-function fullscreen(){
-    if(fullscreenmode === true){
+function fullscreen() {
+    if (fullscreenmode === true) {
         canvas.exitFullscreen();
         fullscreenmode === false;
     }
-    else{
+    else {
         canvas.requestFullscreen()
         fullscreenmode === true;
     }
@@ -32,7 +33,7 @@ function fullscreen(){
 function playAudio(soundData) {
     let sound = new Audio(soundData);
     sound.play();
-    allAudioPlaying.push(sound);    
+    allAudioPlaying.push(sound);
 }
 
 // function pauseAudio(soundData){
@@ -107,22 +108,23 @@ window.addEventListener('keyup', event => {
 function showGameOver(sharkyStatus) {
     stopAllIntervals();
     stopAllAudio();
+let endScreen = document.getElementById('endScreen');
+endScreen.classList.remove('d-none');
+    document.getElementById('headline').classList.add('d-none');
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('fullscreenBtn').classList.add('d-none');
 
-    let endscreen = document.getElementById('endScreen');
-    let canvas = document.getElementById('canvas');
-    canvas.classList.add('d-none');
-    endscreen.classList.remove('d-none');
 
     //sharky wins
     if (sharkyStatus === "sharkyWin") {
-        endscreen.innerHTML = '';
-        endscreen.innerHTML = `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">
+        endScreen.innerHTML = '';
+        endScreen.innerHTML = `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">
         <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">
         ` }
     // sharky looses
     else {
-        endscreen.innerHTML = '';
-        endscreen.innerHTML += `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">
+        endScreen.innerHTML = '';
+        endScreen.innerHTML += `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">
         <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">
         `}
 }
