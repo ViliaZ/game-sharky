@@ -110,18 +110,20 @@ class Character extends MoveableObject {
             this.playAnimation(this.IMAGES_IDLE);
         }, 250);
 
-        let intervalSharky2 = setInterval( () => {
+        let intervalSharky2 = setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                clearInterval(intervalSharky2);
                 setTimeout(showGameOver,800,"sharkyLoose");  // when calling a timout funtion with parameters, its written like this
-                playAudio(AUDIOS.characterHurt);
+                // playAudio(AUDIOS.characterHurt);
+
             }
             else if (this.isColliding(this.jellyfish)) {
                 this.playAnimation(this.IMAGES_HURT)
             }
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
-                playAudio(AUDIOS.characterHurt);
+                // playAudio(AUDIOS.characterHurt);
             }
             if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.moveRight();
@@ -144,6 +146,7 @@ class Character extends MoveableObject {
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
         }, 1000 / 60)
         allIntervals.push(intervalSharky1);
-        allIntervals.push(intervalSharky2);
+
+
     }
 }

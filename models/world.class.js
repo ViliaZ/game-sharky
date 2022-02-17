@@ -16,7 +16,6 @@ class World {
 
     backgroundObjects = level1.backgroundObjects;
 
-
     canvas;                 // variable declaring, needs to be here to be available also for draw()
     ctx;                    // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
     camera_x = 0;           // moves world (context) on x axis
@@ -140,7 +139,7 @@ class World {
                 let indexCurrentCoin = this.coins.indexOf(coin);  // get index of the coin that was hit
                 this.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
                 this.statusbarCoins.increaseStatusbarCoins();  // this.character.energy is the number that we need to set our percentage of the statusbar
-                playAudio(AUDIOS.collectCoin);
+                // playAudio(AUDIOS.collectCoin);
 
             };
         });
@@ -151,7 +150,7 @@ class World {
             if (this.character.isColliding(jellyfish) && this.keyboard.KEYF) {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
                 jellyfish.escape = true;
-                playAudio(AUDIOS.hitJellyfish);
+                // playAudio(AUDIOS.hitJellyfish);
             };
         });
     }
