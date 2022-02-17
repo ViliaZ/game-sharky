@@ -82,11 +82,9 @@ class Endboss extends MoveableObject {
     animate() {
         let intervalEndbossAnimation = setInterval(() => {
             if (this.isDead() && this.objectIsAboveGround()) {
+                clearInterval(intervalEndbossAnimation); // when calling a timout funtion with parameters, its written like this
                 this.hurtAnimationPlays = true;  // prevent hurt Animation from playing again
-                this.applyGravity();
-                this.playAnimation(this.IMAGES_DEAD);
                 this.turnAndRun();
-                setTimeout(showGameOver,2200,"sharkyWin");  // when calling a timout funtion with parameters, its written like this
             }
             else if (this.isHurt() && !this.isDead() && this.hurtAnimationPlays === false) {
                 this.hurtAnimationPlays = true;
@@ -102,7 +100,7 @@ class Endboss extends MoveableObject {
                 this.playAnimation(this.IMAGES_FLOATING);
             }
         }, 1000 / 5);
-        allIntervals.push(intervalEndbossAnimation);
+        // allIntervals.push(intervalEndbossAnimation);
     }
 
     startAttack() {
@@ -113,7 +111,6 @@ class Endboss extends MoveableObject {
         }, 1000 / 10);
         setTimeout(() => { this.hurtAnimationPlays = false; }, 500);
         allIntervals.push(intervalAttack);
-
     };
 
     playIntro() {
@@ -126,17 +123,23 @@ class Endboss extends MoveableObject {
         // playAudio(AUDIOS.characterNearEndboss);
     }
 
-    // when endboss is defeated 
     turnAndRun() {
-        // this.isDead = false;
+        let sinkingAnimation = setInterval(()=> {
+            this.applyGravity();
+            this.playAnimation(this.IMAGES_DEAD);
+        }, 1000/5)
         setTimeout(() => {
+            clearInterval(sinkingAnimation)
             this.otherDirection = true;
-            let intervalEscape = setInterval(() => {
+             this.intervalEscape = setInterval(() => {
                 this.playAnimation(this.IMAGES_FLOATING);
                 this.x += this.speedEscape;
                 this.speedEscape += this.accelerationEscape;
-            }, 1000 / 8);
-            allIntervals.push(intervalEscape);
+            }, 1000 / 24);
+            // allIntervals.push(intervalEscape);
         }, 700)
+        // setTimeout(() => {
+        //     clearInterval(this.intervalEscape);
+        //     showGameOver("sharkyWin"), 2000 })  // when calling a timout funtion with parameters, its written like this
     }
 }

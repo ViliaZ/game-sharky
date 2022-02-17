@@ -110,13 +110,15 @@ class Character extends MoveableObject {
             this.playAnimation(this.IMAGES_IDLE);
         }, 250);
 
+        allIntervals.push(intervalSharky1);
+
         let intervalSharky2 = setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                clearInterval(intervalSharky2);
-                setTimeout(showGameOver,800,"sharkyLoose");  // when calling a timout funtion with parameters, its written like this
+                setTimeout(()=> {
+                    clearInterval(intervalSharky2);
+                    showGameOver("sharkyLoose"),1000})  // when calling a timout funtion with parameters, its written like this
                 // playAudio(AUDIOS.characterHurt);
-
             }
             else if (this.isColliding(this.jellyfish)) {
                 this.playAnimation(this.IMAGES_HURT)
@@ -145,8 +147,5 @@ class Character extends MoveableObject {
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
         }, 1000 / 60)
-        allIntervals.push(intervalSharky1);
-
-
     }
 }

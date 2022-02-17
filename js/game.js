@@ -1,22 +1,16 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
 let gameOver = false;
 let fullscreenmode = false;
 
 
-function init() {
-
-}
-
 function startGame() {
     document.getElementById('welcomeScreen').classList.add('d-none');
     document.getElementById('fullscreenBtn').classList.remove('d-none');
-
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);  // transfer the two variables to world class, >> make them accessable there
-    playAudio(AUDIOS.background);
+    // playAudio(AUDIOS.background);
 }
 
 function fullscreen() {
@@ -41,11 +35,61 @@ function playAudio(soundData) {
 //     newAudio.pause();
 // }
 
-function stopAllAudio() {
-    allAudioPlaying.forEach(sound => {
-        sound.pause();
+// function stopAllAudio() {
+//     allAudioPlaying.forEach(sound => {
+//         sound.pause();
+//     });
+//     allAudioPlaying = [];
+// }
+
+async function showGameOver(sharkyStatus) {
+    console.log(allIntervals)
+
+    await stopAllIntervals();
+    // await stopAllAudio();
+    let endScreen = document.getElementById('endScreen');
+    endScreen.classList.remove('d-none');
+    document.getElementById('headline').classList.add('d-none');
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('fullscreenBtn').classList.add('d-none');
+    endScreen.innerHTML = '';
+    if (
+        sharkyStatus === "sharkyLoose") {
+        endScreen.innerHTML = generateLooseScreen();
+    }
+    else {
+        endScreen.innerHTML = generateWinScreen();
+    }
+}
+
+function generateWinScreen() {
+    endScreen.innerHTML = '';
+    return `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">
+    <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">`
+}
+
+function generateLooseScreen() {
+    endScreen.innerHTML = '';
+    return `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">
+    <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 18.png">`
+}
+
+function startGameAgain() {
+    let endScreen = document.getElementById('endScreen');
+    let canvas = document.getElementById('canvas');
+    canvas.classList.remove('d-none');
+    endScreen.innerHTML = '';
+    endScreen.classList.add('d-none');
+    document.getElementById('headline').classList.remove('d-none');
+    sharkyStatus = null;
+    startGame();
+}
+
+function stopAllIntervals() {
+    allIntervals.forEach(interval => {
+        clearInterval(interval);
+        allIntervals.shift();
     });
-    allAudioPlaying = [];
 }
 
 window.addEventListener('keydown', event => {
@@ -76,7 +120,6 @@ window.addEventListener('keydown', event => {
     }
 })
 
-
 // Returning variables to false after keyup
 window.addEventListener('keyup', event => {
 
@@ -104,46 +147,3 @@ window.addEventListener('keyup', event => {
         keyboard.KEYF = false;
     }
 })
-
-function showGameOver(sharkyStatus) {
-    stopAllIntervals();
-    stopAllAudio();
-let endScreen = document.getElementById('endScreen');
-endScreen.classList.remove('d-none');
-    document.getElementById('headline').classList.add('d-none');
-    document.getElementById('canvas').classList.add('d-none');
-    document.getElementById('fullscreenBtn').classList.add('d-none');
-
-
-    //sharky wins
-    if (sharkyStatus === "sharkyWin") {
-        endScreen.innerHTML = '';
-        endScreen.innerHTML = `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">
-        <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">
-        ` }
-    // sharky looses
-    else {
-        endScreen.innerHTML = '';
-        endScreen.innerHTML += `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">
-        <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">
-        `}
-}
-
-function startGameAgain() {
-    let endscreen = document.getElementById('endScreen');
-    let canvas = document.getElementById('canvas');
-    canvas.classList.remove('d-none');
-    endscreen.innerHTML = '';
-    endscreen.style.display = "none";
-    init();
-}
-
-function stopAllIntervals() {
-    allIntervals.forEach(interval => {
-        clearInterval(interval);
-        allIntervals.shift();
-    });
-
-
-}
-
