@@ -8,6 +8,7 @@ class MoveableObject extends Drawableobject {
     energy = 100;                           // for character and endboss
     lastHit = 0;                            // time when character is last hit
     index = 0;                              // needed for playAnimationOnce function
+    hurtAnimationPlays = false;
 
     // for bubbles out of sharkys mouth
     applyGravity() {

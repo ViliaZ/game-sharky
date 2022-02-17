@@ -9,6 +9,7 @@ class Character extends MoveableObject {
     jellyfish = level1.jellyfish;
 
 
+
     // call character.world to access variables of the world class ( e.g. keyboard)
     world;
 
@@ -104,7 +105,7 @@ class Character extends MoveableObject {
         this.animate();
     }
 
-   animate() {    
+    animate() {
         // Idle Animation per default
         let intervalSharky1 = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
@@ -114,16 +115,13 @@ class Character extends MoveableObject {
 
         let intervalSharky2 = setInterval(() => {
             if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                setTimeout(()=> {
-                    clearInterval(intervalSharky2);
-                    showGameOver("sharkyLoose"),1000})  // when calling a timout funtion with parameters, its written like this
-                // playAudio(AUDIOS.characterHurt);
+                clearInterval(intervalSharky2)
+                this.deadAnimation();
             }
             else if (this.isColliding(this.jellyfish)) {
                 this.playAnimation(this.IMAGES_HURT)
             }
-            else if (this.isHurt()) {
+            else if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT)
                 // playAudio(AUDIOS.characterHurt);
             }
@@ -146,6 +144,17 @@ class Character extends MoveableObject {
             }
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
+        }, 1000 / 60)
+    }
+
+    deadAnimation() {
+        let deadAnimationInterval = setInterval(() => {
+            this.playAnimation(this.IMAGES_DEAD);
+            setTimeout(() => {
+                showGameOver("sharkyLoose")
+                clearInterval(deadAnimationInterval)
+            }, 1200)  // when calling a timout funtion with parameters, its written like this
+            // playAudio(AUDIOS.characterHurt);
         }, 1000 / 60)
     }
 }

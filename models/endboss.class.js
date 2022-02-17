@@ -13,7 +13,6 @@ class Endboss extends MoveableObject {
 
     introAnimationDone = false;  // intro animation should only play once
     isNearCharacter = false;  // is checked in world
-    hurtAnimationPlays = false;
 
 
     IMAGES_INTRODUCE = [
@@ -132,20 +131,19 @@ class Endboss extends MoveableObject {
             clearInterval(sinkingAnimation)
             this.otherDirection = true;
             this.finalEscape();
-        }, 1000);
+        }, 1000);}
+
+        finalEscape(){
+            let intervalEscape = setInterval(() => {
+                this.playAnimation(this.IMAGES_FLOATING);
+                this.x += this.speedEscape;
+                this.speedEscape += this.accelerationEscape;
+            }, 1000 / 24);
+            setTimeout(() => {
+                clearInterval(intervalEscape);
+                showGameOver("sharkyWin")    // when calling a timout funtion with parameters, its written like this
+            }, 700)
+        }
+
+
     }
-
-    finalEscape() {
-        let intervalEscape = setInterval(() => {
-            this.playAnimation(this.IMAGES_FLOATING);
-            this.x += this.speedEscape;
-            this.speedEscape += this.accelerationEscape;
-        }, 1000 / 24);
-        setTimeout(() => {
-            clearInterval(intervalEscape);
-            showGameOver("sharkyWin")    // when calling a timout funtion with parameters, its written like this
-        }, 1200)
-    }
-
-
-}

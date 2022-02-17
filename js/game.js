@@ -76,14 +76,14 @@ function generateLooseScreen() {
 }
 
 function startGameAgain() {
-    let endScreen = document.getElementById('endScreen');
-    let canvas = document.getElementById('canvas');
-    canvas.classList.remove('d-none');
-    endScreen.innerHTML = '';
-    endScreen.classList.add('d-none');
-    document.getElementById('headline').classList.remove('d-none');
-    sharkyStatus = null;
-    startGame();
+    // let endScreen = document.getElementById('endScreen');
+    // let canvas = document.getElementById('canvas');
+    // canvas.classList.remove('d-none');
+    // endScreen.innerHTML = '';
+    // endScreen.classList.add('d-none');
+    // document.getElementById('headline').classList.remove('d-none');
+    // sharkyStatus = null;
+    window.location.reload();
 }
 
 function stopAllIntervals() {
