@@ -10,6 +10,7 @@ function startGame() {
     document.getElementById('fullscreenBtn').classList.remove('d-none');
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);  // transfer the two variables to world class, >> make them accessable there
+    
     // playAudio(AUDIOS.background);
 }
 

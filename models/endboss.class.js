@@ -124,22 +124,28 @@ class Endboss extends MoveableObject {
     }
 
     turnAndRun() {
-        let sinkingAnimation = setInterval(()=> {
+        let sinkingAnimation = setInterval(() => {
             this.applyGravity();
             this.playAnimation(this.IMAGES_DEAD);
-        }, 1000/5)
+        }, 1000 / 5)
         setTimeout(() => {
             clearInterval(sinkingAnimation)
             this.otherDirection = true;
-             this.intervalEscape = setInterval(() => {
-                this.playAnimation(this.IMAGES_FLOATING);
-                this.x += this.speedEscape;
-                this.speedEscape += this.accelerationEscape;
-            }, 1000 / 24);
-            // allIntervals.push(intervalEscape);
-        }, 700)
-        // setTimeout(() => {
-        //     clearInterval(this.intervalEscape);
-        //     showGameOver("sharkyWin"), 2000 })  // when calling a timout funtion with parameters, its written like this
+            this.finalEscape();
+        }, 1000);
     }
+
+    finalEscape() {
+        let intervalEscape = setInterval(() => {
+            this.playAnimation(this.IMAGES_FLOATING);
+            this.x += this.speedEscape;
+            this.speedEscape += this.accelerationEscape;
+        }, 1000 / 24);
+        setTimeout(() => {
+            clearInterval(intervalEscape);
+            showGameOver("sharkyWin")    // when calling a timout funtion with parameters, its written like this
+        }, 1200)
+    }
+
+
 }
