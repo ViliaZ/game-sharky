@@ -3,14 +3,17 @@ let world;
 let keyboard = new Keyboard();
 let gameOver = false;
 let fullscreenmode = false;
+let pressedKey = false;  // either undefined(no key pressed) or definied with the pressed key code (see functions below)
 
 
 function startGame() {
     document.getElementById('welcomeScreen').classList.add('d-none');
     document.getElementById('fullscreenBtn').classList.remove('d-none');
+    // document.getElementById('background-music').play();
+    // document.getElementById('togglesContainer').classList.remove('d-none');
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);  // transfer the two variables to world class, >> make them accessable there
-    
+
     // playAudio(AUDIOS.background);
 }
 
@@ -44,7 +47,7 @@ function playAudio(soundData) {
 // }
 
 async function showGameOver(sharkyStatus) {
-    console.log(allIntervals)
+    document.getElementById('background-music').pause();
 
     await stopAllIntervals();
     // await stopAllAudio();
@@ -95,8 +98,7 @@ function stopAllIntervals() {
 
 window.addEventListener('keydown', event => {
     // Eventlistener is returning a JSON (console.log(event) >> the key "code" defines the key that was pressed)
-    let pressedKey = event.code;
-    console.log(event);
+    pressedKey = event.code;
 
     if (pressedKey === 'Space') {
         keyboard.SPACE = true;
@@ -116,35 +118,39 @@ window.addEventListener('keydown', event => {
     if (pressedKey === 'KeyD') {
         keyboard.KEYD = true;
     }
-    if (pressedKey === 'KeyF') {
-        keyboard.KEYF = true;
-    }
 })
 
 // Returning variables to false after keyup
 window.addEventListener('keyup', event => {
 
-    let pressedKey = event.code;
+    pressedKey = event.code;
 
     if (pressedKey === 'Space') {
         keyboard.SPACE = false;
+        pressedKey = false; // sets variable to false so the idle animation of sharky will play
     }
     if (pressedKey === 'ArrowUp') {
         keyboard.UP = false;
+        pressedKey = false; // sets variable to false so the idle animation of sharky will play
     }
     if (pressedKey === 'ArrowDown') {
         keyboard.DOWN = false;
+        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+
     }
     if (pressedKey === 'ArrowLeft') {
         keyboard.LEFT = false;
+        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+
     }
     if (pressedKey === 'ArrowRight') {
         keyboard.RIGHT = false;
+        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+
     }
     if (pressedKey === 'KeyD') {
         keyboard.KEYD = false;
-    }
-    if (pressedKey === 'KeyF') {
-        keyboard.KEYF = false;
+        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+
     }
 })

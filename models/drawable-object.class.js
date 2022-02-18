@@ -2,10 +2,10 @@
 
 class Drawableobject {
     
-    x = 0;
-    y = 50;
-    width = 200;
-    height = 150;
+    x;
+    y;
+    width;
+    height;
     img;                                // if object is animated, this img is changed consistantly to create the animation
     imageCache = [];                    //array as storage of images animation
     currentImage = 0;                   // start animation here

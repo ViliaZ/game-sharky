@@ -37,17 +37,36 @@
 
 
 
-<body">
+<body class="fbox-center">
     <div id="bgScreen">
         <h1 id="headline">Life of Sharky</h1>
 
         <canvas width="720px" height="480px" id="canvas">
         </canvas>
 
+        <div class="instructionDiv fbox-sbetween">
+            <div class="instructionsLeft fbox-center">
+            </div>
+
+            <div class="instructionsRight fbox-center">
+                <!-- Fullscreen Mode switch -->
+                <img onclick="fullscreen()" id="fullscreenBtn" class="button d-none"
+                    src="img/6.Botones/Full Screen/Mesa de trabajo 9.png">
+                <!-- Music switch -->
+                <div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+
 
         <div id="welcomeScreen" class="screen">
             <div class="screenLeft">
-
             </div>
 
             <div class="screenRight">
@@ -79,13 +98,13 @@
         <div id="endScreen" class="screen d-none">
         </div>
 
+
+
     </div>
 
 
-    <img onclick="fullscreen()" id="fullscreenBtn" class="button d-none"
-        src="img/6.Botones/Full Screen/Mesa de trabajo 9.png" alt="">
 
-    <audio id ="background-music" src="audios/bg.mp3" loop volume = "0.1"></audio>
-    </body>
+    <audio id="background-music" src="audios/bg.mp3" loop volume="0.1"></audio>
+</body>
 
 </html>

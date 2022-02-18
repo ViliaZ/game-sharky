@@ -2,7 +2,8 @@
 // constructor is a crucial part of Classes and run first, whenever a new character is created
 
 class Character extends MoveableObject {
-
+x = 100;
+y = 100;
     width = 300;
     height = 210;
     speed = 3;
@@ -32,6 +33,13 @@ class Character extends MoveableObject {
         'img/1.Sharkie/1.IDLE/16.png',
         'img/1.Sharkie/1.IDLE/17.png',
         'img/1.Sharkie/1.IDLE/18.png'
+    ]
+
+    IMAGES_SWIM = [
+        'img/1.Sharkie/3.Swim/2.png',
+        'img/1.Sharkie/3.Swim/3.png',
+        'img/1.Sharkie/3.Swim/5.png',
+        'img/1.Sharkie/3.Swim/6.png',
     ]
 
     IMAGES_THROWING_BUBBLE = [
@@ -98,6 +106,7 @@ class Character extends MoveableObject {
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_SWIM);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_THROWING_BUBBLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_HURT);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_DEAD);   // method defined in moveable objects (cannot use super() because Parameter is an array)
@@ -106,15 +115,21 @@ class Character extends MoveableObject {
     }
 
     animate() {
-        // Idle Animation per default
+        // Swim Animation per default
         let intervalSharky1 = setInterval(() => {
-            this.playAnimation(this.IMAGES_IDLE);
-        }, 250);
+            if(pressedKey == false){ // no key is pressed
+                this.playAnimation(this.IMAGES_IDLE);
+            }
+            else{
+            this.playAnimation(this.IMAGES_SWIM);
+            }
+        }, 1000 / 5);
 
         allIntervals.push(intervalSharky1);
 
         let intervalSharky2 = setInterval(() => {
-            if (this.isDead()) {
+
+             if (this.isDead()) {
                 clearInterval(intervalSharky2)
                 this.deadAnimation();
             }
@@ -139,7 +154,7 @@ class Character extends MoveableObject {
             if (this.world.keyboard.DOWN) {
                 this.y += this.speed;           // speed is a variable of MoveableObjects
             }
-            if (this.world.keyboard.KEYF) {
+            if (this.world.keyboard.KEYD) {
                 this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
             }
             // attach camera-movement to character-movement

@@ -10,15 +10,21 @@
     src: url(img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf);
 }
 
-.fbox-center{
+.fbox-center {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
+.fbox-sbetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .d-none {
-    display: none!important;
+    display: none !important;
 }
 
 canvas {
@@ -26,13 +32,11 @@ canvas {
     box-shadow: 1px 2px 13px -2px rgba(0, 0, 0, 0.75);
 }
 
-canvas:fullscreen{
-    padding:50px;
+canvas:fullscreen {
+    padding: 50px;
     background-image: url("img/3. Background/Layers/5. Water/D2.png");
     z-index: 90;
 }
-
-
 
 h1 {
     font-size: 48px;
@@ -41,7 +45,7 @@ h1 {
     filter: drop-shadow(10px -2px 29px #eaf8f8);
 }
 
-h3{
+h3 {
     font-size: 32px;
     text-align: center;
 }
@@ -58,24 +62,24 @@ body {
 
 /*** SCREENS ***/
 
-.screen{
+.screen {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     position: absolute;
     z-index: 4;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#welcomeScreen{
-    background-image: url('img/3. Background/Light/2.png');
+#welcomeScreen {
+    background-image: url("img/3. Background/Light/2.png");
 }
 
-#welcomeScreen .screenLeft{
-    flex: 2
+#welcomeScreen .screenLeft {
+    flex: 2;
 }
 
-#welcomeScreen .screenRight{
+#welcomeScreen .screenRight {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -83,7 +87,7 @@ body {
     flex-direction: column;
 }
 
-.wrapper-instructions{
+.wrapper-instructions {
     background-color: rgba(241, 241, 227, 0.431);
     min-height: 40vh;
     width: fit-content;
@@ -92,42 +96,32 @@ body {
     gap: 50px;
 }
 
-.wrapper-startBtn{
+.wrapper-startBtn {
     /* background-color: rgba(248, 244, 1, 0.431); */
     /* width: fit-content; */
     padding: 10px;
     border-radius: 20px;
 }
 
-.btn-start{  /* span element */
-    height: 60px; 
+.btn-start {
+    /* span element */
+    height: 60px;
     padding-left: 75px;
     padding-right: 75px;
     padding-top: 12px;
-    background-color: #FCEE21;
+    background-color: #fcee21;
     border-radius: 12px;
-    font-size:1.7em;
-    color: #531A82;
+    font-size: 1.7em;
+    color: #531a82;
     font-family: default;
     font-family: luckiestGuy;
     border: white 2px solid;
-
-
-}
-
-#fullscreenBtn {
-    position: fixed;
-    left: 50%;
-    bottom: 50px;
-    height: 40px;
-    transform: translateX(-50%);
-    z-index: 100;
 }
 
 .btn-startAgain {
     height: 60px;
     filter: drop-shadow(10px -2px 29px #eaf8f8);
-    z-index:3;
+    z-index: 3;
 }
 
 #looseImage {
@@ -135,7 +129,7 @@ body {
     filter: drop-shadow(10px -2px 29px #eaf8f8);
 }
 
-#winImage{
+#winImage {
     width: 800px;
     height: 500px;
 }
@@ -163,13 +157,96 @@ body {
     gap: 50px;
 }
 
-
-.button{
+.button {
     margin-top: 10px;
-
     height: 40px;
 }
 
-#keysBtn{
+#keysBtn {
     height: 82px;
+}
+
+/*******  TOGGLE FOR MUSIC *********/
+/* Div containing both toggles */
+.instructionDiv {
+    padding: 10px;
+    margin-top: 25px;
+    background-color: rgba(255, 255, 255, 0.383);
+    gap: 10px;
+    z-index: 10;
+    border-radius: 15px;
+    width: 720px;
+}
+
+.instructionsLeft {
+    width: 75%;
+}
+.instructionsRight {
+    width: 25%;
+}
+
+#fullscreenBtn {
+    position: relative;
+    height: 40px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c4b7d6;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #632aaf;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #632aaf;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
