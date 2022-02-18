@@ -2,8 +2,8 @@
 // constructor is a crucial part of Classes and run first, whenever a new character is created
 
 class Character extends MoveableObject {
-x = 100;
-y = 100;
+    x = 100;
+    y = 100;
     width = 300;
     height = 210;
     speed = 3;
@@ -39,10 +39,10 @@ y = 100;
         'img/1.Sharkie/3.Swim/2.png',
         'img/1.Sharkie/3.Swim/3.png',
         'img/1.Sharkie/3.Swim/5.png',
-        'img/1.Sharkie/3.Swim/6.png',
+        'img/1.Sharkie/3.Swim/6.png'
     ]
 
-    IMAGES_THROWING_BUBBLE = [
+    IMAGES_THROWING = [
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
@@ -50,14 +50,13 @@ y = 100;
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
-        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
     ]
 
     IMAGES_FINSLAP = [
-        'img/1.Sharkie/4.Attack/Fin slap/1.png',
+        // 'img/1.Sharkie/4.Attack/Fin slap/1.png',
         'img/1.Sharkie/4.Attack/Fin slap/2.png',
-        'img/1.Sharkie/4.Attack/Fin slap/3.png',
+        // 'img/1.Sharkie/4.Attack/Fin slap/3.png',
         'img/1.Sharkie/4.Attack/Fin slap/4.png',
         'img/1.Sharkie/4.Attack/Fin slap/5.png',
         'img/1.Sharkie/4.Attack/Fin slap/6.png',
@@ -107,29 +106,31 @@ y = 100;
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_SWIM);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_THROWING_BUBBLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_THROWING);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_HURT);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_DEAD);   // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_FINSLAP);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.animate();
+        this.animateBasic();
+        this.animateAttacks();
+        this.animateConditions();
     }
 
-    animate() {
+    animateBasic() {
         // Swim Animation per default
         let intervalSharky1 = setInterval(() => {
-            if(pressedKey == false){ // no key is pressed
+            if (pressedKey == false) { // no key is pressed
                 this.playAnimation(this.IMAGES_IDLE);
             }
-            else{
-            this.playAnimation(this.IMAGES_SWIM);
+            else {
+                this.playAnimation(this.IMAGES_SWIM);
             }
         }, 1000 / 5);
-
         allIntervals.push(intervalSharky1);
+    }
 
+    animateConditions() {
         let intervalSharky2 = setInterval(() => {
-
-             if (this.isDead()) {
+            if (this.isDead()) {
                 clearInterval(intervalSharky2)
                 this.deadAnimation();
             }
@@ -140,26 +141,39 @@ y = 100;
                 this.playAnimation(this.IMAGES_HURT)
                 // playAudio(AUDIOS.characterHurt);
             }
-            if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
+            else if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.moveRight();
                 this.otherDirection = false;
             }
-            if (this.world.keyboard.LEFT && this.x > -50) {  // if moving left AND x>0 (left borer isnt reached)
+            else if (this.world.keyboard.LEFT && this.x > -50) {  // if moving left AND x>0 (left borer isnt reached)
                 this.moveLeft();
                 this.otherDirection = true;     // mirroring img of character
             }
-            if (this.world.keyboard.UP) {
+            else if (this.world.keyboard.UP) {
                 this.y -= this.speed;           // speed is a variable of MoveableObjects
             }
-            if (this.world.keyboard.DOWN) {
+            else if (this.world.keyboard.DOWN) {
                 this.y += this.speed;           // speed is a variable of MoveableObjects
             }
-            if (this.world.keyboard.KEYD) {
+            else if (this.world.keyboard.KEYD) {
                 this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
             }
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
         }, 1000 / 60)
+        allIntervals.push(intervalSharky2);
+    }
+
+    animateAttacks() {
+        let intervalActionsSharky = setInterval(() => {
+            if (this.world.keyboard.KEYD) {
+                this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
+            }
+            else if (this.world.keyboard.SPACE) {
+                this.playAnimation(this.IMAGES_THROWING)           // speed is a variable of MoveableObjects
+            }
+        }, 1000 / 10)
+        allIntervals.push(intervalActionsSharky);
     }
 
     deadAnimation() {
@@ -172,4 +186,5 @@ y = 100;
             // playAudio(AUDIOS.characterHurt);
         }, 1000 / 60)
     }
+
 }

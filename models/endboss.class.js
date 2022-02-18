@@ -89,10 +89,14 @@ class Endboss extends MoveableObject {
                 this.hurtAnimationPlays = true;
                 this.playAnimation(this.IMAGES_HURT);
                 this.startAttack();
+                if (this.introAnimationDone === false) {
+                    this.introAnimationDone = true;
+                }
             }
             // start Intro Animation (is running only ONCE)
             else if (this.isNearCharacter === true && this.introAnimationDone === false) {
                 this.playIntro();
+
             }
             // start normal floating when Intro Animation was done
             else if (this.introAnimationDone === true) {
@@ -131,19 +135,20 @@ class Endboss extends MoveableObject {
             clearInterval(sinkingAnimation)
             this.otherDirection = true;
             this.finalEscape();
-        }, 1000);}
-
-        finalEscape(){
-            let intervalEscape = setInterval(() => {
-                this.playAnimation(this.IMAGES_FLOATING);
-                this.x += this.speedEscape;
-                this.speedEscape += this.accelerationEscape;
-            }, 1000 / 24);
-            setTimeout(() => {
-                clearInterval(intervalEscape);
-                showGameOver("sharkyWin")    // when calling a timout funtion with parameters, its written like this
-            }, 700)
-        }
-
-
+        }, 1000);
     }
+
+    finalEscape() {
+        let intervalEscape = setInterval(() => {
+            this.playAnimation(this.IMAGES_FLOATING);
+            this.x += this.speedEscape;
+            this.speedEscape += this.accelerationEscape;
+        }, 1000 / 24);
+        setTimeout(() => {
+            clearInterval(intervalEscape);
+            showGameOver("sharkyWin")    // when calling a timout funtion with parameters, its written like this
+        }, 1200)
+    }
+
+
+}

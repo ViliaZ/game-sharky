@@ -151,6 +151,5 @@ window.addEventListener('keyup', event => {
     if (pressedKey === 'KeyD') {
         keyboard.KEYD = false;
         pressedKey = false; // sets variable to false so the idle animation of sharky will play
-
     }
 })
