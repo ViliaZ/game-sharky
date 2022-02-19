@@ -31,80 +31,102 @@
     <script src="models/throwable-object.class.js"></script>
     <script src="js/AUDIOS.js"></script>
     <script src="js/game.js"></script>
-
-
 </head>
 
-
-
 <body class="fbox-center">
+
     <div id="bgScreen">
         <canvas width="720px" height="480px" id="canvas">
         </canvas>
 
+        <div id="welcomeScreen" class="screen fbox-start">
 
-        <div class="instructionDiv fbox-sbetween">
+            <!-- /** HEADLINE  **/ -->
+            <h1>LIFE OF SHARKY</h1>
 
-            <div class="instructionsLeft fbox-center">
-            </div>
+                        <!-- /** START BUTTON **/ -->
 
-            <div class="instructionsRight fbox-center">
-                <!-- Fullscreen Mode switch -->
-                <img onclick="fullscreen()" id="fullscreenBtn" class="button d-none"
-                    src="img/6.Botones/Full Screen/Mesa de trabajo 9.png">
-                <!-- Music switch -->
-                <div>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </div>
+                        <div class="wrapper-startBtn">
+                            <button onclick="startGame()" id="startBtn" class="btn-start">Start Game</button>
+                        </div>
+            
 
-        </div>
+            <!-- /** SHARKY GIF **/ --> 
+             <img id="sharkyGIF" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
 
 
+            <!-- /** INSTRUCTIONS **/ -->
 
-        <div id="welcomeScreen" class="screen">
-            <div class="screenLeft fbox-center">
-                <h1>LIFE OF SHARKY</h1>
-                <img id="sharkyGIF" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
-            </div>
 
-            <div class="screenRight">
-                <div class="wrapper-instructions fbox-center">
+            <div class="wrapper-instructions fbox-row">
+
+                <div class="fbox-row">
                     <div class="fbox-center">
                         <h3>Move</h3>
                         <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
                     </div>
 
-                    <div class="fbox-center">
-                        <h3>Attack</h3>
-                        <img id="spaceBtn" class="button" src="img/6.Botones/Key/Space Bar key.png">
-                    </div>
+                </div>
+
+                <div class="fbox-row">
 
                     <div class="fbox-center">
-                        <h3>Fin Slap</h3>
-                        <img id="attackBtn" class="button" src="img/6.Botones/Key/D key.png">
+                        <h3>Bubble Attack</h3>
+                        <img id="spaceBtn" class="button" src="img/6.Botones/Key/Space Bar key.png">
+                        <img id="bubble-img" class="imgSmall" src="img/1.Sharkie/BubbleAttack.png">
+
                     </div>
+
 
                 </div>
 
-                <div class="wrapper-startBtn fbox-center">
-                    <button onclick="startGame()" id="startBtn" class="btn-start">Start Game</button>
+                <div class="fbox-row">
+                    <div class="fbox-center">
+                        <h3>Fin ATTACK</h3>
+                        <img id="attackBtn" class="button" src="img/6.Botones/Key/D key.png">
+                        <img id="finslap-img" class="imgSmall" src="img/1.Sharkie/FinSlap.png">
+
+                    </div>
+
                 </div>
 
             </div>
+
+
+
         </div>
 
-        <div id="endScreen" class="screen d-none">
+        <!-- <div class="instructionDiv fbox-sbetween">
+
+            <div class="instructionsLeft fbox-center">
+                <p>Finslap</p>
+                <img src="" alt="">
+            </div>
+
+            <div class="instructionsRight fbox-center">-->
+        <!-- Fullscreen switch -->
+        <div>
+            <label class="switch">
+                <input onchange="checkFullscreen()" id="fullscreenToggle" type="checkbox">
+                <span class="slider round"></span>
+            </label>
         </div>
-
-
+        <!-- Music switch -->
+        <div>
+            <label class="switch">
+                <input id="musicToggle" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
 
     </div>
 
 
+    <div id="endScreen" class="screen d-none">
+    </div>
+
+    </div>
 
     <audio id="background-music" src="audios/bg.mp3" loop volume="0.1"></audio>
 </body>

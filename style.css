@@ -17,6 +17,18 @@
     flex-direction: column;
 }
 
+.fbox-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+.fbox-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .fbox-sbetween {
     display: flex;
     justify-content: space-between;
@@ -39,10 +51,10 @@ canvas:fullscreen {
 }
 
 h1 {
-    font-size: 52px;
+    font-size: 58px;
     font-kerning: normal;
-    margin-bottom: 24px;
     filter: drop-shadow(10px -2px 29px #eaf8f8);
+    color: #632aaf;
 }
 
 h3 {
@@ -58,6 +70,19 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
+}
+
+/** in instruction panel**/
+#finslap-img {
+    height: 80px;
+    margin: 15px;
+}
+
+#bubble-img {
+    height: 76px;
+    margin: 15px;
+    margin-top: 22px;
+
 }
 
 /*** SCREENS ***/
@@ -92,16 +117,18 @@ body {
 }
 
 #sharkyGIF {
-    height: 300px;
+    height: 200px;
 }
 
 .wrapper-instructions {
-    /* background-color: rgba(255, 255, 255, 0.185); */
-    min-height: 40vh;
-    width: fit-content;
-    padding: 60px;
+    background-color: #642aaf9b;
+    align-items: flex-start;
+
+    width: 75vw;
+    max-width: 1200px;
+    padding: 30px;
     border-radius: 20px;
-    gap: 50px;
+    justify-content: space-evenly;
 }
 
 .wrapper-startBtn {
@@ -191,13 +218,8 @@ body {
 }
 .instructionsRight {
     width: 25%;
+    justify-content: space-between;
 }
-
-#fullscreenBtn {
-    position: relative;
-    height: 40px;
-}
-
 .switch {
     position: relative;
     display: inline-block;

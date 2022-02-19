@@ -116,6 +116,7 @@ class Character extends MoveableObject {
 
     animateBasic() {
         // Swim Animation per default
+        console.log(pressedKey)
         let intervalSharky1 = setInterval(() => {
             if (pressedKey == false) { // no key is pressed
                 this.playAnimation(this.IMAGES_IDLE);
