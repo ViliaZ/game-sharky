@@ -17,7 +17,6 @@ class StatusbarCoins extends Drawableobject {
         'img/4. Marcadores/green/Coin/100_ copia 4.png'  // 5
     ]
 
-
     constructor() {
         super().loadImage(this.IMAGES[0]);
         this.loadImages(this.IMAGES);

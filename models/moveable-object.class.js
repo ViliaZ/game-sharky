@@ -64,7 +64,6 @@ class MoveableObject extends Drawableobject {
         this.index++;
         if (this.index === imageArray.length - 1) {
             clearInterval(interval);
-            // setTimeout(()=> {this.index = 0},2000)
         }
     }
 

@@ -39,7 +39,7 @@ canvas:fullscreen {
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 52px;
     font-kerning: normal;
     margin-bottom: 24px;
     filter: drop-shadow(10px -2px 29px #eaf8f8);
@@ -76,20 +76,28 @@ body {
 }
 
 #welcomeScreen .screenLeft {
-    flex: 2;
+    padding: 50px;
+    width: 50%;
 }
 
 #welcomeScreen .screenRight {
-    flex: 1;
+    margin: 50px;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.185);
+    border-radius: 15px;
+}
+
+#sharkyGIF {
+    height: 300px;
 }
 
 .wrapper-instructions {
-    background-color: rgba(255, 255, 255, 0.185);
-        min-height: 40vh;
+    /* background-color: rgba(255, 255, 255, 0.185); */
+    min-height: 40vh;
     width: fit-content;
     padding: 60px;
     border-radius: 20px;
