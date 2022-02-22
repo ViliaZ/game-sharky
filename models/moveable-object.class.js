@@ -46,16 +46,18 @@ class MoveableObject extends Drawableobject {
 
     objectIsAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true; }  // always true bc. bubbles should not stop at ground
+            return true;
+        }  // always true bc. bubbles should not stop at ground
         else {
-            return this.y < 200;}  // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
+            return this.y < 200;
+        }  // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
     }
 
     playAnimation(imageArray) {
-        let i = this.currentImage % imageArray.length   // creates permanent circle of numbers from 0 to arraylength
-        let path = imageArray[i];                       // path is the key to the variable in imageCache
-        this.img = this.imageCache[path];
-        this.currentImage++;
+            let i = this.currentImage % imageArray.length   // creates permanent circle of numbers from 0 to arraylength
+            let path = imageArray[i];                       // path is the key to the variable in imageCache
+            this.img = this.imageCache[path];
+            this.currentImage++;
     }
 
     playAnimationOnce(imageArray, interval) {
@@ -70,9 +72,11 @@ class MoveableObject extends Drawableobject {
     moveLeft(fish) {
         if (fish === 'pufferfish') {
             let speedPufferfish = 0.20 + Math.random() * 1.5;
-            this.x -= speedPufferfish;        }
+            this.x -= speedPufferfish;
+        }
         else {
-            this.x -= this.speed;        }
+            this.x -= this.speed;
+        }
     };
 
     moveRight() {
@@ -82,9 +86,9 @@ class MoveableObject extends Drawableobject {
     // detects IF character is colliding with any object > boolean
     isColliding(object) {
         // give the corrdinates an offset to compensate for empty space around images
-        return this.x+40 + this.width*0.7 > object.x &&   
-            this.y+86 + this.height*0.4 > object.y &&
-            this.x+40 < object.x &&
-            this.y+86 < object.y + object.height
+        return this.x + 40 + this.width * 0.7 > object.x &&
+            this.y + 86 + this.height * 0.4 > object.y &&
+            this.x + 40 < object.x &&
+            this.y + 86 < object.y + object.height
     }
 }

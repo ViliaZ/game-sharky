@@ -6,15 +6,16 @@ class World {
     character = new Character();
     statusbar = new Statusbar();
     statusbarCoins = new StatusbarCoins();
-    throwableObjects = [];
     jellyfishes = level1.jellyfish;
     level = level1;         // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     coins = level1.coins;
     enemies = level1.enemies;
     endboss = level1.enemies[level1.enemies.length - 1];
     gameOver = false;
-
+    firstBubbleThrown = false;  // saves time of bubble creation
+    timeBubbleCreated = 0;
     backgroundObjects = level1.backgroundObjects;
+    throwYES = false;
 
     canvas;                 // variable declaring, needs to be here to be available also for draw()
     ctx;                    // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
@@ -66,7 +67,7 @@ class World {
 
     checkGameOver() {
         if (gameOver) {  // defined in Game.js
-            showGameOver(win);  
+            showGameOver(win);
         }
     }
 
@@ -94,17 +95,29 @@ class World {
         }
     }
 
-    checkThrowing() {
-        // only throw Bubble if Coins are available
-        if (this.keyboard.SPACE && this.statusbarCoins.percentage > 0) {
-            let bubble = new ThrowableObject(this.character.x + 240, this.character.y + 130);
-            this.throwableObjects.push(bubble);
-            let checkThrowingInterval = setInterval(() => {
-                this.checkIfEnemyHurt(bubble);
-            }, 1000 / 20);
-            allIntervals.push(checkThrowingInterval);
+    checkThrowing() { // only throw Bubble if Coins are available
+        if (this.bubbleRequested()) {
+            if (this.firstBubbleThrown == false) {
+                this.firstBubbleThrown = true;
+                this.createBubble();
+            }
+            else if ((new Date().getTime() - this.timeBubbleCreated) > 300) { // only allow next throw after 500ms
+                this.createBubble();
+            }
         }
-        else { return }
+    }
+
+    bubbleRequested() {  // returns true results in throwing animation of character
+        return this.keyboard.SPACE && this.statusbarCoins.percentage > 0
+    }
+
+    createBubble() {
+        let bubble = new ThrowableObject(this.character.x + 240, this.character.y + 130);
+        this.timeBubbleCreated = new Date().getTime();  // saves current timepoint
+        let checkThrowingInterval = setInterval(() => {
+            this.checkIfEnemyHurt(bubble);
+        }, 1000 / 20);
+        allIntervals.push(checkThrowingInterval);
     }
 
     // Collision Enemy and Bubble  >> bubble remove and hurt-animation Enemy initiated
@@ -140,7 +153,6 @@ class World {
                 this.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
                 this.statusbarCoins.increaseStatusbarCoins();  // this.character.energy is the number that we need to set our percentage of the statusbar
                 // playAudio(AUDIOS.collectCoin);
-
             };
         });
     }
