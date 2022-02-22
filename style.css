@@ -29,6 +29,12 @@
     align-items: center;
 }
 
+.fbox-row-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .fbox-sbetween {
     display: flex;
     justify-content: space-between;
@@ -39,15 +45,28 @@
     display: none !important;
 }
 
+.gap-1em {
+    gap: 1em;
+}
+
+.mt-03em{
+    margin-top: 0.3em;
+}
+
+/* #fullscreen-wrapper{
+
+} */
+
 canvas {
     background-color: black;
     box-shadow: 1px 2px 13px -2px rgba(0, 0, 0, 0.75);
+    position: relative;
+    z-index: 1;
 }
 
 canvas:fullscreen {
     padding: 50px;
     background-image: url("img/3. Background/Layers/5. Water/D2.png");
-    z-index: 90;
 }
 
 h1 {
@@ -55,19 +74,18 @@ h1 {
     font-kerning: normal;
     filter: drop-shadow(10px -2px 29px #eaf8f8);
     color: #632aaf;
+    text-align: center;
 }
 
 h3 {
     font-size: 32px;
     text-align: center;
+    margin: 10px;
 }
 
 body {
     font-family: luckiestGuy;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     height: 100vh;
 }
@@ -82,7 +100,6 @@ body {
     height: 76px;
     margin: 15px;
     margin-top: 22px;
-
 }
 
 /*** SCREENS ***/
@@ -93,11 +110,13 @@ body {
     position: absolute;
     z-index: 4;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding: 6em;
 }
 #welcomeScreen {
     background-image: url("img/3. Background/Light/2.png");
+    background-size: cover;
 }
 
 #welcomeScreen .screenLeft {
@@ -123,7 +142,7 @@ body {
 .wrapper-instructions {
     background-color: #642aaf9b;
     align-items: flex-start;
-
+    flex-wrap: wrap;
     width: 75vw;
     max-width: 1200px;
     padding: 30px;
@@ -151,6 +170,7 @@ body {
     font-family: default;
     font-family: luckiestGuy;
     border: white 2px solid;
+    white-space: nowrap;
 }
 
 .btn-startAgain {
@@ -177,7 +197,7 @@ body {
     position: relative;
     background-image: url("img/3. Background/Layers/5. Water/D2.png");
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 }
 
 #endScreen {
@@ -201,6 +221,36 @@ body {
     height: 82px;
 }
 
+/*******  Instructions for game page *********/
+
+.game-instructions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.356);
+    margin-top: 20px;
+    gap: 2em;
+    height: 100px;
+    position: fixed;
+    bottom: 0;
+    /* z-index: 100; */
+}
+
+.game-instructions .button {
+    height: 28px;
+    margin-top: 0px;
+}
+
+.game-instructions #keysBtn {
+    height: 50px;
+}
+
+.game-instructions .sharkySmall {
+    height: 40px;
+}
+
 /*******  TOGGLE FOR MUSIC *********/
 /* Div containing both toggles */
 .instructionDiv {
@@ -220,11 +270,27 @@ body {
     width: 25%;
     justify-content: space-between;
 }
+
+.instruction-switches{
+    gap: 0.3em;
+    width: max-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    align-items: flex-end;
+}
+
+.instruction-switches img{
+    height: 1.5em;
+    margin-right: 0.5em;
+    margin-left: 0.25em;
+}
+
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 50px;
+    height: 24px;
+    
 }
 
 /* Hide default HTML checkbox */
@@ -250,21 +316,21 @@ body {
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #632aaf;
     -webkit-transition: 0.4s;
     transition: 0.4s;
 }
 
 input:checked + .slider {
-    background-color: #632aaf;
+    background-color: yellow;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #632aaf;
+    box-shadow: 0 0 1px yellow;
 }
 
 input:checked + .slider:before {

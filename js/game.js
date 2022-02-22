@@ -17,15 +17,17 @@ function startGame() {
 }
 
 function checkFullscreen() {
-    console.log('on',document.getElementById('fullscreenToggle'))
-
     let fullscreenToggle = document.getElementById('fullscreenToggle');
+    let instructionPanel = document.getElementById('game-instructions');
     if (fullscreenToggle.checked) {
-        canvas.requestFullscreen()
+        canvas.requestFullscreen();
+        console.log(instructionPanel)
+        instructionPanel.fullscreenElement;
         fullscreenmode === true;
     }
     else {
         canvas.exitFullscreen();
+        instructionPanel.fullscreenElement;
         fullscreenmode === false;
     }
 }
@@ -55,9 +57,7 @@ async function showGameOver(sharkyStatus) {
     // await stopAllAudio();
     let endScreen = document.getElementById('endScreen');
     endScreen.classList.remove('d-none');
-    document.getElementById('headline').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
-    document.getElementById('fullscreenBtn').classList.add('d-none');
     endScreen.innerHTML = '';
     if (
         sharkyStatus === "sharkyLoose") {

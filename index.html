@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sharky Game</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <!-- important order of JS data - drawableObject before moveableObject and statusbar must be before world -->
@@ -33,30 +34,31 @@
     <script src="js/game.js"></script>
 </head>
 
-<body class="fbox-center">
+<body class="fbox-start">
 
     <div id="bgScreen">
+
+        <div id="fullscreen-wrapper">
         <canvas width="720px" height="480px" id="canvas">
         </canvas>
+    </div>
 
         <div id="welcomeScreen" class="screen fbox-start">
 
             <!-- /** HEADLINE  **/ -->
             <h1>LIFE OF SHARKY</h1>
 
-                        <!-- /** START BUTTON **/ -->
+            <!-- /** START BUTTON **/ -->
 
-                        <div class="wrapper-startBtn">
-                            <button onclick="startGame()" id="startBtn" class="btn-start">Start Game</button>
-                        </div>
-            
+            <div class="wrapper-startBtn">
+                <button onclick="startGame()" id="startBtn" class="btn-start">Start Game</button>
+            </div>
 
-            <!-- /** SHARKY GIF **/ --> 
-             <img id="sharkyGIF" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
+            <!-- /** SHARKY GIF **/ -->
+            <img id="sharkyGIF" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
 
 
             <!-- /** INSTRUCTIONS **/ -->
-
 
             <div class="wrapper-instructions fbox-row">
 
@@ -65,7 +67,6 @@
                         <h3>Move</h3>
                         <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
                     </div>
-
                 </div>
 
                 <div class="fbox-row">
@@ -74,10 +75,7 @@
                         <h3>Bubble Attack</h3>
                         <img id="spaceBtn" class="button" src="img/6.Botones/Key/Space Bar key.png">
                         <img id="bubble-img" class="imgSmall" src="img/1.Sharkie/BubbleAttack.png">
-
                     </div>
-
-
                 </div>
 
                 <div class="fbox-row">
@@ -87,13 +85,8 @@
                         <img id="finslap-img" class="imgSmall" src="img/1.Sharkie/FinSlap.png">
 
                     </div>
-
                 </div>
-
             </div>
-
-
-
         </div>
 
         <!-- <div class="instructionDiv fbox-sbetween">
@@ -105,19 +98,64 @@
 
             <div class="instructionsRight fbox-center">-->
         <!-- Fullscreen switch -->
-        <div>
-            <label class="switch">
-                <input onchange="checkFullscreen()" id="fullscreenToggle" type="checkbox">
-                <span class="slider round"></span>
-            </label>
+
+        <!-- /** INSTRUCTIONS GAME PAGE **/ -->
+
+        <div id="game-instructions" class="game-instructions">
+
+            <div class="fbox-row">
+                <div class="fbox-row-center gap-1em">
+                    <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
+                </div>
+            </div>
+
+            <div class="fbox-row">
+
+                <div class="fbox-row-center gap-1em">
+                    <img class="sharkySmall" src="img/1.Sharkie/BubbleAttack.png">
+                    <img class="button" src="img/6.Botones/Key/Space Bar key.png">
+                </div>
+            </div>
+
+            <div class="fbox-row">
+                <div class="fbox-row-center gap-1em">
+                    <img class="sharkySmall" src="img/1.Sharkie/FinSlap.png">
+                    <img id="attackBtn" class="button" src="img/6.Botones/Key/D key.png">
+
+                </div>
+            </div>
+
+
+            <!-- SWITCHES -->
+            <div class="instruction-switches fbox-center">
+
+                <!-- Fullscreen Switch -->
+                <div class="fbox-row-center ">
+                    <p class="mt-03em">Fullscreen</p>
+                    <img src="img/fullscreen.png">
+                    <label class="switch">
+                        <input onchange="checkFullscreen()" id="fullscreenToggle" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <!-- Music switch -->
+                <div class="fbox-row-center">
+                    <p class="mt-03em">Audio</p>
+                    <img src="img/outline_music_off_white_24dp.png">            
+                    </span>
+                    <label class="switch">
+
+                        <input id="musicToggle" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+            </div>
+
         </div>
-        <!-- Music switch -->
-        <div>
-            <label class="switch">
-                <input id="musicToggle" type="checkbox">
-                <span class="slider round"></span>
-            </label>
-        </div>
+
+
     </div>
 
     </div>
