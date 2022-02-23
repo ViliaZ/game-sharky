@@ -12,6 +12,7 @@ class World {
     enemies = level1.enemies;
     endboss = level1.enemies[level1.enemies.length - 1];
     gameOver = false;
+    throwableObjects=[];
     timeBubbleCreated = 0;
     firstBubbleThrown = false;
     bubbleCreating = false;
@@ -106,7 +107,7 @@ class World {
                 this.createBubble();
             }
             else{
-                return
+                return;
             }
         }
     }
