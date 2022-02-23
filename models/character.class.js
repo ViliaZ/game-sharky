@@ -158,8 +158,9 @@ class Character extends MoveableObject {
             else if (this.world.keyboard.KEYD) {
                 this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
             }
-            else if (this.world.keyboard.SPACE) {
+            else if (this.world.bubbleCreating) {
                 this.playAnimation(this.IMAGES_THROWING)           // speed is a variable of MoveableObjects
+                setTimeout(()=> {this.world.bubbleCreating = false;},400);
             }
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
