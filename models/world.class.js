@@ -6,7 +6,6 @@ class World {
     character = new Character();
     statusbar = new Statusbar();
     statusbarCoins = new StatusbarCoins();
-    throwableObjects = [];
     jellyfishes = level1.jellyfish;
     level = level1;         // level1 is a constante in extra js file  --> level 1 contains enemies and backgroundobjects
     coins = level1.coins;
@@ -17,6 +16,7 @@ class World {
     firstBubbleThrown = false;
     bubbleCreating = false;
     backgroundObjects = level1.backgroundObjects;
+    throwYES = false;
 
     canvas;                 // variable declaring, needs to be here to be available also for draw()
     ctx;                    // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
@@ -68,7 +68,7 @@ class World {
 
     checkGameOver() {
         if (gameOver) {  // defined in Game.js
-            showGameOver(win);  
+            showGameOver(win);
         }
     }
 
@@ -159,7 +159,6 @@ class World {
                 this.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
                 this.statusbarCoins.increaseStatusbarCoins();  // this.character.energy is the number that we need to set our percentage of the statusbar
                 // playAudio(AUDIOS.collectCoin);
-
             };
         });
     }

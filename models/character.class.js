@@ -179,4 +179,6 @@ class Character extends MoveableObject {
         }, 1000 / 60)
     }
 
+
+
 }
