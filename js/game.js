@@ -4,7 +4,16 @@ let keyboard = new Keyboard();
 let gameOver = false;
 let fullscreenmode = false;
 let pressedKey = false;  // either undefined(no key pressed) or definied with the pressed key code (see functions below)
+let restart = false;
 
+
+function checkIfRestart() {
+    if (localStorage.getItem('restart')) {
+        let restartAsText = localStorage.getItem('restart');
+        restart = JSON.parse(restartAsText);  // restart is global variable
+        console.log(restart);
+    }
+}
 
 function startGame() {
     document.getElementById('welcomeScreen').classList.add('d-none');
@@ -51,6 +60,7 @@ function playAudio(soundData) {
 // }
 
 async function showGameOver(sharkyStatus) {
+    restart = true;
     document.getElementById('background-music').pause();
 
     await stopAllIntervals();
@@ -66,6 +76,7 @@ async function showGameOver(sharkyStatus) {
     else {
         endScreen.innerHTML = generateWinScreen();
     }
+
 }
 
 function generateWinScreen() {
@@ -88,7 +99,17 @@ function startGameAgain() {
     // endScreen.classList.add('d-none');
     // document.getElementById('headline').classList.remove('d-none');
     // sharkyStatus = null;
-    window.location.reload();
+
+    rememberRestart();
+    window.location.reload('restart');
+    // window.location.href = 'http://127.0.0.1:5500/index.html?restart=true';
+}
+
+// saves in Local Storage, that the reload is a restart .-> so it goes directly into startScreen instead of Welcome Screen
+function rememberRestart() {
+    restart = true;
+    let restartAsText = JSON.stringify(restart);
+    localStorage.setItem('restart', restartAsText);
 }
 
 function stopAllIntervals() {

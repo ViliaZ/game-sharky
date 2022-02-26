@@ -18,7 +18,7 @@ class World {
     bubbleCreating = false;
     backgroundObjects = level1.backgroundObjects;
     throwYES = false;
-    test;
+
 
     canvas;                 // variable declaring, needs to be here to be available also for draw()
     ctx;                    // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
