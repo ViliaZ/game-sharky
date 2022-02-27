@@ -4,16 +4,7 @@ let keyboard = new Keyboard();
 let gameOver = false;
 let fullscreenmode = false;
 let pressedKey = false;  // either undefined(no key pressed) or definied with the pressed key code (see functions below)
-let restart = false;
 
-
-function checkIfRestart() {
-    if (localStorage.getItem('restart')) {
-        let restartAsText = localStorage.getItem('restart');
-        restart = JSON.parse(restartAsText);  // restart is global variable
-        console.log(restart);
-    }
-}
 
 function startGame() {
     document.getElementById('welcomeScreen').classList.add('d-none');
@@ -72,23 +63,23 @@ async function showGameOver(sharkyStatus) {
     if (
         sharkyStatus === "sharkyLoose") {
         endScreen.innerHTML = generateLooseScreen();
+        setTimeout(startGameAgain, 2000);
     }
     else {
         endScreen.innerHTML = generateWinScreen();
+        setTimeout(startGameAgain, 2000);
     }
 
 }
 
 function generateWinScreen() {
     endScreen.innerHTML = '';
-    return `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">
-    <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 15.png">`
+    return `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">`
 }
 
 function generateLooseScreen() {
     endScreen.innerHTML = '';
-    return `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">
-    <img class="btn-startAgain" onclick="startGameAgain()" src="img/6.Botones/Try again/Recurso 18.png">`
+    return `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">`
 }
 
 function startGameAgain() {
@@ -100,16 +91,8 @@ function startGameAgain() {
     // document.getElementById('headline').classList.remove('d-none');
     // sharkyStatus = null;
 
-    rememberRestart();
-    window.location.reload('restart');
-    // window.location.href = 'http://127.0.0.1:5500/index.html?restart=true';
-}
-
-// saves in Local Storage, that the reload is a restart .-> so it goes directly into startScreen instead of Welcome Screen
-function rememberRestart() {
-    restart = true;
-    let restartAsText = JSON.stringify(restart);
-    localStorage.setItem('restart', restartAsText);
+    window.location.reload();
+    // window.location.reload()
 }
 
 function stopAllIntervals() {
