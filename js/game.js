@@ -7,7 +7,8 @@ let pressedKey = false;  // either undefined(no key pressed) or definied with th
 
 
 function startGame() {
-    document.getElementById('welcomeScreen').classList.add('d-none');
+    // document.getElementById('welcomeScreen').classList.add('d-none');
+    // document.getElementsById('game-instructions').classList.remove('d-none');
     // document.getElementById('background-music').play();
     // document.getElementById('togglesContainer').classList.remove('d-none');
     canvas = document.getElementById('canvas');

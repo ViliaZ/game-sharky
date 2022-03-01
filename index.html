@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharky Game</title>
+    <title>Play Sharky</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
@@ -34,16 +34,55 @@
     <script src="js/game.js"></script>
 </head>
 
-<body class="fbox-start">
+<body class="fbox-start" onload="startGame()">
 
     <div id="bgScreen">
 
         <div id="fullscreen-wrapper">
-        <canvas width="720px" height="480px" id="canvas">
-        </canvas>
-    </div>
+            <!--/** is pos. relative **/ -->
 
-        <div id="welcomeScreen" class="screen fbox-start">
+            <!-- /************** CANVAS  ****************/ -->
+            <canvas width="720px" height="480px" id="canvas">
+            </canvas>
+            <!-- /***************************************/ -->
+
+
+            <!-- /*********** INSTRUCTIONS MOBILE *******/ -->
+
+            <!-- Music switch -->
+            <div class="m-switches fbox-row-center">
+                <p class="mt-03em"></p>
+                <img src="img/outline_music_off_white_24dp.png">
+                </span>
+                <label class="switch">
+                    <input id="musicToggle" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div id="m-buttons" class="m-buttons">  <!--/** is pos. relative **/ -->
+                <div class="m-btn-attack">
+                    <img id="m-btn-bubble" class="m-button" src="img/mobileButtons/bubblemobile.png">
+                    <img id="m-btn-finslap" class="m-button" src="img/mobileButtons/finslap-mobile.png">
+                </div>
+
+                <div class="m-btn-moves">
+                    <img id="m-left" class="m-button" src="img/mobileButtons/left-mobile.png">
+                    <img id="m-right" class="m-button" src="img/mobileButtons/right-mobile.png">
+                    <img id="m-up" class="m-button" src="img/mobileButtons/up-mobile.png">
+                    <img id="m-down" class="m-button" src="img/mobileButtons/down-mobile.png">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- </div> -->
+        <!-- /***************************************/ -->
+
+
+
+        <div id="welcomeScreen" class="screen fbox-start d-none">
 
             <!-- /** HEADLINE  **/ -->
             <h1>LIFE OF SHARKY</h1>
@@ -62,13 +101,14 @@
 
             <div class="wrapper-instructions fbox-row">
 
-                <div class="fbox-row">
+                <div class="fbox-row keysBtn-Wrapper">
                     <div class="fbox-center">
                         <h3>Move</h3>
                         <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
                     </div>
                 </div>
 
+  
                 <div class="fbox-row">
 
                     <div class="fbox-center">
@@ -99,7 +139,9 @@
             <div class="instructionsRight fbox-center">-->
         <!-- Fullscreen switch -->
 
-        <!-- /** INSTRUCTIONS GAME PAGE **/ -->
+
+
+        <!-- /*********** INSTRUCTIONS DESKTOP **************/ -->
 
         <div id="game-instructions" class="game-instructions">
 
@@ -142,7 +184,7 @@
                 <!-- Music switch -->
                 <div class="fbox-row-center">
                     <p class="mt-03em">Audio</p>
-                    <img src="img/outline_music_off_white_24dp.png">            
+                    <img src="img/outline_music_off_white_24dp.png">
                     </span>
                     <label class="switch">
 
@@ -154,6 +196,10 @@
             </div>
 
         </div>
+
+
+
+
 
 
     </div>
@@ -170,3 +216,161 @@
 </body>
 
 </html>
+
+
+
+
+  <!--/**********  OLD START SCREEN *********  
+
+
+<body class="fbox-start" onload="init()">
+
+    <div id="bgScreen">
+
+        <div id="fullscreen-wrapper">
+
+            <canvas width="720px" height="480px" id="canvas">
+            </canvas>
+
+
+            <div class="m-switches fbox-row-center">
+                <p class="mt-03em"></p>
+                <img src="img/outline_music_off_white_24dp.png">
+                </span>
+                <label class="switch">
+                    <input id="musicToggle" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div id="m-buttons" class="m-buttons">  
+                <div class="m-btn-attack">
+                    <img id="m-btn-bubble" class="m-button" src="img/mobileButtons/bubblemobile.png">
+                    <img id="m-btn-finslap" class="m-button" src="img/mobileButtons/finslap-mobile.png">
+                </div>
+
+                <div class="m-btn-moves">
+                    <img id="m-left" class="m-button" src="img/mobileButtons/left-mobile.png">
+                    <img id="m-right" class="m-button" src="img/mobileButtons/right-mobile.png">
+                    <img id="m-up" class="m-button" src="img/mobileButtons/up-mobile.png">
+                    <img id="m-down" class="m-button" src="img/mobileButtons/down-mobile.png">
+                </div>
+            </div>
+
+        </div>
+
+
+   
+
+        <div id="welcomeScreen" class="screen fbox-start">
+
+            <h1>LIFE OF SHARKY</h1>
+
+
+            <div class="wrapper-startBtn">
+                <button onclick="startGame()" id="startBtn" class="btn-start">Start Game</button>
+            </div>
+
+            <img id="sharkyGIF" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
+
+
+
+            <div class="wrapper-instructions fbox-row">
+
+                <div class="fbox-row keysBtn-Wrapper">
+                    <div class="fbox-center">
+                        <h3>Move</h3>
+                        <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
+                    </div>
+                </div>
+
+  
+                <div class="fbox-row">
+
+                    <div class="fbox-center">
+                        <h3>Bubble Attack</h3>
+                        <img id="spaceBtn" class="button" src="img/6.Botones/Key/Space Bar key.png">
+                        <img id="bubble-img" class="imgSmall" src="img/1.Sharkie/BubbleAttack.png">
+                    </div>
+                </div>
+
+                <div class="fbox-row">
+                    <div class="fbox-center">
+                        <h3>Fin ATTACK</h3>
+                        <img id="attackBtn" class="button" src="img/6.Botones/Key/D key.png">
+                        <img id="finslap-img" class="imgSmall" src="img/1.Sharkie/FinSlap.png">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-instructions" class="game-instructions">
+
+            <div class="fbox-row">
+                <div class="fbox-row-center gap-1em">
+                    <img id="keysBtn" class="button" src="img/6.Botones/Key/arrow keys.png">
+                </div>
+            </div>
+
+            <div class="fbox-row">
+
+                <div class="fbox-row-center gap-1em">
+                    <img class="sharkySmall" src="img/1.Sharkie/BubbleAttack.png">
+                    <img class="button" src="img/6.Botones/Key/Space Bar key.png">
+                </div>
+            </div>
+
+            <div class="fbox-row">
+                <div class="fbox-row-center gap-1em">
+                    <img class="sharkySmall" src="img/1.Sharkie/FinSlap.png">
+                    <img id="attackBtn" class="button" src="img/6.Botones/Key/D key.png">
+
+                </div>
+            </div>
+
+
+            <div class="instruction-switches fbox-center">
+
+                <div class="fbox-row-center ">
+                    <p class="mt-03em">Fullscreen</p>
+                    <img src="img/fullscreen.png">
+                    <label class="switch">
+                        <input onchange="checkFullscreen()" id="fullscreenToggle" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="fbox-row-center">
+                    <p class="mt-03em">Audio</p>
+                    <img src="img/outline_music_off_white_24dp.png">
+                    </span>
+                    <label class="switch">
+
+                        <input id="musicToggle" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+    </div>
+
+
+    <div id="endScreen" class="screen d-none">
+    </div>
+
+    </div>
+
+    <audio id="background-music" src="audios/bg.mp3" loop volume="0.1"></audio>
+</body>
+
+**/ -->

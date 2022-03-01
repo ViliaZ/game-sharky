@@ -1,8 +1,12 @@
+
+/******** DESKTOP ************/
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 
 /***** use own font (e.g. as tff) ******/
 @font-face {
@@ -41,6 +45,13 @@
     align-items: center;
 }
 
+.fbox-row-sbetween {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .d-none {
     display: none !important;
 }
@@ -49,19 +60,20 @@
     gap: 1em;
 }
 
-.mt-03em{
+.mt-03em {
     margin-top: 0.3em;
 }
 
-/* #fullscreen-wrapper{
-
-} */
+#fullscreen-wrapper {
+    position: relative;
+}
 
 canvas {
     background-color: black;
     box-shadow: 1px 2px 13px -2px rgba(0, 0, 0, 0.75);
     position: relative;
     z-index: 1;
+    display: block;
 }
 
 canvas:fullscreen {
@@ -90,6 +102,13 @@ body {
     height: 100vh;
 }
 
+/** mobile instructions panel**/
+
+
+.m-game-instructions {
+    display: none;
+}
+
 /** in instruction panel**/
 #finslap-img {
     height: 80px;
@@ -101,6 +120,20 @@ body {
     margin: 15px;
     margin-top: 22px;
 }
+
+.keysBtn-Wrapper {
+    position: relative;
+}
+
+.keysBtn-Wrapper::before {
+    /* content: url("img/desktop instructions/blob1.svg"); */
+    height: 100px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
 
 /*** SCREENS ***/
 
@@ -173,11 +206,6 @@ body {
     white-space: nowrap;
 }
 
-.btn-startAgain {
-    height: 60px;
-    filter: drop-shadow(10px -2px 29px #eaf8f8);
-    z-index: 3;
-}
 
 #looseImage {
     height: 80px;
@@ -221,7 +249,7 @@ body {
     height: 82px;
 }
 
-/*******  Instructions for game page *********/
+/*******  Instructions DESKTOP *********/
 
 .game-instructions {
     width: 100%;
@@ -251,6 +279,15 @@ body {
     height: 40px;
 }
 
+/*******  Instructions for MOBILE use *********/
+
+.m-switches,
+.m-buttons{
+    display:none;
+}
+
+
+
 /*******  TOGGLE FOR MUSIC *********/
 /* Div containing both toggles */
 .instructionDiv {
@@ -271,7 +308,7 @@ body {
     justify-content: space-between;
 }
 
-.instruction-switches{
+.instruction-switches {
     gap: 0.3em;
     width: max-content;
     padding-left: 5px;
@@ -279,7 +316,7 @@ body {
     align-items: flex-end;
 }
 
-.instruction-switches img{
+.instruction-switches img {
     height: 1.5em;
     margin-right: 0.5em;
     margin-left: 0.25em;
@@ -290,7 +327,6 @@ body {
     display: inline-block;
     width: 50px;
     height: 24px;
-    
 }
 
 /* Hide default HTML checkbox */
@@ -346,3 +382,123 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+
+/******** MOBILE ************/
+
+@media only screen and (max-width: 720px) {
+    .m-switches,
+    .m-buttons
+     {
+        display: flex!important;
+    }
+
+    canvas {
+        width: 100%;
+        position: relative;
+    }
+
+    .game-instructions {
+        display: none !important;
+    }
+
+    .m-switches {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        z-index: 200;
+    }
+
+    .m-switches img {
+        height: 1em;
+    }
+
+    .switch {
+        width: 32px !important;
+        height: 16px !important;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 12px !important;
+        width: 12px !important;
+        left: 2px;
+        bottom: 2px;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(16px) !important;
+        -ms-transform: translateX(16px) !important;
+        transform: translateX(16px);
+    }
+
+    .m-buttons {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        margin: 1em;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 200;
+        height: 15vw;
+    }
+
+    .m-button {
+        height: 6vw !important;
+        width: 6vw;
+    }
+
+    .m-btn-attack #m-btn-bubble {
+        position: absolute;
+        bottom: 5vw;
+        left: 8vw;
+    }
+
+    .m-btn-attack #m-btn-finslap {
+        position: absolute;
+        bottom: 5vw;
+        left: 0;
+    }
+
+    .m-btn-moves {
+        position: relative;
+        height: 100%;
+    }
+
+    .m-btn-moves #m-left {
+        position: absolute;
+        right: 16vw;
+        bottom: 5vw;
+    }
+
+    .m-btn-moves #m-right {
+        position: absolute;
+        right: 0;
+        bottom: 5vw;
+    }
+
+    .m-btn-moves #m-up {
+        position: absolute;
+        top: 0;
+        right: 8vw;
+    }
+
+    .m-btn-moves #m-down {
+        position: absolute;
+        bottom: 0;
+        right: 8vw;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+    .game-instructions {
+        display: none;
+    }
+}
+
+
