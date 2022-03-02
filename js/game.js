@@ -1,20 +1,68 @@
 let canvas;
 let world;
-let keyboard = new Keyboard();
 let gameOver = false;
 let fullscreenmode = false;
-let pressedKey = false;  // either undefined(no key pressed) or definied with the pressed key code (see functions below)
+
+let keyboard = new Keyboard();
+let touchevents = new Touchevents();  // for mobile use
+let pressedKey = false;  // either undefined (no key pressed) or definied with the pressed key code (see functions below)
+let touchedButton = false; // on mobile: either undefined (no button touched) or definied with the pressed key code (see functions below)
 
 
 function startGame() {
-    // document.getElementById('welcomeScreen').classList.add('d-none');
-    // document.getElementsById('game-instructions').classList.remove('d-none');
-    // document.getElementById('background-music').play();
-    // document.getElementById('togglesContainer').classList.remove('d-none');
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);  // transfer the two variables to world class, >> make them accessable there
-
+    world = new World(canvas, keyboard, touchevents);  // transfer the two variables to world class, >> make them accessable there
+    addToucheventListenerStart();
+    addToucheventListenerStop();
     // playAudio(AUDIOS.background);
+}
+
+function addToucheventListenerStart() {  // for mobile usage
+    document.getElementById('m-btn-bubble').addEventListener('touchstart', e => {
+        touchevents.touchBUBBLE = true;
+    });
+    document.getElementById('m-btn-finslap').addEventListener('touchstart', e => {
+        touchevents.touchFINSLAP = true;
+    });
+    document.getElementById('m-up').addEventListener('touchstart', e => {
+        touchevents.touchUP = true;
+    });
+    document.getElementById('m-down').addEventListener('touchstart', e => {
+        touchevents.touchDOWN = true;
+    });
+    document.getElementById('m-right').addEventListener('touchstart', e => {
+        touchevents.touchRIGHT = true;
+    });
+    document.getElementById('m-left').addEventListener('touchstart', e => {
+        touchevents.touchLEFT = true;
+    });
+    document.getElementById('musicToggle').addEventListener('touchstart', e => {
+        touchevents.touchAUDIOOFF = true;
+    });
+}
+
+function addToucheventListenerStop() {  // for mobile usage
+    document.getElementById('m-btn-bubble').addEventListener('touchend', e => {
+        touchevents.touchBUBBLE = false;
+    });
+    document.getElementById('m-btn-finslap').addEventListener('touchend', e => {
+        touchevents.touchFINSLAP = false;
+    });
+    document.getElementById('m-up').addEventListener('touchend', e => {
+        touchevents.touchUP = false;
+    });
+    document.getElementById('m-down').addEventListener('touchend', e => {
+        touchevents.touchDOWN = false;
+    });
+    document.getElementById('m-right').addEventListener('touchend', e => {
+        touchevents.touchRIGHT = false;
+    });
+    document.getElementById('m-left').addEventListener('touchend', e => {
+        touchevents.touchLEFT = false;
+    });
+    document.getElementById('musicToggle').addEventListener('touchend', e => {
+        touchevents.touchAUDIOOFF = false;
+    });
 }
 
 
@@ -55,6 +103,7 @@ function playAudio(soundData) {
 async function showGameOver(sharkyStatus) {
     restart = true;
     document.getElementById('background-music').pause();
+    document.getElementById('m-instructions-wrapper').classList.add('d-none');
 
     await stopAllIntervals();
     // await stopAllAudio();
@@ -95,6 +144,8 @@ function stopAllIntervals() {
     });
 }
 
+
+
 window.addEventListener('keydown', event => {
     // Eventlistener is returning a JSON (console.log(event) >> the key "code" defines the key that was pressed)
     pressedKey = event.code;
@@ -121,7 +172,6 @@ window.addEventListener('keydown', event => {
 
 // Returning variables to false after keyup
 window.addEventListener('keyup', event => {
-
     pressedKey = event.code;
 
     if (pressedKey === 'Space') {
@@ -135,17 +185,14 @@ window.addEventListener('keyup', event => {
     if (pressedKey === 'ArrowDown') {
         keyboard.DOWN = false;
         pressedKey = false; // sets variable to false so the idle animation of sharky will play
-
     }
     if (pressedKey === 'ArrowLeft') {
         keyboard.LEFT = false;
         pressedKey = false; // sets variable to false so the idle animation of sharky will play
-
     }
     if (pressedKey === 'ArrowRight') {
         keyboard.RIGHT = false;
         pressedKey = false; // sets variable to false so the idle animation of sharky will play
-
     }
     if (pressedKey === 'KeyD') {
         keyboard.KEYD = false;

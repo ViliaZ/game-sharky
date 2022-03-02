@@ -24,11 +24,13 @@ class World {
     ctx;                    // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
     camera_x = 0;           // moves world (context) on x axis
     keyboard;
+    touchevents;
 
-    constructor(canvas, keyboard) {  // this is the id="canvas" div which is defined in game.js and the variable keyboard from game.js
+    constructor(canvas, keyboard, touchevents) {  // this is the id="canvas" div which is defined in game.js and the variable keyboard from game.js
         this.ctx = canvas.getContext('2d');  // create a new world and define the canvas  
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.touchevents = touchevents;
         this.draw();
         this.setWorld();
         this.runChecks();  // regualarly check collisions etc. 

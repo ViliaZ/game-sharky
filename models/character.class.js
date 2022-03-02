@@ -141,21 +141,21 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_HURT)
                 // playAudio(AUDIOS.characterHurt);
             }
-            else if (this.world.keyboard.RIGHT && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
+            else if ((this.world.keyboard.RIGHT  ||  this.world.touchevents.touchRIGHT == true) && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.moveRight();
                 this.otherDirection = false;
             }
-            else if (this.world.keyboard.LEFT && this.x > -50) {  // if moving left AND x>0 (left borer isnt reached)
+            else if ((this.world.keyboard.LEFT  ||  this.world.touchevents.touchLEFT == true) && this.x > -50) {  // if moving left AND x>0 (left borer isnt reached)
                 this.moveLeft();
                 this.otherDirection = true;     // mirroring img of character
             }
-            else if (this.world.keyboard.UP) {
+            else if (this.world.keyboard.UP ||  this.world.touchevents.touchUP == true) {
                 this.y -= this.speed;           // speed is a variable of MoveableObjects
             }
-            else if (this.world.keyboard.DOWN) {
+            else if (this.world.keyboard.DOWN  ||  this.world.touchevents.touchDOWN == true) {
                 this.y += this.speed;           // speed is a variable of MoveableObjects
             }
-            else if (this.world.keyboard.KEYD) {
+            else if (this.world.keyboard.KEYD  ||  this.world.touchevents.touchFINSLAP == true) {
                 this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
             }
             else if (this.world.bubbleCreating) {

@@ -394,6 +394,10 @@ input:checked + .slider:before {
         display: flex!important;
     }
 
+    .m-button{
+        cursor:pointer;
+    }
+
     canvas {
         width: 100%;
         position: relative;
