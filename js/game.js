@@ -17,19 +17,20 @@ function startGame() {
     // playAudio(AUDIOS.background);
 }
 
+
+// must be adjusted!! fullscreenmode variable not making sense yet
 function checkFullscreen() {
     let fullscreenToggle = document.getElementById('fullscreenToggle');
     let instructionPanel = document.getElementById('game-instructions');
-    if (fullscreenToggle.checked) {
+
+    if (fullscreenToggle.checked || fullscreenmode == false) {
         canvas.requestFullscreen();
         console.log(instructionPanel)
-        instructionPanel.fullscreenElement;
-        fullscreenmode === true;
+        fullscreenmode = true;
     }
-    else {
+    else if (fullscreenmode == true) {
         canvas.exitFullscreen();
-        instructionPanel.fullscreenElement;
-        fullscreenmode === false;
+        fullscreenmode = false;
     }
 }
 
@@ -84,16 +85,7 @@ function generateLooseScreen() {
 }
 
 function startGameAgain() {
-    // let endScreen = document.getElementById('endScreen');
-    // let canvas = document.getElementById('canvas');
-    // canvas.classList.remove('d-none');
-    // endScreen.innerHTML = '';
-    // endScreen.classList.add('d-none');
-    // document.getElementById('headline').classList.remove('d-none');
-    // sharkyStatus = null;
-
-    window.location.reload();
-    // window.location.reload()
+    window.location.href = 'welcome.html';
 }
 
 function stopAllIntervals() {
