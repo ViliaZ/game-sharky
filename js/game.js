@@ -38,6 +38,8 @@ function addToucheventListenerStart() {  // for mobile usage
     });
     document.getElementById('musicToggle').addEventListener('touchstart', e => {
         touchevents.touchAUDIOOFF = true;
+        // stop all Audio
+        stopAllAudio();
     });
 }
 
@@ -62,6 +64,7 @@ function addToucheventListenerStop() {  // for mobile usage
     });
     document.getElementById('musicToggle').addEventListener('touchend', e => {
         touchevents.touchAUDIOOFF = false;
+        // start all Audio again;
     });
 }
 
