@@ -55,7 +55,7 @@
                     <img src="img/outline_music_off_white_24dp.png">
                     </span>
                     <label class="switch">
-                        <input id="musicToggle" type="checkbox">
+                        <input onchange="checkAudioMuting()" id="musicToggle" type="checkbox">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -111,11 +111,11 @@
 
                 <!-- Music switch -->
                 <div class="fbox-row-center">
-                    <p class="mt-03em">Audio</p>
+                    <p class="mt-03em">Mute Audio</p>
                     <img src="img/outline_music_off_white_24dp.png">
                     </span>
                     <label class="switch">
-                        <input id="musicToggle" type="checkbox">
+                        <input onchange="checkAudioMuting()" id="musicToggle" type="checkbox">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -127,7 +127,7 @@
     <div id="endScreen" class="screen d-none">
     </div>
 
-    <audio id="background-music" src="audios/bg.mp3" loop volume="0.1"></audio>
+    <audio id="background-music" src="audios/bg.mp3" autoplay loop volume="0.1"></audio>
 
 </body>
 

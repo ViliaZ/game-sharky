@@ -1,7 +1,8 @@
 let canvas;
 let world;
 let gameOver = false;
-let fullscreenmode = false;
+let fullscreenmode = false;  // default for fullscreen toggle
+let soundsMuted = false;  // default for toggle audio  // doesnt include bgMusic (this is HTML tag "audio")
 
 let keyboard = new Keyboard();
 let touchevents = new Touchevents();  // for mobile use
@@ -14,7 +15,6 @@ function startGame() {
     world = new World(canvas, keyboard, touchevents);  // transfer the two variables to world class, >> make them accessable there
     addToucheventListenerStart();
     addToucheventListenerStop();
-    // playAudio(AUDIOS.background);
 }
 
 function addToucheventListenerStart() {  // for mobile usage
@@ -38,8 +38,7 @@ function addToucheventListenerStart() {  // for mobile usage
     });
     document.getElementById('musicToggle').addEventListener('touchstart', e => {
         touchevents.touchAUDIOOFF = true;
-        // stop all Audio
-        stopAllAudio();
+
     });
 }
 
@@ -72,7 +71,6 @@ function addToucheventListenerStop() {  // for mobile usage
 // must be adjusted!! fullscreenmode variable not making sense yet
 function checkFullscreen() {
     let fullscreenToggle = document.getElementById('fullscreenToggle');
-    let instructionPanel = document.getElementById('game-instructions');
 
     if (fullscreenToggle.checked || fullscreenmode == false) {
         canvas.requestFullscreen();
@@ -85,23 +83,38 @@ function checkFullscreen() {
     }
 }
 
+function checkAudioMuting() {
+    let audioToggle = document.getElementById('musicToggle');
+    if (audioToggle.checked || soundsMuted == false) {
+        stopAllAudio();
+        soundsMuted = true; // global variable
+    }
+    else if (soundsMuted == true) {
+        let bgMusicHTML = document.getElementById('background-music');
+        bgMusicHTML.muted = false;  // activates bgMusic in HTML Tag
+        soundsMuted = false; // global variable
+    }
+}
+
 function playAudio(soundData) {
     let sound = new Audio(soundData);
     sound.play();
     allAudioPlaying.push(sound);
 }
 
-// function pauseAudio(soundData){
-//     let newAudio = new Audio (soundData);
-//     newAudio.pause();
-// }
+function pauseAudio(soundData) {
+    let newAudio = new Audio(soundData);
+    newAudio.pause();
+}
 
-// function stopAllAudio() {
-//     allAudioPlaying.forEach(sound => {
-//         sound.pause();
-//     });
-//     allAudioPlaying = [];
-// }
+function stopAllAudio() {
+    let bgMusicHTML = document.getElementById('background-music');
+    bgMusicHTML.muted = true;
+    allAudioPlaying.forEach(sound => {
+        sound.pause();
+    });
+    allAudioPlaying = [];
+}
 
 async function showGameOver(sharkyStatus) {
     restart = true;
@@ -109,7 +122,7 @@ async function showGameOver(sharkyStatus) {
     document.getElementById('m-instructions-wrapper').classList.add('d-none');
 
     await stopAllIntervals();
-    // await stopAllAudio();
+    await stopAllAudio();
     let endScreen = document.getElementById('endScreen');
     endScreen.classList.remove('d-none');
     document.getElementById('canvas').classList.add('d-none');
