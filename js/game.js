@@ -72,14 +72,10 @@ function addToucheventListenerStop() {  // for mobile usage
 function checkFullscreen() {
     let fullscreenToggle = document.getElementById('fullscreenToggle');
 
-    if (fullscreenToggle.checked || fullscreenmode == false) {
-        canvas.requestFullscreen();
-        console.log(instructionPanel)
+    if (fullscreenToggle.checked == true || fullscreenmode == false) {
+        setTimeout(() => {canvas.requestFullscreen()}, 200);
         fullscreenmode = true;
-    }
-    else if (fullscreenmode == true) {
-        canvas.exitFullscreen();
-        fullscreenmode = false;
+        setTimeout(() => {fullscreenToggle.checked = false}, 1000); // uncheck toggle (aka checkbox)
     }
 }
 

@@ -55,6 +55,10 @@
     display: none !important;
 }
 
+.gap-05em {
+    gap: 0.5em;
+}
+
 .gap-1em {
     gap: 1em;
 }
