@@ -15,6 +15,8 @@ function startGame() {
     world = new World(canvas, keyboard, touchevents);  // transfer the two variables to world class, >> make them accessable there
     addToucheventListenerStart();
     addToucheventListenerStop();
+    document.getElementById('background-music').volume = 0.3;  // for BG music only
+    // info: to insert volume attribute in HTML TAG directly did not work, 
 }
 
 function addToucheventListenerStart() {  // for mobile usage
@@ -73,9 +75,9 @@ function checkFullscreen() {
     let fullscreenToggle = document.getElementById('fullscreenToggle');
 
     if (fullscreenToggle.checked == true || fullscreenmode == false) {
-        setTimeout(() => {canvas.requestFullscreen()}, 200);
+        setTimeout(() => { canvas.requestFullscreen() }, 400);
         fullscreenmode = true;
-        setTimeout(() => {fullscreenToggle.checked = false}, 1000); // uncheck toggle (aka checkbox)
+        setTimeout(() => { fullscreenToggle.checked = false }, 1000); // uncheck toggle (aka checkbox)
     }
 }
 
@@ -95,7 +97,7 @@ function checkAudioMuting() {
 function playAudio(soundData) {
     let sound = new Audio(soundData);
     sound.play();
-    allAudioPlaying.push(sound);
+    allAudioPlaying.push(soundData);  // array allAudioPlaying is initialized in head (script) in index.html
 }
 
 function pauseAudio(soundData) {
@@ -106,33 +108,37 @@ function pauseAudio(soundData) {
 function stopAllAudio() {
     let bgMusicHTML = document.getElementById('background-music');
     bgMusicHTML.muted = true;
-    allAudioPlaying.forEach(sound => {
-        sound.pause();
+
+    allAudioPlaying.forEach(soundData => {
+        let currentAudio = new Audio(soundData);
+        currentAudio.pause();
     });
-    allAudioPlaying = [];
+    allAudioPlaying = [];  // initialized in script in index.html(head)
 }
 
-async function showGameOver(sharkyStatus) {
-    restart = true;
+function stopRunningProcesses() {
     document.getElementById('background-music').pause();
     document.getElementById('m-instructions-wrapper').classList.add('d-none');
 
-    await stopAllIntervals();
-    await stopAllAudio();
-    let endScreen = document.getElementById('endScreen');
-    endScreen.classList.remove('d-none');
+    stopAllIntervals();
+    stopAllAudio();
+}
+
+function showGameOver(sharkyStatus) {
+
+    stopRunningProcesses();
+
     document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('endScreen').classList.remove('d-none');
     endScreen.innerHTML = '';
-    if (
-        sharkyStatus === "sharkyLoose") {
+    if (sharkyStatus === "sharkyLoose") {
         endScreen.innerHTML = generateLooseScreen();
-        setTimeout(startGameAgain, 2000);
     }
     else {
         endScreen.innerHTML = generateWinScreen();
-        setTimeout(startGameAgain, 2000);
+        playAudio(AUDIOS.characterWin);
     }
-
+    setTimeout(startGameAgain, 3000);
 }
 
 function generateWinScreen() {
@@ -146,7 +152,7 @@ function generateLooseScreen() {
 }
 
 function startGameAgain() {
-    window.location.href = 'welcome.html';
+    window.location.replace("welcome.html"); // opens url in same tab
 }
 
 function stopAllIntervals() {

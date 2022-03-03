@@ -96,7 +96,7 @@ class Endboss extends MoveableObject {
             // start Intro Animation (is running only ONCE)
             else if (this.isNearCharacter === true && this.introAnimationDone === false) {
                 this.playIntro();
-
+                playAudio(AUDIOS.nearEndboss)
             }
             // start normal floating when Intro Animation was done
             else if (this.introAnimationDone === true) {

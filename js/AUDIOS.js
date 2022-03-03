@@ -1,10 +1,14 @@
 let AUDIOS =
     {
-        "background": "audios/bg2.mp3",
-        "characterNearEndboss": "audios/scare.mp3",
-        "hitJellyfish": "audios/hitJellyfish.wav",
-        "characterWin": "audios/win.wav",
+        "background": "audios/ukulele.mp3",
+        "nearEndboss": "audios/endbossNear.mp3",
+        "hitJellyfish": "audios/hit_Jellyfish.wav",
+        "hitPufferfish": "audios/hitEnemy.wav",
+        "hitEndboss": "audios/endbossHurt.wav",
         "endbossDies": "audios/sharkyHurt.wav",
-        "characterHurt": "audios/sharkyHurt.wav",
-        "collectCoin": "audios/coin.wav"
+        "characterHurt": "audios/characterHurt2.wav",
+        "collectCoin": "audios/collectCoin.wav",
+        "throwBubble": "audios/throwBubble.wav",
+        "characterWin": "audios/characterWin.mp3",
+        "characterLoose": "audios/characterLoose.wav"
     }

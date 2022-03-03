@@ -80,7 +80,8 @@ class World {
     runChecks() {
         let runCheckInterval = setInterval(() => {
             this.checkCollisionsEnemies();  // character gets hurt
-            this.checkCollisionJellyfish(); // jellyfish changes animation, but nothing happens. just for fun
+            this.checkFinslapJellyfish(); // jellyfish changes animation, but nothing happens. just for fun
+            // this.checkFinslapPufferfish();
             this.checkCollisionsCoins();    // statusbar coins increases
             this.checkThrowing();
             this.checkDistanceToEndboss();
@@ -104,10 +105,12 @@ class World {
             let timeSinceLastBubble = new Date().getTime() - this.timeBubbleCreated;
             if (this.firstBubbleThrown == false) {
                 this.firstBubbleThrown = true;
+                playAudio(AUDIO.throwBubble);
                 this.createBubble();
             }
             else if (this.firstBubbleThrown == true && timeSinceLastBubble > 400) { // only allow next throw after 500ms
                 this.createBubble();
+                playAudio(AUDIOS.throwBubble);
             }
             else{
                 return;
@@ -136,6 +139,7 @@ class World {
             if (bubble.isCollidingEnemy(enemy) && enemy instanceof Endboss) {
                 enemy.hit();  // in moveableObjects, >> energy decrease 
                 this.bubblesDissappear(bubble);
+                playAudio(AUDIOS.hitEndboss);
             }
         })
     }
@@ -146,7 +150,7 @@ class World {
         setTimeout(() => { this.throwableObjects.splice(indexBubble, 1) }, 10)
     }
 
-    // character hurt via collision enemy
+    // character is hurt via collision enemy
     checkCollisionsEnemies() {
         this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -162,20 +166,30 @@ class World {
                 let indexCurrentCoin = this.coins.indexOf(coin);  // get index of the coin that was hit
                 this.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
                 this.statusbarCoins.increaseStatusbarCoins();  // this.character.energy is the number that we need to set our percentage of the statusbar
-                // playAudio(AUDIOS.collectCoin);
+                playAudio(AUDIOS.collectCoin);
             };
         });
     }
 
-    checkCollisionJellyfish() {
+    checkFinslapJellyfish() {  // with finslap
         this.jellyfishes.forEach((jellyfish) => {
             if (this.character.isColliding(jellyfish) && this.keyboard.KEYD) {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
                 jellyfish.escape = true;
-                // playAudio(AUDIOS.hitJellyfish);
+                playAudio(AUDIOS.hitJellyfish);
             };
         });
     }
+
+    // checkFinslapPufferfish() { // with finslap
+    //     let pufferfishes = this.enemies instanceof Pufferfish
+    //     pufferfishes.forEach((pufferfish) => {
+    //         if (this.character.isColliding(pufferfish) && this.keyboard.KEYD) {
+    //             // jellyfish.playAnimation(jellyfish.IMAGES_HURT);
+    //             playAudio(AUDIOS.hitPufferfish);
+    //         };
+    //     });
+    // }
 
     addObjectsToMap(objectsArray) {
         objectsArray.forEach(o => {

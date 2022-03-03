@@ -9,8 +9,6 @@ class Character extends MoveableObject {
     speed = 3;
     jellyfish = level1.jellyfish;
 
-
-
     // call character.world to access variables of the world class ( e.g. keyboard)
     world;
 
@@ -132,14 +130,16 @@ class Character extends MoveableObject {
         let intervalSharky2 = setInterval(() => {
             if (this.isDead()) {
                 clearInterval(intervalSharky2)
+                pauseAudio(AUDIOS.characterHurt);
                 this.deadAnimation();
+                setTimeout(()=>{playAudio(AUDIOS.characterLoose)},1200);
             }
-            else if (this.isColliding(this.jellyfish)) {
-                this.playAnimation(this.IMAGES_HURT)
-            }
-            else if (this.isHurt() && !this.isDead()) {
-                this.playAnimation(this.IMAGES_HURT)
-                // playAudio(AUDIOS.characterHurt);
+            // else if (this.isColliding(this.jellyfish)) {
+            //     this.playAnimation(this.IMAGES_HURT);
+            // }
+            else if (this.isHurt() && !this.isDead()) {          
+                this.playAnimation(this.IMAGES_HURT);
+                playAudio(AUDIOS.characterHurt);
             }
             else if ((this.world.keyboard.RIGHT  ||  this.world.touchevents.touchRIGHT == true) && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.moveRight();
@@ -175,7 +175,6 @@ class Character extends MoveableObject {
                 showGameOver("sharkyLoose")
                 clearInterval(deadAnimationInterval)
             }, 1200)  // when calling a timout funtion with parameters, its written like this
-            // playAudio(AUDIOS.characterHurt);
         }, 1000 / 60)
     }
 
