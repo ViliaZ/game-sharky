@@ -125,7 +125,7 @@
                     <img src="img/Icon Audio/music.png">
 
                     <!-- AUDIO PLAYER FOR BACKGROUND MUSIC -->
-                    <audio style="filter: invert(1); position: absolute;  bottom: 2; right: 4px; height: 18px; width: 76%; " id="background-music" src="audios/bg-alternative2.mp3" autoplay loop controls="true"></audio>
+                    <audio id="background-music"  onpause="removeFocus()" onplay="removeFocus()" onvolumechange="removeFocus()" style="filter: invert(1); position: absolute;  bottom: 2; right: 4px; height: 18px; width: 76%; "  src="audios/bg-alternative2.mp3" autoplay loop controls="true"></audio>
                     </span>
                     <!-- <label class="switch">
                         <input onchange="checkAudioMuting()" id="musicToggle" type="checkbox">

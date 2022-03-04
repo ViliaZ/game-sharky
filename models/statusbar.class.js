@@ -17,7 +17,7 @@ class Statusbar extends Drawableobject {  // statusbar for character
     ]
 
     constructor() {
-        super();                           // initialize all mehtods and variable from overarching class
+        super();                            // initialize all mehtods and variable from overarching class
         this.loadImages(this.IMAGES);       // load images to imageCache
         this.setPercentage(100);            // initially load img with 100 percent life energy
     }

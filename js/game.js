@@ -15,9 +15,14 @@ function startGame() {
     world = new World(canvas, keyboard, touchevents);  // transfer the two variables to world class, >> make them accessable there
     addToucheventListenerStart();
     addToucheventListenerStop();
-    document.getElementById('background-music').volume = 0.3;  // for BG music only
+    document.getElementById('background-music').volume = 0.07;  // for BG music only
     // info: to insert volume attribute in HTML TAG directly did not work, 
 }
+// after clicking on Audio Settings, the Element stays in focus
+// remove Focus of Audio Settings if clicked (find eventlistener in HTML Audio Element )
+function removeFocus(){
+    document.getElementById('background-music').blur();
+    }
 
 function addToucheventListenerStart() {  // for mobile usage
     document.getElementById('m-btn-bubble').addEventListener('touchstart', e => {
@@ -94,8 +99,9 @@ function checkAudioMuting() {
     }
 }
 
-function playAudio(soundData) {
+function playAudio(soundData, volume) {
     let sound = new Audio(soundData);
+    sound.volume = volume;
     sound.play();
     allAudioPlaying.push(soundData);  // array allAudioPlaying is initialized in head (script) in index.html
 }
@@ -136,7 +142,7 @@ function showGameOver(sharkyStatus) {
     }
     else {
         endScreen.innerHTML = generateWinScreen();
-        playAudio(AUDIOS.characterWin);
+        playAudio(AUDIOS.characterWin, 1);
     }
     setTimeout(startGameAgain, 3000);
 }

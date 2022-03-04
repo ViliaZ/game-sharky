@@ -1,7 +1,7 @@
 class Endboss extends MoveableObject {
 
-    x = 700;
-    y = 0;
+    x = 900;
+    y = 60;
     height = 250;
     width = 340;
     lifeEnergy = 100;  // default with start  - minus 25 with every hurt
@@ -96,7 +96,7 @@ class Endboss extends MoveableObject {
             // start Intro Animation (is running only ONCE)
             else if (this.isNearCharacter === true && this.introAnimationDone === false) {
                 this.playIntro();
-                playAudio(AUDIOS.nearEndboss)
+                playAudio(AUDIOS.nearEndboss,1.5)
             }
             // start normal floating when Intro Animation was done
             else if (this.introAnimationDone === true) {
@@ -110,7 +110,7 @@ class Endboss extends MoveableObject {
         this.index = 0;
         let intervalAttack = setInterval(() => {
             this.playAnimationOnce(this.IMAGES_ATTACK, intervalAttack)
-            this.x -= 8;
+            this.x -= 12;
         }, 1000 / 10);
         setTimeout(() => { this.hurtAnimationPlays = false; }, 500);
         allIntervals.push(intervalAttack);

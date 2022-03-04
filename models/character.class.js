@@ -132,35 +132,36 @@ class Character extends MoveableObject {
                 clearInterval(intervalSharky2)
                 pauseAudio(AUDIOS.characterHurt);
                 this.deadAnimation();
-                setTimeout(()=>{playAudio(AUDIOS.characterLoose)},1200);
+                setTimeout(() => { playAudio(AUDIOS.characterLoose, 1) }, 1200);
             }
             // else if (this.isColliding(this.jellyfish)) {
             //     this.playAnimation(this.IMAGES_HURT);
             // }
-            else if (this.isHurt() && !this.isDead()) {          
+            else if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
-                playAudio(AUDIOS.characterHurt);
+                playAudio(AUDIOS.characterHurt, 0.5);
             }
-            else if ((this.world.keyboard.RIGHT  ||  this.world.touchevents.touchRIGHT == true) && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
+            if ((this.world.keyboard.RIGHT || this.world.touchevents.touchRIGHT == true) && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.moveRight();
                 this.otherDirection = false;
             }
-            else if ((this.world.keyboard.LEFT  ||  this.world.touchevents.touchLEFT == true) && this.x > -50) {  // if moving left AND x>0 (left borer isnt reached)
+            if ((this.world.keyboard.LEFT || this.world.touchevents.touchLEFT == true) && this.x > -50) {  // if moving left AND x>0 (left borer isnt reached)
                 this.moveLeft();
                 this.otherDirection = true;     // mirroring img of character
             }
-            else if (this.world.keyboard.UP ||  this.world.touchevents.touchUP == true) {
+            if (this.world.keyboard.UP || this.world.touchevents.touchUP == true) {
                 this.y -= this.speed;           // speed is a variable of MoveableObjects
             }
-            else if (this.world.keyboard.DOWN  ||  this.world.touchevents.touchDOWN == true) {
+            if (this.world.keyboard.DOWN || this.world.touchevents.touchDOWN == true) {
                 this.y += this.speed;           // speed is a variable of MoveableObjects
             }
-            else if (this.world.keyboard.KEYD  ||  this.world.touchevents.touchFINSLAP == true) {
+            else if (this.world.keyboard.KEYD || this.world.touchevents.touchFINSLAP == true) {
                 this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
+                playAudio(AUDIOS.finslap, 0.05)
             }
             else if (this.world.bubbleCreating) {
                 this.playAnimation(this.IMAGES_THROWING)           // speed is a variable of MoveableObjects
-                setTimeout(()=> {this.world.bubbleCreating = false;},400);
+                setTimeout(() => { this.world.bubbleCreating = false; }, 400);
             }
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border

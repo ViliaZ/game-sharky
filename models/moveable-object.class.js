@@ -17,7 +17,7 @@ class MoveableObject extends Drawableobject {
                 this.y += this.speedGravity;
                 this.speedY += this.acceleration;  // speedY number changes with every Interval
             };
-        }, 1000 / 25)
+        }, 1000 / 45)
         allIntervals.push(gravityInterval);
     }
 
@@ -28,16 +28,13 @@ class MoveableObject extends Drawableobject {
         if (this.energy < 0) {
             this.energy = 0
         }
-        else {
             this.lastHit = new Date().getTime();  // saves timepoint (in milliseconds since 1.1.1970)
-        }
     }
-
+  
     // returns boolean: true or false
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
-        timepassed = timepassed / 1000; // timepassed in seconds
-        return timepassed < 1;    //  true or fals >> duration of hurt-animation >> as long as "timepassed" is <1sec 
+        return timepassed < 300;    //  true or fals >> duration of hurt-animation >> as long as "timepassed" is <1sec 
     }
 
     isDead() {
@@ -54,10 +51,10 @@ class MoveableObject extends Drawableobject {
     }
 
     playAnimation(imageArray) {
-            let i = this.currentImage % imageArray.length   // creates permanent circle of numbers from 0 to arraylength
-            let path = imageArray[i];                       // path is the key to the variable in imageCache
-            this.img = this.imageCache[path];
-            this.currentImage++;
+        let i = this.currentImage % imageArray.length   // creates permanent circle of numbers from 0 to arraylength
+        let path = imageArray[i];                       // path is the key to the variable in imageCache
+        this.img = this.imageCache[path];
+        this.currentImage++;
     }
 
     playAnimationOnce(imageArray, interval) {
@@ -69,10 +66,10 @@ class MoveableObject extends Drawableobject {
         }
     }
 
-    moveLeft(fish) {
-        if (fish === 'pufferfish') {
+    moveLeft(speedFactor) {
+        if (this instanceof Pufferfish) {
             let speedPufferfish = 0.20 + Math.random() * 1.5;
-            this.x -= speedPufferfish;
+            this.x -= speedPufferfish * speedFactor;
         }
         else {
             this.x -= this.speed;

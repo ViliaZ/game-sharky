@@ -5,8 +5,8 @@ class ThrowableObject extends MoveableObject {
     y;
     width = 24;
     height = 24;
-    speedGravity = 0.3;
-    acceleration = 0.1;
+    speedGravity = 0.7;
+    acceleration = 5;
     moveBubbles = () => { this.x += 4 };  // default when character looks to right side, moves the bubble plus 4px each time
 
     IMAGE = 'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png';
