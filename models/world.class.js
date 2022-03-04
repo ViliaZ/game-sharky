@@ -14,10 +14,12 @@ class World {
     gameOver = false;
     throwableObjects = [];
     timeBubbleCreated = 0;
+    timeSinceLastBubble;
     firstBubbleThrown = false;
     bubbleCreating = false;
     backgroundObjects = level1.backgroundObjects;
     throwYES = false;
+    enemyhurt = false; // if currently enemy hurt with bubble
 
 
     canvas;                 // variable declaring, needs to be here to be available also for draw()
@@ -81,7 +83,6 @@ class World {
         let runCheckInterval = setInterval(() => {
             this.checkCollisionsEnemies();  // character gets hurt
             this.checkFinslapJellyfish(); // jellyfish changes animation, but nothing happens. just for fun
-            // this.checkFinslapPufferfish();
             this.checkCollectCoins();    // statusbar coins increases
             this.checkThrowing();
             this.checkDistanceToEndboss();
@@ -102,13 +103,13 @@ class World {
 
     checkThrowing() { // only throw Bubble if Coins are available
         if (this.bubbleRequested()) {
-            let timeSinceLastBubble = new Date().getTime() - this.timeBubbleCreated;
+            this.timeSinceLastBubble = new Date().getTime() - this.timeBubbleCreated;
             if (this.firstBubbleThrown == false) {
                 this.firstBubbleThrown = true;
-                playAudio(AUDIOS.throwBubble,1);
+                playAudio(AUDIOS.throwBubble, 0.4);
                 this.createBubble();
             }
-            else if (this.firstBubbleThrown == true && timeSinceLastBubble > 400) { // only allow next throw after 500ms
+            else if (this.firstBubbleThrown == true && this.timeSinceLastBubble > 400) { // only allow next throw after 500ms
                 this.createBubble();
                 playAudio(AUDIOS.throwBubble, 0.4);
             }
@@ -119,48 +120,46 @@ class World {
     }
 
     bubbleRequested() {  // returns true results in throwing animation of character
-        return this.keyboard.SPACE && this.statusbarCoins.percentage > 0
+        return this.keyboard.SPACE && this.statusbarCoins.percentage > 0;
     }
 
     createBubble() {
-        this.bubbleCreating = true;
         let bubble = new ThrowableObject(this.character.x + 240, this.character.y + 130);
         this.timeBubbleCreated = new Date().getTime();  // saves current timepoint
         this.throwableObjects.push(bubble);
+
         let checkThrowingInterval = setInterval(() => {
             this.checkIfEnemyHurt(bubble);
         }, 1000 / 20);
+
         allIntervals.push(checkThrowingInterval);
     }
 
     // Collision Enemy and Bubble  >> bubble remove and hurt-animation Enemy initiated
     checkIfEnemyHurt(bubble) {
         this.enemies.forEach((enemy) => {
-            if (bubble.isCollidingEnemy(enemy) && enemy instanceof Endboss) {
-                enemy.hit();  // in moveableObjects, >> energy decrease 
-                this.bubblesDissappear(bubble);
-                playAudio(AUDIOS.hitEndboss, 1);
-            }
-            else if (bubble.isCollidingEnemy(enemy) && enemy instanceof Pufferfish) {
-                this.bubblesDissappear(bubble);
-                enemy.hit('pufferfish');
-            }
 
+            if (bubble.isCollidingEnemy(enemy) && !bubble.collidedEnemy) { // bubble has not been collided before
+                bubble.collidedEnemy = true;
+                enemy.hit();
+                this.bubblesDissappear(bubble);
+
+                if (enemy instanceof Endboss) {
+                    playAudio(AUDIOS.hitEndboss, 1);
+                }
+            }
         })
+
     }
 
-    bubblesDissappear(bubble) {
-        console.log('vorher',this.throwableObjects)
-        // bubbles dissappear after colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
+    bubblesDissappear(bubble) {// bubbles dissappear after colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
         let indexBubble = this.throwableObjects.indexOf(bubble);
-        setTimeout(() => { 
+        setTimeout(()=>{
             this.throwableObjects.splice(indexBubble, 1);
-            console.log('nachher',this.throwableObjects)
-        }, 10)
-
+        },200)
     }
 
-    // character is hurt via collision enemy
+    // CHARACTER is hurt via collision enemy
     checkCollisionsEnemies() {
         this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -176,7 +175,7 @@ class World {
                 let indexCurrentCoin = this.coins.indexOf(coin);  // get index of the coin that was hit
                 this.coins.splice(indexCurrentCoin, 1);  // splice coin from array of coins
                 this.statusbarCoins.increaseStatusbarCoins();  // this.character.energy is the number that we need to set our percentage of the statusbar
-                playAudio(AUDIOS.collectCoin, 0.5);
+                playAudio(AUDIOS.collectCoin, 1);
             };
         });
     }
@@ -186,7 +185,7 @@ class World {
             if (this.character.isColliding(jellyfish) && this.keyboard.KEYD) {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
                 jellyfish.escape = true;
-                playAudio(AUDIOS.hitJellyfish, 0.5);
+                playAudio(AUDIOS.hitJellyfish, 0.4);
             };
         });
     }

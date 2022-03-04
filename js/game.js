@@ -20,9 +20,13 @@ function startGame() {
 }
 // after clicking on Audio Settings, the Element stays in focus
 // remove Focus of Audio Settings if clicked (find eventlistener in HTML Audio Element )
-function removeFocus(){
-    document.getElementById('background-music').blur();
-    }
+function removeFocus() {
+    document.getElementById('background-music').blur(); // desktop HTML 
+}
+
+function removeFocusMobile() {
+    document.getElementById('musicToggle').blur(); // mobile HTLM
+}
 
 function addToucheventListenerStart() {  // for mobile usage
     document.getElementById('m-btn-bubble').addEventListener('touchstart', e => {

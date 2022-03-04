@@ -114,7 +114,7 @@ class Character extends MoveableObject {
 
     animateBasic() {
         // Swim Animation per default
-        console.log(pressedKey)
+        console.log('any key pressed?',pressedKey)
         let intervalSharky1 = setInterval(() => {
             if (pressedKey == false) { // no key is pressed
                 this.playAnimation(this.IMAGES_IDLE);
@@ -139,7 +139,7 @@ class Character extends MoveableObject {
             // }
             else if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
-                playAudio(AUDIOS.characterHurt, 0.5);
+                playAudio(AUDIOS.characterHurt, 0.1);
             }
             if ((this.world.keyboard.RIGHT || this.world.touchevents.touchRIGHT == true) && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
                 this.moveRight();
@@ -157,7 +157,7 @@ class Character extends MoveableObject {
             }
             else if (this.world.keyboard.KEYD || this.world.touchevents.touchFINSLAP == true) {
                 this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
-                playAudio(AUDIOS.finslap, 0.05)
+                playAudio(AUDIOS.finslap, 0.1)
             }
             else if (this.world.bubbleCreating) {
                 this.playAnimation(this.IMAGES_THROWING)           // speed is a variable of MoveableObjects

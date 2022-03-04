@@ -10,6 +10,7 @@ class MoveableObject extends Drawableobject {
     index = 0;                              // needed for playAnimationOnce function
     hurtAnimationPlays = false;
 
+
     // for bubbles out of sharkys mouth
     applyGravity() {
         let gravityInterval = setInterval(() => {

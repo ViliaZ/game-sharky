@@ -8,6 +8,7 @@ class ThrowableObject extends MoveableObject {
     speedGravity = 0.7;
     acceleration = 5;
     moveBubbles = () => { this.x += 4 };  // default when character looks to right side, moves the bubble plus 4px each time
+    collidedEnemy = false // used in world to prevent multipleCollissions
 
     IMAGE = 'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png';
 
