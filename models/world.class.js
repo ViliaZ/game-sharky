@@ -105,7 +105,7 @@ class World {
             let timeSinceLastBubble = new Date().getTime() - this.timeBubbleCreated;
             if (this.firstBubbleThrown == false) {
                 this.firstBubbleThrown = true;
-                playAudio(AUDIO.throwBubble);
+                playAudio(AUDIOS.throwBubble,1);
                 this.createBubble();
             }
             else if (this.firstBubbleThrown == true && timeSinceLastBubble > 400) { // only allow next throw after 500ms
@@ -144,16 +144,20 @@ class World {
             else if (bubble.isCollidingEnemy(enemy) && enemy instanceof Pufferfish) {
                 this.bubblesDissappear(bubble);
                 enemy.hit('pufferfish');
-                playAudio(AUDIOS.hitJellyfish, 1);
             }
 
         })
     }
 
     bubblesDissappear(bubble) {
+        console.log('vorher',this.throwableObjects)
         // bubbles dissappear after colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
         let indexBubble = this.throwableObjects.indexOf(bubble);
-        setTimeout(() => { this.throwableObjects.splice(indexBubble, 1) }, 10)
+        setTimeout(() => { 
+            this.throwableObjects.splice(indexBubble, 1);
+            console.log('nachher',this.throwableObjects)
+        }, 10)
+
     }
 
     // character is hurt via collision enemy
@@ -182,7 +186,7 @@ class World {
             if (this.character.isColliding(jellyfish) && this.keyboard.KEYD) {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
                 jellyfish.escape = true;
-                playAudio(AUDIOS.hitJellyfish, 1);
+                playAudio(AUDIOS.hitJellyfish, 0.5);
             };
         });
     }
