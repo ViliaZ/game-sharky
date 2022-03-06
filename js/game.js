@@ -84,7 +84,7 @@ function checkFullscreen() {
     let fullscreenToggle = document.getElementById('fullscreenToggle');
 
     if (fullscreenToggle.checked == true || fullscreenmode == false) {
-        setTimeout(() => { canvas.requestFullscreen() }, 400);
+        setTimeout(() => { canvas.requestFullscreen() }, 200);
         fullscreenmode = true;
         setTimeout(() => { fullscreenToggle.checked = false }, 1000); // uncheck toggle (aka checkbox)
     }

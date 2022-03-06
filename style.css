@@ -102,7 +102,6 @@ canvas {
 }
 
 canvas:fullscreen {
-    padding: 50px;
     background-image: url("img/3. Background/Layers/5. Water/D2.png");
 }
 
@@ -411,7 +410,38 @@ input:checked + .slider:before {
 
 /******** MOBILE ************/
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 720px) and (orientation: portrait) {
+
+    /* force Landscape Mode when in Portrait-mode*/
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+
+      body{
+          height: 100vw;
+          width: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      canvas {
+        width: unset;
+        height: 100vw;
+        position: relative;
+    }
+
+    #bgScreen {
+        width: 100%;
+        height: 100%;
+    }
 
     /* touchbuttons for mobile */
     .m-switches,
@@ -425,10 +455,7 @@ input:checked + .slider:before {
         cursor: pointer;
     }
 
-    canvas {
-        width: 100%;
-        position: relative;
-    }
+ 
 
     .game-instructions {
         display: none !important;
@@ -595,6 +622,8 @@ input:checked + .slider:before {
     .wrapper-instructions{
         margin-top: 2em;
     }
+
+
 }
 
 audio::-webkit-media-controls-panel{
