@@ -1,0 +1,514 @@
+/******** DESKTOP ************/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/***** use own font (e.g. as tff) ******/
+@font-face {
+    font-family: luckiestGuy;
+    src: url(img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf);
+}
+.pos-rel {
+    position: relative;
+}
+
+.fbox-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fbox-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+.fbox-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.fbox-row-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.fbox-sbetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fbox-row-sbetween {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fbox-row-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.gap-05em {
+    gap: 0.5em;
+}
+
+.gap-1em {
+    gap: 1em;
+}
+
+.gap-2em {
+    gap: 2em;
+}
+
+.mt-03em {
+    margin-top: 0.3em;
+}
+
+.mr-8px {
+    margin-right: 8px;
+}
+
+#fullscreen-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wateranimation {
+    /* position: absolute;
+    top: 200px;
+    left: 300px; */
+}
+
+.wateranimation h1 {
+    color: rgba(255, 255, 255, 0.4);
+    background-image: url("img/wateranimation.png");
+    background-repeat: repeat-x;
+    -webkit-background-clip: text;
+    animation: water 15s infinite linear ;
+}
+
+@keyframes water {
+    0% {
+        background-position: left 0px top 60px;
+        color: rgba(255, 255, 255, 0.5);
+
+    }
+    35% {
+        background-position: left 300px top 20px;
+        color: rgba(255, 255, 255, 0.3);
+
+
+    }
+    70% {
+        background-position: left 600px top 0px;
+        color: rgba(255, 255, 255, 0.2);
+
+    }
+    100% {
+        background-position: left 1000px top -60px;
+        color: rgba(255, 255, 255, 0.1);
+
+    }
+}
+
+h1 {
+    font-size: 58px;
+    font-kerning: normal;
+    filter: drop-shadow(10px -2px 29px #eaf8f8);
+    /* color: #632aaf; */
+    text-align: center;
+}
+
+h3 {
+    font-size: 32px;
+    text-align: center;
+    margin: 10px;
+}
+
+body {
+    font-family: luckiestGuy;
+    color: white;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/** mobile instructions panel**/
+
+.m-game-instructions {
+    display: none;
+}
+
+/** in instruction panel**/
+#finslap-img {
+    height: 80px;
+    margin: 15px;
+}
+
+#bubble-img {
+    height: 76px;
+    margin: 15px;
+    margin-top: 22px;
+}
+
+.keysBtn-Wrapper {
+    position: relative;
+}
+
+.keysBtn-Wrapper::before {
+    /* content: url("img/desktop instructions/blob1.svg"); */
+    height: 100px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+/*** SCREENS ***/
+
+.screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6em;
+}
+#welcomeScreen {
+    background-image: url("img/3. Background/Light/2.png");
+    background-size: cover;
+}
+
+#sharkyGIF {
+    height: 200px;
+}
+
+.wrapper-instructions {
+    display: flex;
+    background-color: #642aafa8;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 75vw;
+    max-width: 1200px;
+    padding: 30px;
+    border-radius: 20px;
+    justify-content: space-evenly;
+}
+
+.m-wrapper-instructions {
+    display: none;
+}
+
+.wrapper-startBtn {
+    /* background-color: rgba(248, 244, 1, 0.431); */
+    /* width: fit-content; */
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.btn-start {
+    /* span element */
+    height: 60px;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-top: 12px;
+    background-color: #fcee21;
+    border-radius: 12px;
+    font-size: 1.7em;
+    color: #531a82;
+    font-family: default;
+    font-family: luckiestGuy;
+    border: white 2px solid;
+    white-space: nowrap;
+}
+
+#bgScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    background-image: url("img/3. Background/Layers/5. Water/D2.png");
+    width: 100vw;
+    height: 100%;
+}
+
+.button {
+    margin-top: 10px;
+    height: 40px;
+}
+
+#keysBtn {
+    height: 82px;
+}
+
+/*******  Instructions DESKTOP *********/
+
+.game-instructions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #3165b3;
+    margin-top: 20px;
+    gap: 2em;
+    height: 100px;
+    position: fixed;
+    bottom: 0;
+    /* z-index: 100; */
+}
+
+.game-instructions .button {
+    height: 28px;
+    margin-top: 0px;
+}
+
+.game-instructions #keysBtn {
+    height: 50px;
+}
+
+.game-instructions .sharkySmall {
+    height: 40px;
+}
+
+/*******  Instructions for MOBILE use *********/
+
+.m-switches,
+.m-buttons {
+    display: none;
+}
+
+/******** MOBILE ************/
+
+@media only screen and (max-width: 720px) and (orientation: portrait) {
+    /* force Landscape Mode when in Portrait-mode*/
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+
+    body {
+        height: 100vw;
+        width: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    canvas {
+        width: unset;
+        height: 100vw;
+        position: relative;
+    }
+
+    #bgScreen {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* touchbuttons for mobile */
+    .m-switches,
+    .m-buttons {
+        display: flex !important;
+    }
+
+    .m-button {
+        height: 6vw !important;
+        width: 6vw;
+        cursor: pointer;
+    }
+
+    .game-instructions {
+        display: none !important;
+    }
+
+    .m-switches {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        z-index: 200;
+    }
+
+    .m-switches img {
+        height: 1em;
+    }
+
+    .switch {
+        width: 32px !important;
+        height: 16px !important;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 12px !important;
+        width: 12px !important;
+        left: 2px;
+        bottom: 2px;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(16px) !important;
+        -ms-transform: translateX(16px) !important;
+        transform: translateX(16px);
+    }
+
+    .m-buttons {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        margin: 1em;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 200;
+        height: 15vw;
+    }
+
+    .m-btn-attack #m-btn-bubble {
+        position: absolute;
+        bottom: 5vw;
+        left: 8vw;
+    }
+
+    .m-btn-attack #m-btn-finslap {
+        position: absolute;
+        bottom: 5vw;
+        left: 0;
+    }
+
+    .m-btn-moves {
+        position: relative;
+        height: 100%;
+    }
+
+    .m-btn-moves #m-left {
+        position: absolute;
+        right: 16vw;
+        bottom: 5vw;
+    }
+
+    .m-btn-moves #m-right {
+        position: absolute;
+        right: 0;
+        bottom: 5vw;
+    }
+
+    .m-btn-moves #m-up {
+        position: absolute;
+        top: 0;
+        right: 8vw;
+    }
+
+    .m-btn-moves #m-down {
+        position: absolute;
+        bottom: 0;
+        right: 8vw;
+    }
+
+    #looseImage {
+        width: 80vw;
+    }
+
+    /* WelcomeScreen - change to mobile HTML Code for Instructions*/
+
+    .wrapper-instructions {
+        display: none !important;
+    }
+
+    .m-wrapper-instructions {
+        display: flex !important;
+        background-color: #642aaf9b;
+        min-width: 60vw;
+        max-width: 80vw;
+        padding: 1em;
+        border-radius: 20px;
+    }
+
+    .screen {
+        padding: 1em;
+    }
+
+    h1 {
+        margin-top: 1em;
+        font-size: 2.5em;
+    }
+
+    h3 {
+        margin: 0.2em;
+        font-size: 1.2em;
+    }
+
+    .button {
+        height: 1.8em;
+        margin: 0.2em;
+    }
+
+    .imgSmall {
+        height: 3em;
+    }
+
+    #m-keysBtn {
+        height: 3.5em;
+    }
+
+    .btn-start {
+        height: unset;
+        font-size: 1.5em;
+        padding: 4px 18px;
+        padding-top: 10px; /* the font somehow cannot be centered so this is adjusting for that */
+    }
+
+    #sharkyGIF {
+        max-height: 140px;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+    .game-instructions {
+        display: none;
+    }
+}
+
+/* MOBILE SPECIAL Format eg NEST HUB Device --> looks like landscape format, not much height*/
+@media only screen and (min-width: 720px) and (max-height: 600px) {
+    #sharkyGIF {
+        display: none;
+    }
+
+    .wrapper-instructions {
+        margin-top: 2em;
+    }
+}

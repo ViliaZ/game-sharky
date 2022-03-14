@@ -3,6 +3,7 @@ let world;
 let gameOver = false;
 let fullscreenmode = false;  // default for fullscreen toggle
 let soundsMuted = false;  // default for toggle audio  // doesnt include bgMusic (this is HTML tag "audio")
+let swimmingSound = false;
 
 let keyboard = new Keyboard();
 let touchevents = new Touchevents();  // for mobile use
@@ -104,10 +105,32 @@ function checkAudioMuting() {
 }
 
 function playAudio(soundData, volume) {
-    let sound = new Audio(soundData);
-    sound.volume = volume;
-    sound.play();
+
+    // swimming sound gives horrible echo when triggert permantently --> throttle it
+    if (soundData == AUDIOS.characterSwim) {
+        throttleAudio(soundData,volume);
+        console.log('swimming requested')
+    }
+    else {
+        let sound = new Audio(soundData);
+        sound.volume = volume;    
+        sound.play();
+    }
+
     allAudioPlaying.push(soundData);  // array allAudioPlaying is initialized in head (script) in index.html
+}
+
+function throttleAudio(soundData, volume) {
+    if (swimmingSound == true) return  // is globally per default: false
+
+    swimmingSound = true;
+    let sound = new Audio(soundData);
+    sound.volume = volume;    
+
+    setTimeout(() => {
+        sound.play();
+        swimmingSound = false;
+    }, 1000);
 }
 
 function pauseAudio(soundData) {

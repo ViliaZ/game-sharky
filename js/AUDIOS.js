@@ -9,5 +9,6 @@ let AUDIOS =
         "throwBubble": "audios/throwBubble.wav",
         "finslap": "audios/finslap.wav",
         "characterWin": "audios/characterWin.mp3",
-        "characterLoose": "audios/characterLoose.wav"
+        "characterLoose": "audios/characterLoose.wav",
+        "characterSwim": "audios/swim.mp3"
     }
