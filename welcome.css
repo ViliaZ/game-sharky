@@ -93,13 +93,12 @@
     align-items: center;
 }
 
-
 .wateranimation h1 {
     color: rgba(255, 255, 255, 0.4);
     background-image: url("img/wateranimation.png");
     background-repeat: repeat-x;
     -webkit-background-clip: text;
-    animation: water 15s infinite linear ;
+    animation: water 15s infinite linear;
 }
 
 @keyframes water {
@@ -141,7 +140,6 @@ body {
     flex-direction: column;
     height: 100vh;
 }
-
 
 /** in instruction panel**/
 #finslap-img {
@@ -197,6 +195,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     align-items: flex-start;
     max-width: 1200px;
+    gap: 5.5em;
     padding: 30px;
     border-radius: 20px;
     justify-content: space-evenly;
@@ -420,14 +419,10 @@ body {
         width: 80vw;
     }
 
-/** WELCOME SCREEN **/
-
-    .m-wrapper-instructions {
-        display: none;
-    }
+    /** WELCOME SCREEN **/
 
     .screen {
-        padding: 1em!important;
+        padding: 1em !important;
     }
 
     h1 {
@@ -487,7 +482,6 @@ body {
         padding: 10px;
     }
 }
-
 
 /* MOBILE SPECIAL Format eg NEST HUB Device --> looks like landscape format, not much height*/
 @media only screen and (min-width: 720px) and (max-height: 600px) {
