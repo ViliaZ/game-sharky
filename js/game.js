@@ -10,6 +10,16 @@ let touchevents = new Touchevents();  // for mobile use
 let pressedKey = false;  // either undefined (no key pressed) or definied with the pressed key code (see functions below)
 let touchedButton = false; // on mobile: either undefined (no button touched) or definied with the pressed key code (see functions below)
 
+// animation to enter screen
+function animationEnterScreen() {
+    // let gameScreen = document.getElementById('bgScreen')    
+    // gameScreen.classList.add('animationEnter');
+    let instructionsPanel = document.getElementById('game-instructions')
+    instructionsPanel.classList.add('animationSlideFromButtom');
+    canvas = document.getElementById('canvas');
+    canvas.classList.add('canvasEnter');
+    setTimeout(startGame, 0);
+}
 
 function startGame() {
     canvas = document.getElementById('canvas');
@@ -19,6 +29,7 @@ function startGame() {
     document.getElementById('background-music').volume = 0.07;  // for BG music only
     // info: to insert volume attribute in HTML TAG directly did not work, 
 }
+
 // after clicking on Audio Settings, the Element stays in focus
 // remove Focus of Audio Settings if clicked (find eventlistener in HTML Audio Element )
 function removeFocus() {
@@ -27,6 +38,16 @@ function removeFocus() {
 
 function removeFocusMobile() {
     document.getElementById('musicToggle').blur(); // mobile HTLM
+}
+
+// Tipp: DIV with instructions how to use bubbles
+// show this container, if user has pressed SPACE button before collecting any coins (bubbling is only enabled when coins are collected)
+function showGameTipp() {
+    let tipContainer = document.getElementById('tip');
+    tipContainer.classList.remove('d-none');
+    setTimeout(()=>{
+        tipContainer.classList.add('d-none');
+    },8000);
 }
 
 function addToucheventListenerStart() {  // for mobile usage
@@ -105,18 +126,16 @@ function checkAudioMuting() {
 }
 
 function playAudio(soundData, volume) {
-
     // swimming sound gives horrible echo when triggert permantently --> throttle it
     if (soundData == AUDIOS.characterSwim) {
-        throttleAudio(soundData,volume);
+        throttleAudio(soundData, volume);
         console.log('swimming requested')
     }
     else {
         let sound = new Audio(soundData);
-        sound.volume = volume;    
+        sound.volume = volume;
         sound.play();
     }
-
     allAudioPlaying.push(soundData);  // array allAudioPlaying is initialized in head (script) in index.html
 }
 
@@ -125,7 +144,7 @@ function throttleAudio(soundData, volume) {
 
     swimmingSound = true;
     let sound = new Audio(soundData);
-    sound.volume = volume;    
+    sound.volume = volume;
 
     setTimeout(() => {
         sound.play();
@@ -158,30 +177,17 @@ function stopRunningProcesses() {
 }
 
 function showGameOver(sharkyStatus) {
-
     stopRunningProcesses();
-
     document.getElementById('canvas').classList.add('d-none');
-    document.getElementById('endScreen').classList.remove('d-none');
-    endScreen.innerHTML = '';
+
     if (sharkyStatus === "sharkyLoose") {
-        endScreen.innerHTML = generateLooseScreen();
+    document.getElementById('looseScreen').classList.remove('d-none');
     }
     else {
-        endScreen.innerHTML = generateWinScreen();
+        document.getElementById('winScreen').classList.remove('d-none');
         playAudio(AUDIOS.characterWin, 1);
     }
     setTimeout(startGameAgain, 3000);
-}
-
-function generateWinScreen() {
-    endScreen.innerHTML = '';
-    return `<img id="winImage" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png">`
-}
-
-function generateLooseScreen() {
-    endScreen.innerHTML = '';
-    return `<img id="looseImage" src="img/6.Botones/Tittles/Game Over/Recurso 10.png">`
 }
 
 function startGameAgain() {

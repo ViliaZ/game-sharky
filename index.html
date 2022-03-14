@@ -47,13 +47,18 @@
     <script src="js/game.js"></script>
 </head>
 
-<body class="fbox-start" onload="startGame()">
+<body class="fbox-start" onload="animationEnterScreen()">
 
-    <div id="bgScreen">
+    <div id="bgScreen" class="animationEnter">
 
         <div id="fullscreen-wrapper">
             <!--/** is pos. relative **/ -->
 
+            <div class="tip d-none" id="tip">
+                <img class="rotateAnimation" src="img/4. Marcadores/1. Coins/1.png" >
+                <p>TIP: Collect Coins to enable bubble-making.</p>
+    
+            </div>
             <!-- /************** CANVAS  ****************/ -->
             <canvas width="720px" height="480px" id="canvas">
             </canvas>
@@ -141,7 +146,12 @@
         </div>
     </div>
 
-    <div id="endScreen" class="screen d-none">
+    <div id="looseScreen" class="endScreen d-none">
+       <div>Game Over</div> 
+    </div>    
+    
+    <div id="winScreen" class="endScreen d-none">
+        <div>Congratulations!</div>
     </div>
 
 
