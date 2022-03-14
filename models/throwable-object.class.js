@@ -5,8 +5,8 @@ class ThrowableObject extends MoveableObject {
     y;
     width = 24;
     height = 24;
-    speedGravity = 0.7;
-    acceleration = 5;
+    speedGravity = 0.4;
+    acceleration = 10;
     moveBubbles = () => { this.x += 4 };  // default when character looks to right side, moves the bubble plus 4px each time
     collidedEnemy = false // used in world to prevent multipleCollissions
 
@@ -14,8 +14,8 @@ class ThrowableObject extends MoveableObject {
 
     constructor(x, y) {  // input is coordinates of character (bit adjusted)
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
-        this.x = x;
-        this.y = y;
+        this.x = x - 10;
+        this.y = y + 45; // to adjust bubble position to sharkys mouth
         this.throw();
     }
 

@@ -5,7 +5,6 @@ class Pufferfish extends MoveableObject {
     height = 55;
     changedColor = false; // color change when hurt with bubble
 
-
     // normal
     IMAGES_GREEN = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
@@ -31,17 +30,14 @@ class Pufferfish extends MoveableObject {
         'img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition3.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition4.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition5.png'
-
     ]
-
-
 
     constructor() {
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition1.png')
         this.loadImages(this.IMAGES_GREEN)
         this.loadImages(this.IMAGES_SWIM_RED)
         this.loadImages(this.IMAGES_TRANSITION_RED)
-        this.x = 400 + Math.random() * (2*500);// min = 400 max=700  
+        this.x = 400 + Math.random() * (3*500);// min = 400 max=700  
         this.y = 1 + Math.random() * 700;// min = 1 max=700  
         this.animate();
     }
@@ -55,7 +51,6 @@ class Pufferfish extends MoveableObject {
                 this.playAnimation(this.IMAGES_TRANSITION_RED);
                 this.changedColor = true;
                 this.moveLeft(1.5);
-
             }
             else if (this.changedColor == true) {
                 this.playAnimation(this.IMAGES_SWIM_RED);

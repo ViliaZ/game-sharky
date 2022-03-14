@@ -5,7 +5,7 @@ class Character extends MoveableObject {
     x = 100;
     y = 100;
     width = 300;
-    height = 210;
+    height = 270;
     speed = 3;
     jellyfish = level1.jellyfish;
 
@@ -103,11 +103,11 @@ class Character extends MoveableObject {
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_SWIM);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_THROWING);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_HURT);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_DEAD);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_FINSLAP);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_SWIM);   
+        this.loadImages(this.IMAGES_THROWING);   
+        this.loadImages(this.IMAGES_HURT);   
+        this.loadImages(this.IMAGES_DEAD);   
+        this.loadImages(this.IMAGES_FINSLAP);   
         this.animateBasic();
         this.animateConditions();
     }
@@ -134,9 +134,6 @@ class Character extends MoveableObject {
                 this.deadAnimation();
                 setTimeout(() => { playAudio(AUDIOS.characterLoose, 1) }, 1200);
             }
-            // else if (this.isColliding(this.jellyfish)) {
-            //     this.playAnimation(this.IMAGES_HURT);
-            // }
             else if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
                 playAudio(AUDIOS.characterHurt, 0.1);
@@ -145,28 +142,25 @@ class Character extends MoveableObject {
                 this.moveRight();
                 this.otherDirection = false;
                 playAudio(AUDIOS.characterSwim, 0.1)
-
-
             }
             if ((this.world.keyboard.LEFT || this.world.touchevents.touchLEFT == true) && this.x > 0) {  // 50px marks the left )
                 this.moveLeft();
                 this.otherDirection = true;     // mirroring img of character
                 playAudio(AUDIOS.characterSwim, 0.1)
-
             }
             if (this.world.keyboard.UP || this.world.touchevents.touchUP == true) {
-                this.y -= this.speed;           // speed is a variable of MoveableObjects
+                this.y -= this.speed;           
             }
             if (this.world.keyboard.DOWN || this.world.touchevents.touchDOWN == true) {
-                this.y += this.speed;           // speed is a variable of MoveableObjects
+                this.y += this.speed;           
             }
             else if (this.world.keyboard.KEYD || this.world.touchevents.touchFINSLAP == true) {
-                this.playAnimation(this.IMAGES_FINSLAP)           // speed is a variable of MoveableObjects
+                this.playAnimation(this.IMAGES_FINSLAP)           
                 playAudio(AUDIOS.finslap, 0.1)
             }
-            else if (this.world.bubbleCreating) {
-                this.playAnimation(this.IMAGES_THROWING)           // speed is a variable of MoveableObjects
-                setTimeout(() => { this.world.bubbleCreating = false; }, 400);
+            else if (this.world.bubbleRequested() && this.world.bubbleCreating == false) {
+                this.playAnimation(this.IMAGES_THROWING)          
+                setTimeout(() => { this.world.bubbleCreating = false; }, 1000);
             }
             // attach camera-movement to character-movement
             this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border

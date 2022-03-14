@@ -1,6 +1,6 @@
 class Coins extends Drawableobject{  // only when coins are collected, its possible to throw bubbles
 
-    x = 200 + Math.random() * (2*500);// min = 200 max=700  
+    x = 550 + Math.random() * (3*500);// min = 200 max=700  
     y = 1 + Math.random() * 700;// min = 1 max=700  
 
     width = 45;

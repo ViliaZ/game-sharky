@@ -12,6 +12,7 @@ class World {
     enemies = level1.enemies;
     endboss = level1.enemies[level1.enemies.length - 1];
     gameOver = false;
+
     throwableObjects = [];
     timeBubbleCreated = 0;
     timeSinceLastBubble;
@@ -20,7 +21,6 @@ class World {
     backgroundObjects = level1.backgroundObjects;
     throwYES = false;
     enemyhurt = false; // if currently enemy hurt with bubble
-
 
     canvas;                 // variable declaring, needs to be here to be available also for draw()
     ctx;                    // variable stands for "context" and is needed for drawing on canvas with "getContext('2d')
@@ -117,17 +117,25 @@ class World {
                 return;
             }
         }
+        // if SPACE KEY pressed, but no coins were collected yet, display Tip 
+        else if (this.bubbleRequestInvalid()) {
+            showGameTipp(); // see game.js
+        }
     }
 
-    bubbleRequested() {  // returns true results in throwing animation of character
+    bubbleRequested() {  // returns true for throwing animation of character
         return this.keyboard.SPACE && this.statusbarCoins.percentage > 0;
+    }
+
+    bubbleRequestInvalid() {
+        return this.keyboard.SPACE && this.statusbarCoins.percentage == 0;
     }
 
     createBubble() {
         let bubble = new ThrowableObject(this.character.x + 240, this.character.y + 130);
         this.timeBubbleCreated = new Date().getTime();  // saves current timepoint
         this.throwableObjects.push(bubble);
-
+        this.bubbleCreating = true; // for bubble animation character
         let checkThrowingInterval = setInterval(() => {
             this.checkIfEnemyHurt(bubble);
         }, 1000 / 20);
@@ -149,14 +157,13 @@ class World {
                 }
             }
         })
-
     }
 
     bubblesDissappear(bubble) {// bubbles dissappear after colliding enemy (for visual efficiacy, short Timeout, that bubbles dont disappear on enemy image border)
         let indexBubble = this.throwableObjects.indexOf(bubble);
-        setTimeout(()=>{
+        setTimeout(() => {
             this.throwableObjects.splice(indexBubble, 1);
-        },200)
+        }, 200)
     }
 
     // CHARACTER is hurt via collision enemy
@@ -189,16 +196,6 @@ class World {
             };
         });
     }
-
-    // checkFinslapPufferfish() { // with finslap
-    //     let pufferfishes = this.enemies instanceof Pufferfish
-    //     pufferfishes.forEach((pufferfish) => {
-    //         if (this.character.isColliding(pufferfish) && this.keyboard.KEYD) {
-    //             // jellyfish.playAnimation(jellyfish.IMAGES_HURT);
-    //             playAudio(AUDIOS.hitPufferfish);
-    //         };
-    //     });
-    // }
 
     addObjectsToMap(objectsArray) {
         objectsArray.forEach(o => {

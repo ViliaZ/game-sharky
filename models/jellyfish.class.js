@@ -1,6 +1,6 @@
 class Jellyfish extends MoveableObject {
 
-    x = 400 + Math.random() * (2*500);// min = 200 max=700  
+    x = 200 + Math.random() * (3*500);// min = 200 max=700  
     y = 1 + Math.random() * 700;// min = 1 max=700  
     width = 50;
     height = 70;
