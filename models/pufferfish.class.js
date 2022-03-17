@@ -50,7 +50,7 @@ class Pufferfish extends MoveableObject {
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_TRANSITION_RED);
                 this.changedColor = true;
-                this.moveLeft(1.5);
+                this.moveLeft(2);
             }
             else if (this.changedColor == true) {
                 this.playAnimation(this.IMAGES_SWIM_RED);

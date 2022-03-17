@@ -23,8 +23,8 @@ class MoveableObject extends Drawableobject {
     }
 
     // decrease Energy
-    hit() {   // is called in world on collision detection 
-        this.energy -= 5;
+    hit(energyToLoose) {   // is called in world on collision detection 
+        this.energy -= energyToLoose;
         // prevent from getting negative energy values
         if (this.energy < 0) {
             this.energy = 0
@@ -35,7 +35,7 @@ class MoveableObject extends Drawableobject {
     // returns boolean: true or false
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
-        return timepassed < 300;    //  true or fals >> duration of hurt-animation >> as long as "timepassed" is <1sec 
+        return timepassed < 500;    //  true or fals >> duration of hurt-animation >> as long as "timepassed" is <1sec 
     }
 
     isDead() {
