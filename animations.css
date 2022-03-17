@@ -1,0 +1,190 @@
+#winScreen {
+    font-size: 8em;
+    background-color: aquamarine;
+    color: #8909f1;
+    animation: winScreen 5000ms infinite alternate-reverse ease-in-out;
+}
+
+@keyframes winScreen {
+    0% {
+        background-color: #400ed4;
+        color: #9246d1;
+    }
+    20% {
+        background-color: rgb(219, 34, 195);
+        color: #d3adda;
+    }
+    40%{
+        background-color: #400ed4;
+        color: #b925d3;
+    }
+    60% {
+        background-color: rgb(0, 204, 240);
+        color: #531a82;
+    }
+    80% {
+        background-color: rgb(219, 34, 195);
+        color: #2f0055;
+    }
+    100% {
+        background-color: rgb(11, 106, 230);
+        color: #b925d3;
+    }
+}
+
+#looseScreen {
+    background-color: aquamarine;
+    font-size: 8em;
+    color: #531a82;
+}
+
+#looseScreen div {
+    animation: looseScreen 3100ms linear both;
+}
+
+@keyframes looseScreen {
+    0% {
+        transform: scale(1) rotateZ(0);
+        color: #531a8262;
+    }
+    20% {
+        transform: scale(2) rotateZ(180deg);
+        color: #8f2be0c7;
+
+    }
+    40%,70% {
+        transform: scale(1) rotateZ(360deg);
+        color: #531a82;
+        opacity: (1);
+
+    }
+    100% {
+        transform: scale(1) rotateZ(360deg) translateY(600px);
+        color: #531a8217;
+    }
+}
+
+
+/******** ENTER ANIMATION: INSTRUCTIONS PANEL  ************/
+
+
+.animationSlideFromBottom {
+    animation: slideIn 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation-iteration-count: 1;
+    animation-delay: 400ms;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(300px);
+        opacity: 0;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+/******** ENTER ANIMATION: CANVAS ************/
+
+.canvasEnter {
+    animation: canvasEnter 1s cubic-bezier(0.11, 0.83, 0.68, 0.98) both ;
+    animation-iteration-count: 1;
+}
+
+@keyframes canvasEnter {
+    0% {
+        transform: translateY(-600px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/******** ENTER ANIMATION: TIP IN GAME PROCESS ************/
+
+.tip {
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    right: 0;
+    bottom: 20px;
+    padding: 15px 12px 10px 0px;
+    background-color: rgb(241, 241, 241);
+    color: #642aaf;
+    width: 240px;
+    max-height: 70px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    z-index: 2;
+    filter: opacity(0);
+    animation: slideInRight 8s cubic-bezier(0.11, 0.83, 0.68, 0.98);
+}
+
+@keyframes slideInRight {
+    0% {
+        filter: opacity(0);
+        width: 0px;
+    }
+    20% {
+        filter: opacity(1);
+        width: 240px;
+    }
+    80% {
+        filter: opacity(1);
+        width: 240px;
+    }
+    90% {
+        filter: opacity(0.3);
+    }
+    100% {
+        filter: opacity(0);
+        width: 0px;
+    }
+}
+.tip p {
+    animation: fadeInText 8s cubic-bezier(0.11, 0.83, 0.68, 0.98);
+}
+
+@keyframes fadeInText {
+    0%,
+    10% {
+        filter: opacity(0);
+    }
+    14% {
+        filter: opacity(0.1);
+    }
+    75% {
+        filter: opacity(1);
+    }
+    80% {
+        filter: opacity(0.2);
+    }
+    100% {
+        filter: opacity(0);
+    }
+}
+
+/******** ROTATION ANIMATION: COIN (see Game Tip) ************/
+
+.tip img {
+    width: 50px;
+    transform: translateX(-25px);
+    animation: rotationCoin 7s infinite alternate;
+}
+
+@keyframes rotationCoin {
+    0% {
+        transform: translateX(-25px) rotateY(0deg) scale(1);
+    }
+    50% {
+        transform: translateX(-25px) rotateY(360deg) scale(1.1);
+    }
+    100% {
+        transform: translateX(-25px) rotateY(0deg) scale(1);
+    }
+}

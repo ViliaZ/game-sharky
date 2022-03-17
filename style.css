@@ -1,127 +1,3 @@
-.animationSlideFromButtom {
-    animation: slideIn 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation-iteration-count: 1;
-    animation-delay: 400ms;
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateY(300px);
-        opacity: 0;
-    }
-    90% {
-        opacity: 0.5;
-    }
-    100% {
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-
-.canvasEnter {
-    animation: canvasEnter 1000ms cubic-bezier(0.11, 0.83, 0.68, 0.98) both;
-    animation-iteration-count: 1;
-}
-
-@keyframes canvasEnter {
-    0% {
-        transform: translateY(-1000px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-/******** TIPP IN GAME PROCESS ************/
-
-.tip {
-    position: absolute;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    right: 0;
-    bottom: 20px;
-    padding: 15px 12px 10px 0px;
-    background-color: rgb(241, 241, 241);
-    color: #642aaf;
-    width: 240px;
-    max-height: 70px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    z-index: 2;
-    filter: opacity(0);
-    animation: slideInRight 8s cubic-bezier(0.11, 0.83, 0.68, 0.98);
-}
-
-@keyframes slideInRight {
-    0% {
-        filter: opacity(0);
-        width: 0px;
-    }
-    20% {
-        filter: opacity(1);
-        width: 240px;
-    }
-    80% {
-        filter: opacity(1);
-        width: 240px;
-    }
-    90% {
-        filter: opacity(0.3);
-    }
-    100% {
-        filter: opacity(0);
-        width: 0px;
-    }
-}
-.tip p {
-    animation: fadeInText 8s cubic-bezier(0.11, 0.83, 0.68, 0.98);
-    /* animation-delay: 600ms; */
-    /* animation-fill-mode: forwards; */
-}
-
-@keyframes fadeInText {
-    0%,
-    10% {
-        filter: opacity(0);
-    }
-    /* 18% {
-        filter: opacity(0.5);
-    } */
-    14% {
-        filter: opacity(0.1);
-    }
-    75% {
-        filter: opacity(1);
-    }
-    80% {
-        filter: opacity(0.2);
-    }
-    100% {
-        filter: opacity(0);
-    }
-}
-
-.tip img {
-    width: 50px;
-    transform: translateX(-25px);
-    animation: rotationCoin 7s infinite alternate;
-}
-
-@keyframes rotationCoin {
-    0% {
-        transform: translateX(-25px) rotateY(0deg) scale(1);
-    }
-    50% {
-        transform: translateX(-25px) rotateY(360deg) scale(1.1);
-    }
-    100% {
-        transform: translateX(-25px) rotateY(0deg) scale(1);
-    }
-}
-
-/******** DESKTOP ************/
-
 * {
     margin: 0;
     padding: 0;
@@ -252,7 +128,6 @@ body {
 }
 
 /** mobile instructions panel**/
-
 .m-game-instructions {
     display: none;
 }
@@ -274,7 +149,6 @@ body {
 }
 
 .keysBtn-Wrapper::before {
-    /* content: url("img/desktop instructions/blob1.svg"); */
     height: 100px;
     width: 100px;
     top: 0;
@@ -282,78 +156,18 @@ body {
     position: absolute;
 }
 
+
 /*** SCREENS ***/
 
 .screen {
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: 4;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 6em;
-}
-#welcomeScreen {
-    background-image: url("img/3. Background/Light/2.png");
-    background-size: cover;
-}
-
-/* #welcomeScreen .screenLeft {
-    padding: 50px;
-    width: 50%;
-}
-
-#welcomeScreen .screenRight {
-    margin: 50px;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.185);
-    border-radius: 15px;
-} */
-
-#sharkyGIF {
-    height: 200px;
-}
-
-.wrapper-instructions {
-    display: flex;
-    background-color: #642aaf9b;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    width: 75vw;
-    max-width: 1200px;
-    padding: 30px;
-    border-radius: 20px;
-    justify-content: space-evenly;
-}
-
-.m-wrapper-instructions {
-    display: none;
-}
-
-.wrapper-startBtn {
-    padding: 10px;
-    border-radius: 20px;
-}
-
-.btn-start {
-    /* span element */
-    height: 60px;
-    padding-left: 75px;
-    padding-right: 75px;
-    padding-top: 12px;
-    background-color: #fcee21;
-    border-radius: 12px;
-    font-size: 1.7em;
-    color: #531a82;
-    font-family: default;
-    font-family: luckiestGuy;
-    border: white 2px solid;
-    white-space: nowrap;
+    z-index: 4;
 }
 
 #bgScreen {
@@ -380,45 +194,6 @@ body {
     z-index: 2;
 }
 
-#looseScreen {
-    background-color: aquamarine;
-    font-size: 8em;
-    color: #531a82;
-}
-
-#looseScreen div {
-    animation: looseScreen 3100ms linear both;
-}
-
-#winScreen {
-    font-size: 124px;
-    background-color: aquamarine;
-    color: #e9fa00;
-    /* animation: winScreen 3s infinite ease-in-out; */
-}
-
-@keyframes looseScreen {
-    0% {
-        transform: scale(1) rotateZ(0);
-        color: #531a8262;
-    }
-    20% {
-        transform: scale(2) rotateZ(180deg);
-        color: #8f2be0c7;
-
-    }
-    40%,70% {
-        transform: scale(1) rotateZ(360deg);
-        color: #531a82;
-        opacity: (1);
-
-    }
-    100% {
-        transform: scale(1) rotateZ(360deg) translateY(600px);
-        color: #531a8217;
-    }
-}
-
 .button {
     margin-top: 10px;
     height: 40px;
@@ -442,9 +217,6 @@ body {
     height: 100px;
     position: fixed;
     bottom: 0;
-    /* transform: translateY(-100px); 
-    animation: all 2s ease-in-out;  */
-    /* z-index: 100; */
 }
 
 .game-instructions .button {
@@ -561,6 +333,7 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
 
 /******** ON TOUCHDEVICES OVER 720px ************/
 
@@ -839,19 +612,6 @@ input:checked + .slider:before {
 
     /* WelcomeScreen - change Instructions-Panel to special mobile HTML */
 
-    .wrapper-instructions {
-        display: none !important;
-    }
-
-    .m-wrapper-instructions {
-        display: flex !important;
-        background-color: #642aaf9b;
-        min-width: 60vw;
-        max-width: 80vw;
-        padding: 1em;
-        border-radius: 20px;
-    }
-
     .screen {
         padding: 1em;
     }
@@ -879,16 +639,8 @@ input:checked + .slider:before {
         height: 3.5em;
     }
 
-    .btn-start {
-        height: unset;
-        font-size: 1.5em;
-        padding: 4px 18px;
-        padding-top: 10px; /* the font somehow cannot be centered so this is adjusting for that */
-    }
 
-    #sharkyGIF {
-        max-height: 140px;
-    }
+
 }
 
 @media only screen and (max-height: 480px) {

@@ -94,42 +94,6 @@
     align-items: center;
 }
 
-.wateranimation h1 {
-    color: rgba(255, 255, 255, 0.493);
-    background-image: url("img/wateranimation.png");
-    background-repeat: repeat-x;
-    -webkit-background-clip: text;
-    animation: water 3s infinite linear;
-}
-
-@keyframes water {
-    0% {
-        background-position: left 0px top 60px;
-        color: rgba(255, 255, 255, 0.5);
-    }
-    25% {
-        background-position: left 200px top 20px;
-        color: rgba(255, 255, 255, 0.3);
-    }
-    50% {
-        background-position: left 400px top 0px;
-        color: rgba(255, 255, 255, 0.2);
-    }
-    75%,
-    100% {
-        background-position: left 600px top -60px;
-        color: rgba(255, 255, 255, 0.1);
-    }
-}
-
-h1 {
-    font-size: 78px;
-    font-kerning: normal;
-    filter: drop-shadow(10px -2px 29px #eaf8f8);
-    /* color: #632aaf; */
-    text-align: center;
-}
-
 h3 {
     font-size: 32px;
     text-align: center;
@@ -194,7 +158,7 @@ body {
 
 .bgImageWelcome {
     position: absolute;
-    filter: brightness(0.6) blur(2px);
+    filter: brightness(0.8) blur(2px);
     left: 0;
     right: 0;
     top: 0;
@@ -240,6 +204,7 @@ body {
     font-family: luckiestGuy;
     border: white 2px solid;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 #bgScreen {
@@ -264,7 +229,7 @@ body {
 
 /*******  Instructions DESKTOP *********/
 
-.game-instructions {
+/* .game-instructions {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -275,11 +240,11 @@ body {
     gap: 2em;
     height: 100px;
     position: fixed;
-    bottom: 0;
-    /* z-index: 100; */
-}
+    bottom: 0; */
+    
+/* } */
 
-.game-instructions .button {
+/* .game-instructions .button {
     height: 28px;
     margin-top: 0px;
 }
@@ -290,14 +255,14 @@ body {
 
 .game-instructions .sharkySmall {
     height: 40px;
-}
+} */
 
 /*******  Instructions for MOBILE use *********/
 
-.m-switches,
+/* .m-switches,
 .m-buttons {
     display: none;
-}
+} */
 
 /******** MOBILE ************/
 
@@ -334,12 +299,12 @@ body {
     }
 
     /* touchbuttons for mobile */
-    .m-switches,
+    /* .m-switches,
     .m-buttons {
         display: flex !important;
-    }
+    } */
 
-    .m-button {
+    /* .m-button {
         height: 6vw !important;
         width: 6vw;
         cursor: pointer;
@@ -347,9 +312,9 @@ body {
 
     .game-instructions {
         display: none !important;
-    }
+    } */
 
-    .m-switches {
+    /* .m-switches {
         position: absolute;
         top: 1em;
         right: 1em;
@@ -363,9 +328,9 @@ body {
     .switch {
         width: 32px !important;
         height: 16px !important;
-    }
+    } */
 
-    .slider:before {
+    /* .slider:before {
         position: absolute;
         content: "";
         height: 12px !important;
@@ -378,9 +343,9 @@ body {
         -webkit-transform: translateX(16px) !important;
         -ms-transform: translateX(16px) !important;
         transform: translateX(16px);
-    }
+    } */
 
-    .m-buttons {
+    /* .m-buttons {
         position: absolute;
         display: flex;
         justify-content: space-between;
@@ -390,9 +355,9 @@ body {
         left: 0;
         z-index: 200;
         height: 15vw;
-    }
+    } */
 
-    .m-btn-attack #m-btn-bubble {
+    /* .m-btn-attack #m-btn-bubble {
         position: absolute;
         bottom: 5vw;
         left: 8vw;
@@ -407,9 +372,9 @@ body {
     .m-btn-moves {
         position: relative;
         height: 100%;
-    }
+    } */
 
-    .m-btn-moves #m-left {
+    /* .m-btn-moves #m-left {
         position: absolute;
         right: 16vw;
         bottom: 5vw;
@@ -425,8 +390,8 @@ body {
         position: absolute;
         top: 0;
         right: 8vw;
-    }
-
+    } */
+/* 
     .m-btn-moves #m-down {
         position: absolute;
         bottom: 0;
@@ -435,7 +400,7 @@ body {
 
     #looseImage {
         width: 80vw;
-    }
+    } */
 
     /** WELCOME SCREEN **/
 

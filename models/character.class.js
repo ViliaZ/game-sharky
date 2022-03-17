@@ -9,6 +9,7 @@ class Character extends MoveableObject {
     speed = 3;
     jellyfish = level1.jellyfish;
 
+
     // call character.world to access variables of the world class ( e.g. keyboard)
     world;
 
@@ -114,7 +115,6 @@ class Character extends MoveableObject {
 
     animateBasic() {
         // Swim Animation per default
-        console.log('any key pressed?',pressedKey)
         let intervalSharky1 = setInterval(() => {
             if (pressedKey == false) { // no key is pressed
                 this.playAnimation(this.IMAGES_IDLE);
@@ -170,13 +170,11 @@ class Character extends MoveableObject {
     deadAnimation() {
         let deadAnimationInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_DEAD);
-            setTimeout(() => {
-                clearInterval(deadAnimationInterval);
-                showGameOver("sharkyLoose")
-            }, 1200)  // when calling a timout funtion with parameters, its written like this
         }, 1000 / 60)
+        setTimeout(() => {
+            clearInterval(deadAnimationInterval);
+            showGameOver("sharkyLoose")
+        }, 1200)  // when calling a timout funtion with parameters, its written like this
+
     }
-
-
-
 }

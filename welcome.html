@@ -18,7 +18,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="welcome.css">
+    <link rel="stylesheet" href="animationsWelcome.css">
 
+<script src="startGame.js"></script>
 
 </head>
 
@@ -29,12 +31,12 @@
         <img class="bgImageWelcome" src="img/3. Background/Light/2.png" alt="">
 
         <div id="welcomeScreen" class="screen fbox-start">
-            <div class="wateranimation">
-                <h1>LIFE OF SHARKY</h1>
+            <div id="wrapperHeadline">
+                <div id="headline">LIFE OF SHARKY</div>
             </div>
 
-            <div class="wrapper-startBtn">
-                <button onClick="window.open('index.html', '_self')" id="startBtn" class="btn-start">Start Game</button>
+            <div class="wrapper-startBtn ">
+                <button onClick="startAnimation()" id="startBtn" class="btn-start">Start Game</button>
             </div>
             <img id="sharkyGIF" src="img/1.Sharkie/1.IDLE/Prewiew.gif">
 

@@ -117,7 +117,6 @@ class Endboss extends MoveableObject {
     };
 
     playIntro() {
-        this.x = 2 * 900;
         this.y = 60;
         this.index = 0; // index of image array where the animation starts
         let intervalEndboss = setInterval(() => {
@@ -134,7 +133,7 @@ class Endboss extends MoveableObject {
             this.playAnimation(this.IMAGES_DEAD);
         }, 1000 / 5)
         setTimeout(() => {
-            clearInterval(sinkingAnimation)
+            clearInterval(sinkingAnimation);
             this.otherDirection = true;
             this.finalEscape();
         }, 1000);

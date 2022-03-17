@@ -45,9 +45,9 @@ function removeFocusMobile() {
 function showGameTipp() {
     let tipContainer = document.getElementById('tip');
     tipContainer.classList.remove('d-none');
-    setTimeout(()=>{
+    setTimeout(() => {
         tipContainer.classList.add('d-none');
-    },8000);
+    }, 8000);
 }
 
 function addToucheventListenerStart() {  // for mobile usage
@@ -152,42 +152,31 @@ function throttleAudio(soundData, volume) {
     }, 1000);
 }
 
+// ist das sinnvoll???
 function pauseAudio(soundData) {
     let newAudio = new Audio(soundData);
     newAudio.pause();
 }
 
-function stopAllAudio() {
-    let bgMusicHTML = document.getElementById('background-music');
-    bgMusicHTML.muted = true;
+// wieso klappt das nicht mit async await??? im zweiten Console.log sind immer noch intervals übrig
+async function showGameOver(sharkyStatus) {
+    console.log('before', allIntervals)
+    await stopAllIntervals();
+    console.log('after', allIntervals)  // ist immer noch nicht auf 0--> wieso??
 
-    allAudioPlaying.forEach(soundData => {
-        let currentAudio = new Audio(soundData);
-        currentAudio.pause();
-    });
-    allAudioPlaying = [];  // initialized in script in index.html(head)
-}
-
-function stopRunningProcesses() {
     document.getElementById('background-music').pause();
     document.getElementById('m-instructions-wrapper').classList.add('d-none');
-
-    stopAllIntervals();
-    stopAllAudio();
-}
-
-function showGameOver(sharkyStatus) {
-    stopRunningProcesses();
     document.getElementById('canvas').classList.add('d-none');
 
-    if (sharkyStatus === "sharkyLoose") {
-    document.getElementById('looseScreen').classList.remove('d-none');
-    }
-    else {
-        document.getElementById('winScreen').classList.remove('d-none');
-        playAudio(AUDIOS.characterWin, 1);
-    }
-    setTimeout(startGameAgain, 3000);
+        if (sharkyStatus === "sharkyWin") {
+            playAudio(AUDIOS.characterWin, 1);
+            document.getElementById('winScreen').classList.remove('d-none');
+        }
+        else {
+            document.getElementById('looseScreen').classList.remove('d-none');
+            playAudio(AUDIOS.characterLoose, 1);
+        }
+    setTimeout(startGameAgain, 2900);
 }
 
 function startGameAgain() {

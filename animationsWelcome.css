@@ -1,0 +1,34 @@
+#headline {
+    color: rgba(255, 255, 255, 0.383)!important;
+    background-color: azure;
+    -webkit-background-clip: text;
+    font-size: 78px;
+    filter: drop-shadow(10px -2px 29px #ffffff);
+    text-align: center;
+}
+.wateranimation{
+    background-image: url("img/wateranimation.png");
+    background-repeat: repeat-x;
+    animation: wateranimation 2.2s linear forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes wateranimation {
+    0% {
+        background-position: left 0px top 60px;
+        color: rgba(255, 255, 255, 0.5);
+    }
+    25% {
+        background-position: left 200px top 20px;
+        color: rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        background-position: left 400px top 0px;
+        color: rgba(255, 255, 255, 0.2);
+    }
+    75%,
+    100% {
+        background-position: left 700px top -60px;
+        color: rgba(255, 255, 255, 0.1);
+    }
+}
