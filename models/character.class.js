@@ -132,7 +132,6 @@ class Character extends MoveableObject {
                 clearInterval(intervalSharky2)
                 pauseAudio(AUDIOS.characterHurt);
                 this.deadAnimation();
-                setTimeout(() => { playAudio(AUDIOS.characterLoose, 1) }, 1200);
             }
             else if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -172,8 +171,8 @@ class Character extends MoveableObject {
         let deadAnimationInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_DEAD);
             setTimeout(() => {
+                clearInterval(deadAnimationInterval);
                 showGameOver("sharkyLoose")
-                clearInterval(deadAnimationInterval)
             }, 1200)  // when calling a timout funtion with parameters, its written like this
         }, 1000 / 60)
     }

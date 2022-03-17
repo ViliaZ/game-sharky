@@ -149,7 +149,7 @@ class World {
 
             if (bubble.isCollidingEnemy(enemy) && !bubble.collidedEnemy) { // bubble has not been collided before
                 bubble.collidedEnemy = true;
-                enemy.hit();
+                enemy.hit(20);
                 this.bubblesDissappear(bubble);
 
                 if (enemy instanceof Endboss) {
@@ -170,7 +170,7 @@ class World {
     checkCollisionsEnemies() {
         this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();                                   // decrease energy
+                this.character.hit(2);                                   // decrease energy
                 this.statusbar.setPercentage(this.character.energy)     // this.character.energy is the number that we need to set our percentage of the statusbar
             }
         });
