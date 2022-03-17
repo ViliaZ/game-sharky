@@ -1,7 +1,7 @@
 class Endboss extends MoveableObject {
 
     x = 2 * 900;
-    y = 60;
+    y = -250;  // before introducing animation, it should be out of sight
     height = 250;
     width = 340;
     lifeEnergy = 100;  // default with start  - minus 25 with every hurt
@@ -117,6 +117,8 @@ class Endboss extends MoveableObject {
     };
 
     playIntro() {
+        this.x = 2 * 900;
+        this.y = 60;
         this.index = 0; // index of image array where the animation starts
         let intervalEndboss = setInterval(() => {
             this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
