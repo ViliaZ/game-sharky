@@ -13,7 +13,7 @@ class Endboss extends MoveableObject {
 
     introAnimationDone = false;  // intro animation should only play once
     isNearCharacter = false;  // is checked in world
-
+    moveUp = false;  // is checked in world
 
     IMAGES_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -96,7 +96,7 @@ class Endboss extends MoveableObject {
             // start Intro Animation (is running only ONCE)
             else if (this.isNearCharacter === true && this.introAnimationDone === false) {
                 this.playIntro();
-                playAudio(AUDIOS.nearEndboss,1)
+                playAudio(AUDIOS.nearEndboss, 1)
             }
             // start normal floating when Intro Animation was done
             else if (this.introAnimationDone === true) {
@@ -110,11 +110,31 @@ class Endboss extends MoveableObject {
         this.index = 0;
         let intervalAttack = setInterval(() => {
             this.playAnimationOnce(this.IMAGES_ATTACK, intervalAttack)
-            this.x -= 12;
+            this.attackMovement();
         }, 1000 / 10);
+        this.toggleDirectionOfAttacks();
         setTimeout(() => { this.hurtAnimationPlays = false; }, 500);
         allIntervals.push(intervalAttack);
     };
+
+    attackMovement(){
+        this.x -= 12;
+        if (this.moveUp) { // attack in direction of character 
+            this.y += 8;
+        }
+        else {
+            this.y -= 8;
+        }
+    }
+
+    toggleDirectionOfAttacks() {
+        if (!this.moveUp) {
+            this.moveUp = true;
+        }
+        else {
+            this.moveUp = false;
+        }
+    }
 
     playIntro() {
         this.y = 60;

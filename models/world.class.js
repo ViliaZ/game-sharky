@@ -86,6 +86,7 @@ class World {
             this.checkCollectCoins();    // statusbar coins increases
             this.checkThrowing();
             this.checkDistanceToEndboss();
+            this.checkCharacterPosition();
             this.checkGameOver();
         }, 1000 / 20);
         allIntervals.push(runCheckInterval);
@@ -98,6 +99,12 @@ class World {
         }
         else {
             this.endboss.isNearCharacter = false;
+        }
+    }
+
+    checkCharacterPosition(){   //important for attack of endboss, if character is above or below endboss
+        if (this.character.y > 240){
+            this.endboss.isBelowCharacter = true;
         }
     }
 
