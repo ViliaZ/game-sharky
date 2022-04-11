@@ -84,9 +84,12 @@ class MoveableObject extends Drawableobject {
     // detects IF character is colliding with any object > boolean
     isColliding(object) {
         // give the corrdinates an offset to compensate for empty space around images
-        return this.x + 40 + this.width * 0.7 > object.x &&
-            this.y + 86 + this.height * 0.4 > object.y &&
-            this.x + 40 < object.x &&
-            this.y + 86 < object.y + object.height
+        return this.x + 50 + (this.width-150) > object.x &&
+            (this.y + 130) + (this.height-180) > object.y &&
+            (this.x+50) < object.x &&
+            (this.y + 130) < object.y + object.height
     }
+
+
+    
 }

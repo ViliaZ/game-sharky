@@ -7,7 +7,7 @@ class Character extends MoveableObject {
     width = 300;
     height = 270;
     speed = 3;
-    jellyfish = level1.jellyfish;
+    // jellyfish = level1.jellyfish;
 
 
     // call character.world to access variables of the world class ( e.g. keyboard)
@@ -104,11 +104,11 @@ class Character extends MoveableObject {
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
-        this.loadImages(this.IMAGES_SWIM);   
-        this.loadImages(this.IMAGES_THROWING);   
-        this.loadImages(this.IMAGES_HURT);   
-        this.loadImages(this.IMAGES_DEAD);   
-        this.loadImages(this.IMAGES_FINSLAP);   
+        this.loadImages(this.IMAGES_SWIM);
+        this.loadImages(this.IMAGES_THROWING);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_FINSLAP);
         this.animateBasic();
         this.animateConditions();
     }
@@ -148,17 +148,17 @@ class Character extends MoveableObject {
                 playAudio(AUDIOS.characterSwim, 0.1)
             }
             if (this.world.keyboard.UP || this.world.touchevents.touchUP == true) {
-                this.y -= this.speed;           
+                this.y -= this.speed;
             }
             if (this.world.keyboard.DOWN || this.world.touchevents.touchDOWN == true) {
-                this.y += this.speed;           
+                this.y += this.speed;
             }
             else if (this.world.keyboard.KEYD || this.world.touchevents.touchFINSLAP == true) {
-                this.playAnimation(this.IMAGES_FINSLAP)           
+                this.playAnimation(this.IMAGES_FINSLAP)
                 playAudio(AUDIOS.finslap, 0.1)
             }
             else if (this.world.bubbleRequested() && this.world.bubbleCreating == false) {
-                this.playAnimation(this.IMAGES_THROWING)          
+                this.playAnimation(this.IMAGES_THROWING)
                 setTimeout(() => { this.world.bubbleCreating = false; }, 1000);
             }
             // attach camera-movement to character-movement
