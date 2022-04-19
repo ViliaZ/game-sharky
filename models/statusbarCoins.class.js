@@ -1,7 +1,4 @@
-
-
 class StatusbarCoins extends Drawableobject {
-
     x = 10;
     y = 40;
     width = 175;
@@ -17,26 +14,50 @@ class StatusbarCoins extends Drawableobject {
         'img/4. Marcadores/green/Coin/100_ copia 4.png'  // 5
     ]
 
+    /**
+     * Statusbar for collected Coins 
+     * Load all images that show statusbar in different states from full to empty
+     */
     constructor() {
         super().loadImage(this.IMAGES[0]);
         this.loadImages(this.IMAGES);
     }
 
 
-    // Trigger:  collision with a coin, function for calling: in class world
+    /**
+     * Increase % of Coins after character collides with coin
+     * Trigger:  collision with a coin, function for calling: in class world
+     * each coin equals 20% 
+     */
     increaseStatusbarCoins() {
-        this.percentage += 20;      // each coin equals 20% 
+        this.percentage += 20;      
         this.resolvePercentage();
         this.setPercentage();
     }
 
-    // Trigger: tbd
-    decreaseStatusbarCoins() {
-        this.percentage -= 10;  // each coin is worth 20% 
-        this.resolvePercentage();
-        this.setPercentage();
+
+    /**
+     * Not in use atm
+     */
+    // decreaseStatusbarCoins() {
+    //     this.percentage -= 10;  
+    //     this.resolvePercentage();
+    //     this.setPercentage();
+    // }
+
+
+    /**
+     * Updates Coin Status 
+     * loads image with correct percentage view according to coin level
+     */
+    setPercentage(){
+        let path = this.IMAGES[this.resolvePercentage()]    // path is the key to the variable in imageCache
+        this.img = this.imageCache[path];
     }
 
+    /** Resolves current Coin Level in %
+     * @return {number} from 0 to 5 that is used as index for Images Array in setPercentage() to laod statusbar image
+     */
     resolvePercentage() {
         if (this.percentage === 100) {
             return 5;
@@ -52,15 +73,4 @@ class StatusbarCoins extends Drawableobject {
             return 0;
         }
     }
-
-    setPercentage(){
-        let path = this.IMAGES[this.resolvePercentage()]    // path is the key to the variable in imageCache
-        this.img = this.imageCache[path];
-    }
-
-
-
-
-
-
 }

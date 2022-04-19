@@ -1,47 +1,61 @@
 let canvas;
 let world;
 let gameOver = false;
-let fullscreenmode = false;  // default for fullscreen toggle
-let soundsMuted = false;  // default for toggle audio  // doesnt include bgMusic (this is HTML tag "audio")
+let fullscreenmode = false; 
+let soundsMuted = false;  // doesnt include bgMusic (this is HTML tag "audio")
 let swimmingSound = false;
-
 let keyboard = new Keyboard();
 let touchevents = new Touchevents();  // for mobile use
-let pressedKey = false;  // either undefined (no key pressed) or definied with the pressed key code (see functions below)
-let touchedButton = false; // on mobile: either undefined (no button touched) or definied with the pressed key code (see functions below)
+let pressedKey = false;  // either undefined (no key pressed) or definied with the pressed key code 
+let touchedButton = false; // on mobile: either undefined (no button touched) or definied with the pressed key code 
 
-// animation to enter screen
+
+/**
+ * Initialize Enter Animation for Game screen
+ */
 function animationEnterScreen() {
-    // let gameScreen = document.getElementById('bgScreen')    
-    // gameScreen.classList.add('animationEnter');
-    let instructionsPanel = document.getElementById('game-instructions')
+    let instructionsPanel = document.getElementById('game-instructions');
     instructionsPanel.classList.add('animationSlideFromButtom');
     canvas = document.getElementById('canvas');
     canvas.classList.add('canvasEnter');
-    setTimeout(startGame, 0);
+    startGame();
 }
 
+
+/**
+ * Initialize New World Class
+ */
 function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard, touchevents);  // transfer the two variables to world class, >> make them accessable there
+    document.getElementById('background-music').volume = 0.07;  // for BG music only info: to insert volume attribute in HTML TAG directly did not work, 
     addToucheventListenerStart();
     addToucheventListenerStop();
-    document.getElementById('background-music').volume = 0.07;  // for BG music only
-    // info: to insert volume attribute in HTML TAG directly did not work, 
 }
 
-// after clicking on Audio Settings, the Element stays in focus
-// remove Focus of Audio Settings if clicked (find eventlistener in HTML Audio Element )
+
+/**
+ * EventHandler Click on Audio Settings (Desktop)
+ * remove Focus from Audio Settings back to game
+ */
 function removeFocus() {
     document.getElementById('background-music').blur(); // desktop HTML 
 }
 
+
+/**
+ * EventHandler Click on Audio Settings (Mobile)
+ * remove Focus from Audio Settings back to game
+ */
 function removeFocusMobile() {
     document.getElementById('musicToggle').blur(); // mobile HTLM
 }
+ 
 
-// Tipp: DIV with instructions how to use bubbles
-// show this container, if user has pressed SPACE button before collecting any coins (bubbling is only enabled when coins are collected)
+/**
+ * Show Hint on Screen - how to use bubbles
+ * Trigger: Click SPACE-key before user collected any coins (bubbling is only enabled when coins are collected)
+ */
 function showGameTipp() {
     let tipContainer = document.getElementById('tip');
     tipContainer.classList.remove('d-none');
@@ -50,6 +64,11 @@ function showGameTipp() {
     }, 8000);
 }
 
+
+/**
+ * EventHandler Touchevents (mobile only)
+ * Trigger: touch starts
+ */
 function addToucheventListenerStart() {  // for mobile usage
     document.getElementById('m-btn-bubble').addEventListener('touchstart', e => {
         touchevents.touchBUBBLE = true;
@@ -75,6 +94,11 @@ function addToucheventListenerStart() {  // for mobile usage
     });
 }
 
+
+/**
+ * EventHandler Touchevents (mobile only)
+ * Trigger: touch stops
+ */
 function addToucheventListenerStop() {  // for mobile usage
     document.getElementById('m-btn-bubble').addEventListener('touchend', e => {
         touchevents.touchBUBBLE = false;
@@ -101,17 +125,25 @@ function addToucheventListenerStop() {  // for mobile usage
 }
 
 
-// must be adjusted!! fullscreenmode variable not making sense yet
+/**
+ * EventHandler FullscreenToggle 
+ * Sets Fullscreen when toggle is activated
+ * Resets toggle automatically after 1sec (without leaving fullscreenmode)
+ */
 function checkFullscreen() {
     let fullscreenToggle = document.getElementById('fullscreenToggle');
-
     if (fullscreenToggle.checked == true || fullscreenmode == false) {
         setTimeout(() => { canvas.requestFullscreen() }, 200);
         fullscreenmode = true;
-        setTimeout(() => { fullscreenToggle.checked = false }, 1000); // uncheck toggle (aka checkbox)
+        setTimeout(() => { fullscreenToggle.checked = false }, 1000); // uncheck toggle (is a checkbox)
     }
 }
 
+
+/**
+ * EventHandler Mute-Toggle 
+ * Sets Sounds and Background Audio to mute
+ */
 function checkAudioMuting() {
     let audioToggle = document.getElementById('musicToggle');
     if (audioToggle.checked || soundsMuted == false) {
@@ -125,8 +157,15 @@ function checkAudioMuting() {
     }
 }
 
+
+/**
+ * Iinitializes Audio  playAudio(AUDIOS.characterHurt, 0.1);
+ * @param {string} from AUDIOS
+ * @param {number} as volume (0 - 1)
+ * Throttle Swim Sound (if triggert permanently, it echoes)
+ * Array for all active Sounds is found in index.html !! as global defined to make it accessable right from start 
+ */
 function playAudio(soundData, volume) {
-    // swimming sound gives horrible echo when triggert permantently --> throttle it
     if (soundData == AUDIOS.characterSwim) {
         throttleAudio(soundData, volume);
         console.log('swimming requested')
@@ -139,9 +178,14 @@ function playAudio(soundData, volume) {
     allAudioPlaying.push(soundData);  // array allAudioPlaying is initialized in head (script) in index.html
 }
 
+
+/**
+ * Throttle Audio: Needed for swimming sound to fix audio quality
+ * @param {string} from AUDIOS
+ * @param {number} as volume (0 - 1)
+ */
 function throttleAudio(soundData, volume) {
     if (swimmingSound == true) return  // is globally per default: false
-
     swimmingSound = true;
     let sound = new Audio(soundData);
     sound.volume = volume;
@@ -152,18 +196,26 @@ function throttleAudio(soundData, volume) {
     }, 1000);
 }
 
-// ist das sinnvoll???
+
+/**
+ * Pause Audio
+ * @param {string} from AUDIOS
+ */
 function pauseAudio(soundData) {
     let newAudio = new Audio(soundData);
     newAudio.pause();
 }
 
-// wieso klappt das nicht mit async await??? im zweiten Console.log sind immer noch intervals übrig
-async function showGameOver(sharkyStatus) {
-    console.log('before', allIntervals)
-    await stopAllIntervals();
-    console.log('after', allIntervals)  // ist immer noch nicht auf 0--> wieso??
 
+/**
+ * Handle Game Over: Win and Loose of Character Sharky
+ * @param {string} sharkyWin or
+ * @param {string} sharkyLoose
+ * Initializes End szenario: Audio, Endscreen View
+ * Initializes Game Restart (startGameAgain) after 2sec of animation Endscreen
+ */
+function showGameOver(sharkyStatus) {
+    stopAllIntervals();
     document.getElementById('background-music').pause();
     document.getElementById('m-instructions-wrapper').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
@@ -179,10 +231,19 @@ async function showGameOver(sharkyStatus) {
     setTimeout(startGameAgain, 2900);
 }
 
+
+/**
+ * Restart Game after Endscreen (starts automatically after showGameOver())
+ * Redirect to Welcome Screen in same Browser Tab
+ */
 function startGameAgain() {
-    window.location.replace("welcome.html"); // opens url in same tab
+    window.location.replace("welcome.html");
 }
 
+
+/**
+ * Stop all Intervals in Interval Array ( for End of Game)
+ */
 function stopAllIntervals() {
     allIntervals.forEach(interval => {
         clearInterval(interval);
@@ -191,7 +252,12 @@ function stopAllIntervals() {
 }
 
 
-
+/**
+ * Handle Key Press Events for all relevant Game Keys
+ * @param {string} as key code
+ * @param {Event} for Keypress event
+ * toggles key variables to true
+ */
 window.addEventListener('keydown', event => {
     // Eventlistener is returning a JSON (console.log(event) >> the key "code" defines the key that was pressed)
     pressedKey = event.code;
@@ -216,32 +282,38 @@ window.addEventListener('keydown', event => {
     }
 })
 
-// Returning variables to false after keyup
+
+/**
+ * Handle Key UP Events for all relevant Game Keys
+ * @param {string} as key code
+ * @param {Event} for Keypress event
+ * toggles key variables to false when key is released
+ */
 window.addEventListener('keyup', event => {
     pressedKey = event.code;
 
     if (pressedKey === 'Space') {
         keyboard.SPACE = false;
-        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+        pressedKey = false; 
     }
     if (pressedKey === 'ArrowUp') {
         keyboard.UP = false;
-        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+        pressedKey = false; 
     }
     if (pressedKey === 'ArrowDown') {
         keyboard.DOWN = false;
-        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+        pressedKey = false; 
     }
     if (pressedKey === 'ArrowLeft') {
         keyboard.LEFT = false;
-        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+        pressedKey = false; 
     }
     if (pressedKey === 'ArrowRight') {
         keyboard.RIGHT = false;
-        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+        pressedKey = false; 
     }
     if (pressedKey === 'KeyD') {
         keyboard.KEYD = false;
-        pressedKey = false; // sets variable to false so the idle animation of sharky will play
+        pressedKey = false; 
     }
 })

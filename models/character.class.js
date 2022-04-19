@@ -1,16 +1,9 @@
-// "extends" states that class chicken is part of MovableObject >> gets all variables of Moveableobjects
-// constructor is a crucial part of Classes and run first, whenever a new character is created
-
 class Character extends MoveableObject {
     x = 100;
     y = 100;
     width = 300;
     height = 270;
     speed = 3;
-    // jellyfish = level1.jellyfish;
-
-
-    // call character.world to access variables of the world class ( e.g. keyboard)
     world;
 
     // Sharky, when chilling
@@ -114,8 +107,7 @@ class Character extends MoveableObject {
     }
 
     animateBasic() {
-        // Swim Animation per default
-        let intervalSharky1 = setInterval(() => {
+        let intervalSharky1 = setInterval(() => {   // Swim Animation per default
             if (pressedKey == false) { // no key is pressed
                 this.playAnimation(this.IMAGES_IDLE);
             }
@@ -166,6 +158,8 @@ class Character extends MoveableObject {
         }, 1000 / 60)
         allIntervals.push(intervalSharky2);
     }
+
+    
 
     deadAnimation() {
         let deadAnimationInterval = setInterval(() => {

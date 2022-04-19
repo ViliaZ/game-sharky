@@ -1,19 +1,18 @@
 class Endboss extends MoveableObject {
 
     x = 2 * 900;
-    y = -250;  // before introducing animation, it should be out of sight
+    y = -250;                       // before introducing animation, it should be out of sight
     height = 250;
     width = 340;
-    lifeEnergy = 100;  // default with start  - minus 25 with every hurt
+    lifeEnergy = 100;               // default with start  - minus 25 with every hurt
     speedGravity = 0.8;
     speedEscape = 4;
     accelerationEscape = 0.6;
     speedY = 0.4;
     acceleration = 1.5;
-
-    introAnimationDone = false;  // intro animation should only play once
-    isNearCharacter = false;  // is checked in world
-    moveUp = false;  // is checked in world
+    introAnimationDone = false;     // intro animation should only play once
+    isNearCharacter = false;        // is checked in world
+    moveUp = false;                 // is checked in world
 
     IMAGES_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -68,6 +67,8 @@ class Endboss extends MoveableObject {
         'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png'
     ]
 
+
+
     constructor() {
         super().loadImage(this.IMAGES_INTRODUCE[0]);
         this.loadImages(this.IMAGES_INTRODUCE);
@@ -77,6 +78,8 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
     }
+
+
 
     animate() {
         let intervalEndbossAnimation = setInterval(() => {
@@ -106,6 +109,8 @@ class Endboss extends MoveableObject {
         // allIntervals.push(intervalEndbossAnimation);
     }
 
+
+
     startAttack() {
         this.index = 0;
         let intervalAttack = setInterval(() => {
@@ -117,6 +122,8 @@ class Endboss extends MoveableObject {
         allIntervals.push(intervalAttack);
     };
 
+
+
     attackMovement(){
         this.x -= 12;
         if (this.moveUp) { // attack in direction of character 
@@ -127,6 +134,8 @@ class Endboss extends MoveableObject {
         }
     }
 
+
+
     toggleDirectionOfAttacks() {
         if (!this.moveUp) {
             this.moveUp = true;
@@ -135,6 +144,8 @@ class Endboss extends MoveableObject {
             this.moveUp = false;
         }
     }
+
+
 
     playIntro() {
         this.y = 60;
@@ -146,6 +157,8 @@ class Endboss extends MoveableObject {
         allIntervals.push(intervalEndboss);
         // playAudio(AUDIOS.characterNearEndboss);
     }
+
+
 
     turnAndRun() {
         let sinkingAnimation = setInterval(() => {
@@ -159,6 +172,8 @@ class Endboss extends MoveableObject {
         }, 1000);
     }
 
+
+
     finalEscape() {
         let intervalEscape = setInterval(() => {
             this.playAnimation(this.IMAGES_FLOATING);
@@ -170,6 +185,4 @@ class Endboss extends MoveableObject {
             showGameOver("sharkyWin")    // when calling a timout funtion with parameters, its written like this
         }, 1200)
     }
-
-
 }

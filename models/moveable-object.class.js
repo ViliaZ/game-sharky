@@ -11,7 +11,10 @@ class MoveableObject extends Drawableobject {
     hurtAnimationPlays = false;
 
 
-    // for bubbles out of sharkys mouth
+    /**
+     * Apply visual gravity effect for Bubbles
+     * acceleration adds speed to movement for more realistic look
+     */
     applyGravity() {
         let gravityInterval = setInterval(() => {
             if (this.objectIsAboveGround()) {
@@ -22,42 +25,76 @@ class MoveableObject extends Drawableobject {
         allIntervals.push(gravityInterval);
     }
 
-    // decrease Energy
-    hit(energyToLoose) {   // is called in world on collision detection 
+
+    /**
+     * Loose Energy after hit 
+     * Trigger: in world.js on collision detection
+     * Timpoint saved to add immunity after being hit (to throttle hit animation)
+     * @param {number} amount of energy to decrease with each hit
+     * @result decrease energy of the hit object
+     */
+    hit(energyToLoose) {
         this.energy -= energyToLoose;
-        // prevent from getting negative energy values
-        if (this.energy < 0) {
+        if (this.energy < 0) {  // prevent from getting negative energy values
             this.energy = 0
         }
-            this.lastHit = new Date().getTime();  // saves timepoint (in milliseconds since 1.1.1970)
+        this.lastHit = new Date().getTime();  // saves timepoint (in milliseconds since 1.1.1970)
     }
-  
-    // returns boolean: true or false
+
+
+    /**
+     * Throttle Hit Animation after beeing hurt: 500ms immunity after each hit
+     * @returns {boolean}
+     */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
         return timepassed < 500;    //  true or fals >> duration of hurt-animation >> as long as "timepassed" is <1sec 
     }
 
+
+    /**
+    * Dead Detection: Energy of 0
+    * @returns {boolean}
+    */
     isDead() {
-        return this.energy == 0;  // if this condition is true, then isDead() returnes true
+        return this.energy == 0;
     }
 
+    
+    /**
+    * Placement detection for objects - bubbles should not stop at ground
+    * 270px on y Axis is sea ground level (measured for character Object --> is different for all objects depending on png size )
+    * @returns {boolean}
+    */
     objectIsAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
-        }  // always true bc. bubbles should not stop at ground
+        }  
         else {
             return this.y < 200;
-        }  // 270px are sea ground (measured for the character object), NOTE that this is differnet for all images/objects depending on the png size
+        }  
     }
 
+
+    /**
+    * Animation Function
+    * @param {String Array} of images
+    * creates permanent circle of numbers from 0 to arraylength
+    * img-path as key in the array to find img in cache
+    */
     playAnimation(imageArray) {
-        let i = this.currentImage % imageArray.length   // creates permanent circle of numbers from 0 to arraylength
-        let path = imageArray[i];                       // path is the key to the variable in imageCache
+        let i = this.currentImage % imageArray.length  
+        let path = imageArray[i];                       
         this.img = this.imageCache[path];
         this.currentImage++;
     }
 
+
+    /**
+    * Animation Function for Single Play Animations
+    * @param {String Array} of images
+    * @param {String} for interval variable (each interval is attached to a variable name)
+    */
     playAnimationOnce(imageArray, interval) {
         let path = imageArray[this.index];     // index is 0 with start
         this.img = this.imageCache[path];
@@ -67,6 +104,12 @@ class MoveableObject extends Drawableobject {
         }
     }
 
+
+    /**
+    * Move object to left
+    * @param {number} Speedfactor to give puffersish different speed
+    * relevant for character, pufferfish and endboss
+    */
     moveLeft(speedFactor) {
         if (this instanceof Pufferfish) {
             let speedPufferfish = 0.20 + Math.random() * 1.5;
@@ -77,19 +120,30 @@ class MoveableObject extends Drawableobject {
         }
     };
 
+
+    /**
+    * Move object to Right
+    */
     moveRight() {
         this.x += this.speed;
     }
 
-    // detects IF character is colliding with any object > boolean
+
+    /**
+    * Move object to left
+    * @param {object} TypeOfObject 
+    * @returns {boolean} if object is colliding with character
+    * calculates crossing points with adjustments 
+    * png images are much bigger than real visual objects --> collision coordinates are adjusted here
+    */
     isColliding(object) {
         // give the corrdinates an offset to compensate for empty space around images
-        return this.x + 50 + (this.width-150) > object.x &&
-            (this.y + 130) + (this.height-180) > object.y &&
-            (this.x+50) < object.x &&
+        return this.x + 50 + (this.width - 150) > object.x &&
+            (this.y + 130) + (this.height - 180) > object.y &&
+            (this.x + 50) < object.x &&
             (this.y + 130) < object.y + object.height
     }
 
 
-    
+
 }

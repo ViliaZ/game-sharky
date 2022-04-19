@@ -1,6 +1,7 @@
-class Coins extends Drawableobject{  // only when coins are collected, its possible to throw bubbles
+class Coins extends Drawableobject {  
+// NOTE: only when coins are collected, its possible to throw bubbles
 
-    x = 550 + Math.random() * (3*500);// min = 200 max=700  
+    x = 550 + Math.random() * (3 * 500);// min = 200 max=700  
     y = 1 + Math.random() * 700;// min = 1 max=700  
 
     width = 45;
@@ -8,8 +9,13 @@ class Coins extends Drawableobject{  // only when coins are collected, its possi
 
     IMAGE = ['img/4. Marcadores/1. Coins/3.png']
 
-
-    constructor(){
+    /**
+     * Create new Instance of Coins
+     * Amount of Coins can be modified in level.js 
+     * Each image is loaded/drawn in Drawableobject Class
+     * Random Placement according to x and y Coordinates
+     */
+    constructor() {
         super().loadImage('img/4. Marcadores/1. Coins/3.png')
     }
 

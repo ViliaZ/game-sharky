@@ -1,11 +1,9 @@
 class Statusbar extends Drawableobject {  // statusbar for character
-
     x = 10;
     y = 0;
     width = 175;
     height = 50;
     percentage;  // initially 100% life energy
-
 
     IMAGES = [
         'img/4. Marcadores/green/Life/0_  copia 3.png',  // 0
@@ -16,19 +14,34 @@ class Statusbar extends Drawableobject {  // statusbar for character
         'img/4. Marcadores/green/Life/100_  copia 2.png'  // 5
     ]
 
+
+    /**
+     * Character Statusbar shows Energylevel
+     * Initializes Statusbar
+     * Set to 100% Life Energy as Start point
+     */
     constructor() {
         super();                            // initialize all mehtods and variable from overarching class
         this.loadImages(this.IMAGES);       // load images to imageCache
         this.setPercentage(100);            // initially load img with 100 percent life energy
     }
 
+
+    /**
+     * Updates EnergyStatus of Character
+     * @param {number} percentage
+     * loads image with correct percentage view according to energy level
+     */
     setPercentage(percentage){
         this.percentage = percentage;       // applies argument to local variable (this.percentage)
         let path = this.IMAGES[this.resolvePercentage()]    // path is the key to the variable in imageCache
         this.img = this.imageCache[path];
     }
 
-    // will return a number >> used as index for Images Array
+
+    /** Resolves current EnergyLevel in %
+     * @return {number} from 0 to 5 that is used as index for Images Array in setPercentage() to laod statusbar image
+     */
     resolvePercentage() {   
         if (this.percentage == 100) {
             return 5; }

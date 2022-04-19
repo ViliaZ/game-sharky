@@ -1,5 +1,12 @@
-// creating a new instance of Level and filling it with all objects content --> currently 4 Arrays: coins, enemies-array, jellyfish, backgroundObjects-array
 
+/**
+ * Instance of Level  with all objects in that level (except character) and endboss
+ * @param {objects} Coins  - multiple
+ * @param {objects} Pufferfish  - multiple
+ * @param {objects} Endboss  - single
+ * @param {objects} Jellyfish - multiple
+ * @param {objects} BackgroundObject - multiple
+ */
 const level1 = new Level(
     [
         new Coins(),
