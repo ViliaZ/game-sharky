@@ -68,7 +68,11 @@ class Endboss extends MoveableObject {
     ]
 
 
-
+    /**
+     * Create new Instance of Endboss
+     * load all images into cache with loadImages() --> in drawableObjects
+     * start animation after initializing
+     */
     constructor() {
         super().loadImage(this.IMAGES_INTRODUCE[0]);
         this.loadImages(this.IMAGES_INTRODUCE);
@@ -80,7 +84,13 @@ class Endboss extends MoveableObject {
     }
 
 
-
+    /**
+     * Basic Animations for Endboss
+     * Intro-Animation (only played once)
+     * Floating-Animation (starts after Intro)
+     * Hurt-Animation (after bubble collision)
+     * Dead-Animation
+     */
     animate() {
         let intervalEndbossAnimation = setInterval(() => {
             if (this.isDead() && this.objectIsAboveGround()) {
@@ -96,21 +106,41 @@ class Endboss extends MoveableObject {
                     this.introAnimationDone = true;
                 }
             }
-            // start Intro Animation (is running only ONCE)
             else if (this.isNearCharacter === true && this.introAnimationDone === false) {
                 this.playIntro();
                 playAudio(AUDIOS.nearEndboss, 1)
             }
-            // start normal floating when Intro Animation was done
-            else if (this.introAnimationDone === true) {
+            else if (this.introAnimationDone === true) {       // start normal floating when Intro Animation was done
                 this.playAnimation(this.IMAGES_FLOATING);
             }
         }, 1000 / 5);
-        // allIntervals.push(intervalEndbossAnimation);
+        allIntervals.push(intervalEndbossAnimation);
     }
 
 
+    /**
+     * Animation Introduction Movement, playing once
+     * before Intro, Endboss is placed outside of view
+     * Intro Audio is initialized
+     */
+     playIntro() {
+        this.y = 60;
+        this.index = 0; // index of image array where the animation starts
+        let intervalEndboss = setInterval(() => {
+            this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
+        }, 1000 / 10);
+        this.introAnimationDone = true;
+        allIntervals.push(intervalEndboss);
+        playAudio(AUDIOS.characterNearEndboss);
+    }
 
+
+    /**
+     * Animation for Starting Attack against Character
+     * Implements AttackAnimation 
+     * Implements up/ down - movement (attackMovement()) in direction of character
+     * while attacking plays, disable hurtanimation
+     */
     startAttack() {
         this.index = 0;
         let intervalAttack = setInterval(() => {
@@ -123,10 +153,16 @@ class Endboss extends MoveableObject {
     };
 
 
-
+    /**
+     * Setting Direction (up or down movement) for Attacks against Character
+     * the direction will be toggled: up and down
+     * Note: sharky will be almost never beneath endboss (when bubbles are thrown they sharky needs
+     * to be above midline to get bubbles to hurt sharky). 
+     * To prevent Endboss to go endlessly up, the direction is toggled: 1 x up then 1 x down
+     */
     attackMovement(){
         this.x -= 12;
-        if (this.moveUp) { // attack in direction of character 
+        if (this.moveUp) { 
             this.y += 8;
         }
         else {
@@ -135,7 +171,10 @@ class Endboss extends MoveableObject {
     }
 
 
-
+    /**
+     * Toggle Direction of Attack-Movement
+     * 2 Variations: Up-Movement / Down-Movement, alternating
+     */
     toggleDirectionOfAttacks() {
         if (!this.moveUp) {
             this.moveUp = true;
@@ -146,20 +185,11 @@ class Endboss extends MoveableObject {
     }
 
 
-
-    playIntro() {
-        this.y = 60;
-        this.index = 0; // index of image array where the animation starts
-        let intervalEndboss = setInterval(() => {
-            this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
-        }, 1000 / 10);
-        this.introAnimationDone = true;
-        allIntervals.push(intervalEndboss);
-        // playAudio(AUDIOS.characterNearEndboss);
-    }
-
-
-
+    /**
+     * Animation when Endboss is defeated by bubbles
+     * Endobss sinkes downwards with dead-animation playing
+     * before reaching ground, sinking stopped, final Escape Animation triggered (he turns direction and swims away out of viewport)
+     */
     turnAndRun() {
         let sinkingAnimation = setInterval(() => {
             this.applyGravity();
@@ -173,7 +203,12 @@ class Endboss extends MoveableObject {
     }
 
 
-
+    /**
+     * Part of turn and Run animation sequence at defeat
+     * Endobss turns direction and moves in opposite direction with increased speed
+     * triggers Game Status: SharkyWins
+     * @returns Status "sharkyWin" for showGameOver() --> game.js with endcard animation triggered
+     */
     finalEscape() {
         let intervalEscape = setInterval(() => {
             this.playAnimation(this.IMAGES_FLOATING);

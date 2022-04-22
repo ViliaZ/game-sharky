@@ -94,6 +94,11 @@ class Character extends MoveableObject {
         'img/1.Sharkie/6.dead/2.Electro_shock/10.png'
     ]
 
+    /**
+     * Create new Instance of Character
+     * load all images into cache with loadImages() --> in drawableObjects
+     * start animations after initializing
+     */
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
@@ -106,6 +111,10 @@ class Character extends MoveableObject {
         this.animateConditions();
     }
 
+    /**
+     * Animations for idle and swim to right side
+     * One of these animations will always play, if no other animation of sharky is active
+     */
     animateBasic() {
         let intervalSharky1 = setInterval(() => {   // Swim Animation per default
             if (pressedKey == false) { // no key is pressed
@@ -118,6 +127,11 @@ class Character extends MoveableObject {
         allIntervals.push(intervalSharky1);
     }
 
+    /**
+     * Animations for different states of sharky: dead, hurt 
+     * Animations for different directions: change directeion to left (attach camera-movement to character-movement), swim up, swim down
+     * Animations for Attacks: bubbles throwing, finslap
+     */
     animateConditions() {
         let intervalSharky2 = setInterval(() => {
             if (this.isDead()) {
@@ -160,7 +174,10 @@ class Character extends MoveableObject {
     }
 
     
-
+   /**
+     * Animation for dead state
+     * Dead Status triggers Status "sharkyLoose" --> will trigger Endscreen in Game.js 
+     */
     deadAnimation() {
         let deadAnimationInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_DEAD);

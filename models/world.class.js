@@ -109,11 +109,11 @@ class World {
     * Checking Function: Detect GameOver (defined in game.js)
     * Call showGameOver() with correct win status
     */
-         checkGameOver() {
-            if (gameOver) {
-                showGameOver(win);
-            }
+    checkGameOver() {
+        if (gameOver) {
+            showGameOver(win);
         }
+    }
     
 
     /**

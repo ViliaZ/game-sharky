@@ -159,7 +159,7 @@ function checkAudioMuting() {
 
 
 /**
- * Iinitializes Audio  playAudio(AUDIOS.characterHurt, 0.1);
+ * Initializes Audio Sounds;
  * @param {string} from AUDIOS
  * @param {number} as volume (0 - 1)
  * Throttle Swim Sound (if triggert permanently, it echoes)
@@ -168,8 +168,8 @@ function checkAudioMuting() {
 function playAudio(soundData, volume) {
     if (soundData == AUDIOS.characterSwim) {
         throttleAudio(soundData, volume);
-        console.log('swimming requested')
-    }
+    }    
+
     else {
         let sound = new Audio(soundData);
         sound.volume = volume;
@@ -187,6 +187,7 @@ function playAudio(soundData, volume) {
 function throttleAudio(soundData, volume) {
     if (swimmingSound == true) return  // is globally per default: false
     swimmingSound = true;
+
     let sound = new Audio(soundData);
     sound.volume = volume;
 
