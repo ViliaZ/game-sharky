@@ -2,6 +2,8 @@ class Pufferfish extends MoveableObject {
     width = 65;
     height = 55;
     changedColor = false; // color change when hurt with bubble
+    gotHurt = false; // toggle to true, after beeing hurt, irreversible
+    swimUp = false; // toggle between up and down movement if making zigzagMove after hurt
 
     // normal
     IMAGES_GREEN = [
@@ -51,15 +53,19 @@ class Pufferfish extends MoveableObject {
      * Pufferfish Animation 
      * Animation: Swim Left, Change Color and increase speed when hurt by bubble
      * Animation: Escape Up when hurt by Finslap
+     * isHUrt() returns from world checkIfEnemyHurt(bubble)
      */
     animate() {
         let pufferfishInterval = setInterval(() => {
+            if(this.gotHurt == true){
+                this.swimZigZag();
+            }
             this.playAnimation(this.IMAGES_GREEN);
             this.moveLeft(1);
-
             if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_TRANSITION_RED);
+                this.gotHurt = true;
                 this.changedColor = true;
+                this.playAnimation(this.IMAGES_TRANSITION_RED);
                 this.moveLeft(2);
             }
             else if (this.changedColor == true) {
@@ -68,5 +74,21 @@ class Pufferfish extends MoveableObject {
             }
         }, 150);
         allIntervals.push(pufferfishInterval);
+    }
+
+    swimZigZag(){
+        if(this.swimUp){
+            this.y = this.y+ 1 + Math.random() * 4;
+           setTimeout(()=>{
+            this.swimUp = false
+           },700) 
+        }
+        if(!this.swimUp){
+            this.y = this.y- (1 + Math.random() * 3);
+            setTimeout(()=>{
+                this.swimUp = true
+               },700) 
+
+        }
     }
 }
