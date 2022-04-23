@@ -5,6 +5,7 @@ class Character extends MoveableObject {
     height = 270;
     speed = 3;
     world;
+    finslapping = false;
 
     // Sharky, when chilling
     IMAGES_IDLE = [
@@ -157,10 +158,16 @@ class Character extends MoveableObject {
             }
             if (this.isAboveGround() && (this.world.keyboard.DOWN || this.world.touchevents.touchDOWN == true)) {
                 this.y += this.speed;
-            } else if (this.world.keyboard.KEYD || this.world.touchevents.touchFINSLAP == true) {
+            } 
+            else if (this.finslapping == false && (this.world.keyboard.KEYD || this.world.touchevents.touchFINSLAP == true)) {
                 this.playAnimation(this.IMAGES_FINSLAP)
                 playAudio(AUDIOS.finslap, 0.1)
-            } else if (this.world.bubbleRequested() && this.world.bubbleCreating == false) {
+                this.finslapping = true;
+                setTimeout(() => {
+                    this.finslapping = false;
+                }, 125);
+            } 
+            else if (this.world.bubbleRequested() && this.world.bubbleCreating == false) {
                 this.playAnimation(this.IMAGES_THROWING)
                 setTimeout(() => {
                     this.world.bubbleCreating = false;
@@ -173,7 +180,7 @@ class Character extends MoveableObject {
     }
 
 
-     /**
+    /**
      * Check if upper viewport reached
      * @returns {boolean} 
      * if true --> disable upward movement
@@ -192,7 +199,7 @@ class Character extends MoveableObject {
      * @returns {boolean} 
      * if true --> disable downward movement
      */
-    isAboveGround(){
+    isAboveGround() {
         if (this.y > 290) {
             return false
         } else {
