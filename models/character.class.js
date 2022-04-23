@@ -101,7 +101,7 @@ class Character extends MoveableObject {
      */
     constructor() {
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
-        this.loadImages(this.IMAGES_IDLE);   // method defined in moveable objects (cannot use super() because Parameter is an array)
+        this.loadImages(this.IMAGES_IDLE); // method defined in moveable objects (cannot use super() because Parameter is an array)
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_THROWING);
         this.loadImages(this.IMAGES_HURT);
@@ -116,11 +116,10 @@ class Character extends MoveableObject {
      * One of these animations will always play, if no other animation of sharky is active
      */
     animateBasic() {
-        let intervalSharky1 = setInterval(() => {   // Swim Animation per default
+        let intervalSharky1 = setInterval(() => { // Swim Animation per default
             if (pressedKey == false) { // no key is pressed
                 this.playAnimation(this.IMAGES_IDLE);
-            }
-            else {
+            } else {
                 this.playAnimation(this.IMAGES_SWIM);
             }
         }, 1000 / 5);
@@ -138,43 +137,71 @@ class Character extends MoveableObject {
                 clearInterval(intervalSharky2)
                 pauseAudio(AUDIOS.characterHurt);
                 this.deadAnimation();
-            }
-            else if (this.isHurt() && !this.isDead()) {
+            } else if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
                 playAudio(AUDIOS.characterHurt, 0.1);
             }
-            if ((this.world.keyboard.RIGHT || this.world.touchevents.touchRIGHT == true) && this.x < world.level.canvas_end_x) {  // if moving right and end of map reached
+            if ((this.world.keyboard.RIGHT || this.world.touchevents.touchRIGHT == true) && this.x < world.level.canvas_end_x) { // if moving right and end of map reached
                 this.moveRight();
                 this.otherDirection = false;
                 playAudio(AUDIOS.characterSwim, 0.1)
             }
-            if ((this.world.keyboard.LEFT || this.world.touchevents.touchLEFT == true) && this.x > 0) {  // 50px marks the left )
+            if ((this.world.keyboard.LEFT || this.world.touchevents.touchLEFT == true) && this.x > 0) { // 50px marks the left )
                 this.moveLeft();
-                this.otherDirection = true;     // mirroring img of character
+                this.otherDirection = true; // mirroring img of character
                 playAudio(AUDIOS.characterSwim, 0.1)
             }
-            if (this.world.keyboard.UP || this.world.touchevents.touchUP == true) {
+            if (this.insideUpperView() && (this.world.keyboard.UP || this.world.touchevents.touchUP == true)) {
                 this.y -= this.speed;
+
             }
-            if (this.world.keyboard.DOWN || this.world.touchevents.touchDOWN == true) {
+            if (this.isAboveGround() && (this.world.keyboard.DOWN || this.world.touchevents.touchDOWN == true)) {
                 this.y += this.speed;
-            }
-            else if (this.world.keyboard.KEYD || this.world.touchevents.touchFINSLAP == true) {
+            } else if (this.world.keyboard.KEYD || this.world.touchevents.touchFINSLAP == true) {
                 this.playAnimation(this.IMAGES_FINSLAP)
                 playAudio(AUDIOS.finslap, 0.1)
-            }
-            else if (this.world.bubbleRequested() && this.world.bubbleCreating == false) {
+            } else if (this.world.bubbleRequested() && this.world.bubbleCreating == false) {
                 this.playAnimation(this.IMAGES_THROWING)
-                setTimeout(() => { this.world.bubbleCreating = false; }, 1000);
+                setTimeout(() => {
+                    this.world.bubbleCreating = false;
+                }, 1000);
             }
             // attach camera-movement to character-movement
-            this.world.camera_x = -this.x + 50;  // 100px so that character does not attach too close to left border
+            this.world.camera_x = -this.x + 50; // 100px so that character does not attach too close to left border
         }, 1000 / 60)
         allIntervals.push(intervalSharky2);
     }
 
-    
-   /**
+
+     /**
+     * Check if upper viewport reached
+     * @returns {boolean} 
+     * if true --> disable upward movement
+     */
+    insideUpperView() {
+        if (this.y < -150) {
+            return false
+        } else {
+            return true
+        }
+    }
+
+
+    /**
+     * Check if bottom viewport reached
+     * @returns {boolean} 
+     * if true --> disable downward movement
+     */
+    isAboveGround(){
+        if (this.y > 290) {
+            return false
+        } else {
+            return true
+        }
+    }
+
+
+    /**
      * Animation for dead state
      * Dead Status triggers Status "sharkyLoose" --> will trigger Endscreen in Game.js 
      */
@@ -185,7 +212,7 @@ class Character extends MoveableObject {
         setTimeout(() => {
             clearInterval(deadAnimationInterval);
             showGameOver("sharkyLoose")
-        }, 1200)  // when calling a timout funtion with parameters, its written like this
+        }, 1200) // when calling a timout funtion with parameters, its written like this
 
     }
 }

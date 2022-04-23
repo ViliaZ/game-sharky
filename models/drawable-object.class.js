@@ -54,7 +54,7 @@ class Drawableobject {
      * rect() is a JS function with 4 Paramters: x, y, width, height
      */
     drawFrames(ctx) {
-        if (this instanceof Character || this instanceof Endboss || this instanceof Pufferfish) {  // exclude backgroundObjects from frames
+        if (this instanceof Character || this instanceof Endboss || this instanceof Pufferfish ||this instanceof Jellyfish ) {  // exclude backgroundObjects from frames
             ctx.beginPath();
             ctx.lineWidth = '4';
             ctx.strokeStyle = 'orange';

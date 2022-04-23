@@ -2,8 +2,9 @@ class Jellyfish extends MoveableObject {
 
     x = 200 + Math.random() * (3 * 500);  // min = 200 max=700  
     y = 1 + Math.random() * 700;        // min = 1 max=700  
-    width = 50;
-    height = 70;
+
+    width = 60;
+    height = 80;
     swimUp = true;
     escape = false;                     //turns true if get hurt
     speedY = 3;                         // for escape
@@ -38,7 +39,7 @@ class Jellyfish extends MoveableObject {
 
     /**
      * Jellyfish Animation 
-     * Animation: Swim Up and down (restricted by viewport height)
+     * Animation: Swim Up and down (restricted by viewport height, then turn direction)
      * Animation: Escape Up when hurt by Finslap
      */
     animate() {
