@@ -4,6 +4,25 @@
     box-sizing: border-box;
 }
 
+
+audio{
+    position: absolute;
+    width: 76%;
+    filter: invert(1);
+    bottom: 2;
+    right: 4px;
+    height: 18px;
+}
+
+audio:hover{
+    width: 145%;
+    right: unset; 
+    left: 0px;
+}
+
+
+
+
 /***** use own font (e.g. as tff) ******/
 @font-face {
     font-family: luckiestGuy;
