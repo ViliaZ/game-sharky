@@ -206,6 +206,7 @@ body {
 /*******  Instructions DESKTOP *********/
 
 .game-instructions {
+    transform: translateY(300px);
     width: 100%;
     display: flex;
     flex-direction: row;

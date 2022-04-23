@@ -15,7 +15,7 @@ let touchedButton = false; // on mobile: either undefined (no button touched) or
  */
 function animationEnterScreen() {
     let instructionsPanel = document.getElementById('game-instructions');
-    instructionsPanel.classList.add('animationSlideFromButtom');
+    instructionsPanel.classList.add('animationSlideFromBottom');
     canvas = document.getElementById('canvas');
     canvas.classList.add('canvasEnter');
     startGame();
