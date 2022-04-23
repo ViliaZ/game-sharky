@@ -54,13 +54,14 @@ class Drawableobject {
      * rect() is a JS function with 4 Paramters: x, y, width, height
      */
     drawFrames(ctx) {
-        if (this instanceof Character || this instanceof Endboss || this instanceof Pufferfish ||this instanceof Jellyfish ) {  // exclude backgroundObjects from frames
-            ctx.beginPath();
-            ctx.lineWidth = '4';
-            ctx.strokeStyle = 'orange';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
+        console.log('frames only active in development mode');
+        // if (this instanceof Character || this instanceof Endboss || this instanceof Pufferfish ||this instanceof Jellyfish ) {  // exclude backgroundObjects from frames
+        //     ctx.beginPath();
+        //     ctx.lineWidth = '4';
+        //     ctx.strokeStyle = 'orange';
+        //     ctx.rect(this.x, this.y, this.width, this.height);
+        //     ctx.stroke();
+        // }
     }
 
 }

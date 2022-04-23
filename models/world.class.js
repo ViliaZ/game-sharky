@@ -332,13 +332,15 @@ class World {
      * Execution inside of draw()
      * @param {object} MoveableObject
      * Detection of Object Direction to trigger mirroring the context
+     * NOTE: moveableObject.drawFrames(this.ctx); can be activated in DEVELOPMENT MODE
+     * moveableObject.drawFrames(this.ctx); draws frames around each object, is commented out for UX purposes
      */
     addToMap(moveableObject) {
         if (moveableObject.otherDirection) {
             this.flipImage(moveableObject);
         }
         moveableObject.draw(this.ctx); // draw mirrored image on context
-        moveableObject.drawFrames(this.ctx); // draw frames around each object for helping programming the collision effects
+        // moveableObject.drawFrames(this.ctx); // draw frames around each object for helping programming the collision effects
         // if we mirrored the context before drawing the image, reverse context to normal again after drawing
         if (moveableObject.otherDirection) {
             this.flipImageBack(moveableObject);
