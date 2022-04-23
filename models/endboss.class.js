@@ -13,6 +13,7 @@ class Endboss extends MoveableObject {
     introAnimationDone = false;     // intro animation should only play once
     isNearCharacter = false;        // is checked in world
     moveUp = false;                 // is checked in world
+    wasHurt = false;                // if true, the endboss got already hurt once, triggers forward motion
 
     IMAGES_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -93,12 +94,16 @@ class Endboss extends MoveableObject {
      */
     animate() {
         let intervalEndbossAnimation = setInterval(() => {
+            if(this.wasHurt){
+                this.x -=6;
+            }
             if (this.isDead() && this.objectIsAboveGround()) {
                 clearInterval(intervalEndbossAnimation); // when calling a timout funtion with parameters, its written like this
                 this.hurtAnimationPlays = true;  // prevent hurt Animation from playing again
                 this.turnAndRun();
             }
             else if (this.isHurt() && !this.isDead() && this.hurtAnimationPlays === false) {
+                this.wasHurt = true; // checks if already hurt once
                 this.hurtAnimationPlays = true;
                 this.playAnimation(this.IMAGES_HURT);
                 this.startAttack();
