@@ -78,6 +78,12 @@ class Pufferfish extends MoveableObject {
         allIntervals.push(pufferfishInterval);
     }
 
+    /**
+     * Pufferfish Animation 
+     * Animation: Swim Left, Change Color and increase speed when hurt by bubble
+     * Animation: Escape Up when hurt by Finslap
+     * isHUrt() returns from world checkIfEnemyHurt(bubble)
+     */
     growBigger(){
         if(!this.gotHurt){
             this.width+=12;
@@ -85,6 +91,12 @@ class Pufferfish extends MoveableObject {
         }
     }
 
+    /**
+    * Pufferfish Animation 
+    * Animation: Swim Left, Change Color and increase speed when hurt by bubble
+    * Animation: Escape Up when hurt by Finslap
+    * isHUrt() returns from world checkIfEnemyHurt(bubble)
+    */
     swimZigZag(){
         if(this.swimUp){
             this.y = this.y+ 1 + Math.random() * 4;
