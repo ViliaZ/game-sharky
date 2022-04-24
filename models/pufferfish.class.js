@@ -79,10 +79,9 @@ class Pufferfish extends MoveableObject {
     }
 
     /**
-     * Pufferfish Animation 
-     * Animation: Swim Left, Change Color and increase speed when hurt by bubble
-     * Animation: Escape Up when hurt by Finslap
-     * isHUrt() returns from world checkIfEnemyHurt(bubble)
+     * Pufferfish Animation  
+     * Increase Width and height after beeing hurt first time
+     * Not triggered when hurt multiple times
      */
     growBigger(){
         if(!this.gotHurt){
@@ -93,9 +92,7 @@ class Pufferfish extends MoveableObject {
 
     /**
     * Pufferfish Animation 
-    * Animation: Swim Left, Change Color and increase speed when hurt by bubble
-    * Animation: Escape Up when hurt by Finslap
-    * isHUrt() returns from world checkIfEnemyHurt(bubble)
+    * Swim Zig Zag Movement after beeing hurt
     */
     swimZigZag(){
         if(this.swimUp){
