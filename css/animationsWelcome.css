@@ -7,7 +7,7 @@
     text-align: center;
 }
 .wateranimation{
-    background-image: url("img/wateranimation.png");
+    background-image: url("/img/wateranimation.png");
     background-repeat: repeat-x;
     animation: wateranimation 2.2s linear forwards;
     animation-iteration-count: 1;

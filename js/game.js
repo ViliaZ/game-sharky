@@ -1,14 +1,13 @@
 let canvas;
 let world;
-let gameOver = false;
-let fullscreenmode = false; 
+let keyboard = new Keyboard();
+let touchedButton = false; // on mobile: either undefined (no button touched) or definied with the pressed key code 
+let touchevents; 
 let soundsMuted = false;  // doesnt include bgMusic (this is HTML tag "audio")
 let swimmingSound = false;
-let keyboard = new Keyboard();
-let touchevents = new Touchevents();  // for mobile use
 let pressedKey = false;  // either undefined (no key pressed) or definied with the pressed key code 
-let touchedButton = false; // on mobile: either undefined (no button touched) or definied with the pressed key code 
-
+let gameOver = false;
+let fullscreenmode = false; 
 
 /**
  * Initialize Enter Animation for Game screen
@@ -26,11 +25,10 @@ function animationEnterScreen() {
  * Initialize New World Class
  */
 function startGame() {
+    touchevents = new Touchevents(); 
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard, touchevents);  // transfer the two variables to world class, >> make them accessable there
     document.getElementById('background-music').volume = 0.07;  // for BG music only info: to insert volume attribute in HTML TAG directly did not work, 
-    addToucheventListenerStart();
-    addToucheventListenerStop();
 }
 
 
@@ -62,66 +60,6 @@ function showGameTipp() {
     setTimeout(() => {
         tipContainer.classList.add('d-none');
     }, 8000);
-}
-
-
-/**
- * EventHandler Touchevents (mobile only)
- * Trigger: touch starts
- */
-function addToucheventListenerStart() {  // for mobile usage
-    document.getElementById('m-btn-bubble').addEventListener('touchstart', e => {
-        touchevents.touchBUBBLE = true;
-    });
-    document.getElementById('m-btn-finslap').addEventListener('touchstart', e => {
-        touchevents.touchFINSLAP = true;
-    });
-    document.getElementById('m-up').addEventListener('touchstart', e => {
-        touchevents.touchUP = true;
-    });
-    document.getElementById('m-down').addEventListener('touchstart', e => {
-        touchevents.touchDOWN = true;
-    });
-    document.getElementById('m-right').addEventListener('touchstart', e => {
-        touchevents.touchRIGHT = true;
-    });
-    document.getElementById('m-left').addEventListener('touchstart', e => {
-        touchevents.touchLEFT = true;
-    });
-    document.getElementById('musicToggle').addEventListener('touchstart', e => {
-        touchevents.touchAUDIOOFF = true;
-
-    });
-}
-
-
-/**
- * EventHandler Touchevents (mobile only)
- * Trigger: touch stops
- */
-function addToucheventListenerStop() {  // for mobile usage
-    document.getElementById('m-btn-bubble').addEventListener('touchend', e => {
-        touchevents.touchBUBBLE = false;
-    });
-    document.getElementById('m-btn-finslap').addEventListener('touchend', e => {
-        touchevents.touchFINSLAP = false;
-    });
-    document.getElementById('m-up').addEventListener('touchend', e => {
-        touchevents.touchUP = false;
-    });
-    document.getElementById('m-down').addEventListener('touchend', e => {
-        touchevents.touchDOWN = false;
-    });
-    document.getElementById('m-right').addEventListener('touchend', e => {
-        touchevents.touchRIGHT = false;
-    });
-    document.getElementById('m-left').addEventListener('touchend', e => {
-        touchevents.touchLEFT = false;
-    });
-    document.getElementById('musicToggle').addEventListener('touchend', e => {
-        touchevents.touchAUDIOOFF = false;
-        // start all Audio again;
-    });
 }
 
 

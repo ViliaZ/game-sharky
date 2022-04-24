@@ -4,29 +4,10 @@
     box-sizing: border-box;
 }
 
-
-audio{
-    position: absolute;
-    width: 76%;
-    filter: invert(1);
-    bottom: 2;
-    right: 4px;
-    height: 18px;
-}
-
-audio:hover{
-    width: 145%;
-    right: unset; 
-    left: 0px;
-}
-
-
-
-
 /***** use own font (e.g. as tff) ******/
 @font-face {
     font-family: luckiestGuy;
-    src: url(img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf);
+    src: url(/img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf);
 }
 .pos-rel {
     position: relative;
@@ -121,7 +102,7 @@ canvas {
 }
 
 canvas:fullscreen {
-    background-image: url("img/3. Background/Layers/5. Water/D2.png");
+    background-image: url("/img/3. Background/Layers/5. Water/D2.png");
 }
 
 h1 {
@@ -139,11 +120,12 @@ h3 {
 }
 
 body {
+    position: relative;
     font-family: luckiestGuy;
     color: white;
     flex-direction: column;
     height: 100vh;
-    background-image: url("img/3. Background/Layers/5. Water/D2.png");
+    background-image: url("/img/3. Background/Layers/5. Water/D2.png");
 }
 
 /** mobile instructions panel**/
@@ -354,6 +336,22 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+/*** AUDIO SETTINGS ON MAIN SCREEN ***/
+
+audio{
+    position: absolute;
+    width: 76%;
+    filter: invert(1);
+    bottom: 2;
+    right: 4px;
+    height: 18px;
+}
+
+audio:hover{
+    width: 145%;
+    right: unset; 
+    left: 0px;
+}
 
 /******** ON TOUCHDEVICES OVER 720px ************/
 

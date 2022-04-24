@@ -45,7 +45,7 @@ class Pufferfish extends MoveableObject {
         this.loadImages(this.IMAGES_SWIM_RED)
         this.loadImages(this.IMAGES_TRANSITION_RED)
         this.x = 300 + Math.random() * (3*500);// min = 400 max=700  
-        this.y = 1 + Math.random() * 450;// min = 1 max=700  
+        this.y = 1 + Math.random() * 430;// min = 1 max=700  
         this.animate();
     }
 
@@ -62,18 +62,27 @@ class Pufferfish extends MoveableObject {
             }
             this.playAnimation(this.IMAGES_GREEN);
             this.moveLeft(1);
-            if (this.isHurt()) {
+            if (this.isHurt()) {                
+                this.growBigger();
                 this.gotHurt = true;
                 this.changedColor = true;
                 this.playAnimation(this.IMAGES_TRANSITION_RED);
                 this.moveLeft(2);
             }
+
             else if (this.changedColor == true) {
                 this.playAnimation(this.IMAGES_SWIM_RED);
                 this.moveLeft(2);
             }
         }, 150);
         allIntervals.push(pufferfishInterval);
+    }
+
+    growBigger(){
+        if(!this.gotHurt){
+            this.width+=12;
+            this.height+=12;
+        }
     }
 
     swimZigZag(){
