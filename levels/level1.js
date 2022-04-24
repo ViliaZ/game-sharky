@@ -43,9 +43,7 @@ const level1 = new Level(
         new Jellyfish(),
         new Jellyfish(),
         new Jellyfish(),        
-        new Jellyfish(),
-        new Jellyfish(),
-        new Jellyfish(),        
+        new Jellyfish(),     
         new Jellyfish(),
         new Jellyfish()
     ],

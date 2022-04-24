@@ -107,13 +107,12 @@ class Endboss extends MoveableObject {
                 this.hurtAnimationPlays = true;
                 this.playAnimation(this.IMAGES_HURT);
                 this.startAttack();
-                if (this.introAnimationDone === false) {
+                if (this.introAnimationDone == false) {
                     this.introAnimationDone = true;
                 }
             }
-            else if (this.isNearCharacter === true && this.introAnimationDone === false) {
+            else if (this.isNearCharacter == true && this.introAnimationDone === false) {
                 this.playIntro();
-                playAudio(AUDIOS.nearEndboss, 1)
             }
             else if (this.introAnimationDone === true) {       // start normal floating when Intro Animation was done
                 this.playAnimation(this.IMAGES_FLOATING);
@@ -134,9 +133,10 @@ class Endboss extends MoveableObject {
         let intervalEndboss = setInterval(() => {
             this.playAnimationOnce(this.IMAGES_INTRODUCE, intervalEndboss);
         }, 1000 / 10);
+        console.log('endbossAudio');
         this.introAnimationDone = true;
         allIntervals.push(intervalEndboss);
-        playAudio(AUDIOS.characterNearEndboss);
+        playAudio(AUDIOS.nearEndboss, 1);
     }
 
 

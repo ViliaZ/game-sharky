@@ -1,6 +1,6 @@
 class Pufferfish extends MoveableObject {
-    width = 65;
-    height = 55;
+    width = 80;
+    height = 70;
     changedColor = false; // color change when hurt with bubble
     gotHurt = false; // toggle to true, after beeing hurt, irreversible
     swimUp = false; // toggle between up and down movement if making zigzagMove after hurt
@@ -44,8 +44,8 @@ class Pufferfish extends MoveableObject {
         this.loadImages(this.IMAGES_GREEN)
         this.loadImages(this.IMAGES_SWIM_RED)
         this.loadImages(this.IMAGES_TRANSITION_RED)
-        this.x = 400 + Math.random() * (3*500);// min = 400 max=700  
-        this.y = 1 + Math.random() * 700;// min = 1 max=700  
+        this.x = 300 + Math.random() * (3*500);// min = 400 max=700  
+        this.y = 1 + Math.random() * 450;// min = 1 max=700  
         this.animate();
     }
 
