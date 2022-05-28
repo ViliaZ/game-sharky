@@ -2,7 +2,7 @@ class Endboss extends MoveableObject {
 
     x = 2 * 900;
     y = -250;                       // before introducing animation, it should be out of sight
-    height = 250;
+    height = 340;
     width = 340;
     lifeEnergy = 100;               // default with start  - minus 25 with every hurt
     speedGravity = 0.8;

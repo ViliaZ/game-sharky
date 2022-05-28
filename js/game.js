@@ -107,7 +107,6 @@ function playAudio(soundData, volume) {
     if (soundData == AUDIOS.characterSwim) {
         throttleAudio(soundData, volume);
     }    
-
     else {
         let sound = new Audio(soundData);
         sound.volume = volume;
@@ -165,7 +164,7 @@ function showGameOver(sharkyStatus) {
         }
         else {
             document.getElementById('looseScreen').classList.remove('d-none');
-            playAudio(AUDIOS.characterLoose, 1);
+            playAudio(AUDIOS.characterLoose, 0.05);
         }
     setTimeout(startGameAgain, 2900);
 }

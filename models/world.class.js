@@ -292,7 +292,7 @@ class World {
                 let indexCurrentCoin = this.coins.indexOf(coin); // get index of the coin that was hit
                 this.coins.splice(indexCurrentCoin, 1); // splice coin from array of coins
                 this.statusbarCoins.increaseStatusbarCoins(); // this.character.energy is the number that we need to set our percentage of the statusbar
-                playAudio(AUDIOS.collectCoin, 1);
+                playAudio(AUDIOS.collectCoin, 0.4);
             };
         });
     }

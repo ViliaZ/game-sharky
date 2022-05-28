@@ -140,17 +140,17 @@ class Character extends MoveableObject {
                 this.deadAnimation();
             } else if (this.isHurt() && !this.isDead()) {
                 this.playAnimation(this.IMAGES_HURT);
-                playAudio(AUDIOS.characterHurt, 0.1);
+                playAudio(AUDIOS.characterHurt, 0.06);
             }
             if ((this.world.keyboard.RIGHT || this.world.touchevents.touchRIGHT == true) && this.x < world.level.canvas_end_x) { // if moving right and end of map reached
                 this.moveRight();
                 this.otherDirection = false;
-                playAudio(AUDIOS.characterSwim, 0.1)
+                playAudio(AUDIOS.characterSwim, 0.08)
             }
             if ((this.world.keyboard.LEFT || this.world.touchevents.touchLEFT == true) && this.x > 0) { // 50px marks the left )
                 this.moveLeft();
                 this.otherDirection = true; // mirroring img of character
-                playAudio(AUDIOS.characterSwim, 0.1)
+                playAudio(AUDIOS.characterSwim, 0.08)
             }
             if (this.insideUpperView() && (this.world.keyboard.UP || this.world.touchevents.touchUP == true)) {
                 this.y -= this.speed;

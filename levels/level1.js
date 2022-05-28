@@ -32,7 +32,6 @@ const level1 = new Level(
         new Pufferfish(),
         new Pufferfish(),
         new Pufferfish(),
-        new Pufferfish(),
         new Endboss()
     ],
     [
@@ -44,8 +43,6 @@ const level1 = new Level(
         new Jellyfish(),
         new Jellyfish(),        
         new Jellyfish(),     
-        new Jellyfish(),
-        new Jellyfish()
     ],
     [
         new BackgroundObject('img/3. Background/Layers/5. Water/D2.png', -720, 0), // Arguments: img, x, y

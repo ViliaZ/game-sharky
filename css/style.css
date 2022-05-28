@@ -7,7 +7,7 @@
 /***** use own font (e.g. as tff) ******/
 @font-face {
     font-family: luckiestGuy;
-    src: url(/img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf);
+    src: url('../img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf');
 }
 .pos-rel {
     position: relative;
@@ -125,7 +125,7 @@ body {
     color: white;
     flex-direction: column;
     height: 100vh;
-    background-image: url("/img/3. Background/Layers/5. Water/D2.png");
+    background-image: url("../img/3. Background/Layers/5. Water/D2.png");
 }
 
 /** mobile instructions panel**/
@@ -395,8 +395,8 @@ audio:hover{
     }
 
     .m-button {
-        height: 6vw !important;
-        width: 6vw;
+        height: 9vw !important;
+        width: 9vw;
         cursor: pointer;
     }
 
@@ -450,7 +450,8 @@ audio:hover{
     .m-btn-attack #m-btn-bubble {
         position: absolute;
         bottom: 5vw;
-        left: 8vw;
+        left: 10vw;
+
     }
 
     .m-btn-attack #m-btn-finslap {
@@ -478,13 +479,13 @@ audio:hover{
 
     .m-btn-moves #m-up {
         position: absolute;
-        top: 0;
+        top: -5vw;
         right: 8vw;
     }
 
     .m-btn-moves #m-down {
         position: absolute;
-        bottom: 0;
+        bottom: -1vw;
         right: 8vw;
     }
 }
@@ -531,8 +532,8 @@ audio:hover{
     }
 
     .m-button {
-        height: 6vw !important;
-        width: 6vw;
+        height: 9vw !important;
+        width: 9vw;
         cursor: pointer;
     }
 
@@ -586,7 +587,7 @@ audio:hover{
     .m-btn-attack #m-btn-bubble {
         position: absolute;
         bottom: 5vw;
-        left: 8vw;
+        left: 10vw;
     }
 
     .m-btn-attack #m-btn-finslap {
@@ -602,25 +603,25 @@ audio:hover{
 
     .m-btn-moves #m-left {
         position: absolute;
-        right: 16vw;
+        right: 17.5vw;
         bottom: 5vw;
     }
 
     .m-btn-moves #m-right {
         position: absolute;
-        right: 0;
+        right: -1.5vw;
         bottom: 5vw;
     }
 
     .m-btn-moves #m-up {
         position: absolute;
-        top: 0;
+        top: -5vw;
         right: 8vw;
     }
 
     .m-btn-moves #m-down {
         position: absolute;
-        bottom: 0;
+        bottom: -1vw;
         right: 8vw;
     }
 
