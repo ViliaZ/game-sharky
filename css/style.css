@@ -353,6 +353,13 @@ audio:hover{
     left: 0px;
 }
 
+
+@media only screen and (min-height: 720px) and (orientation: portrait) and (pointer: coarse) {}
+
+
+
+
+
 /******** ON TOUCHDEVICES OVER 720px ************/
 
 @media only screen and (min-height: 720px) and (orientation: portrait) and (pointer: coarse) {
@@ -669,6 +676,7 @@ audio:hover{
     .game-instructions {
         display: none;
     }
+
 }
 
 /* MOBILE SPECIAL Format eg NEST HUB Device --> looks like landscape format, not much height*/
@@ -685,3 +693,13 @@ audio:hover{
 audio::-webkit-media-controls-panel {
     background-color: rgba(69, 80, 57, 0.76);
 }
+
+
+@media only screen and (max-height: 580px) and (orientation: landscape) {
+.game-instructions {
+    display: none !important;
+}
+}
+
+
+
