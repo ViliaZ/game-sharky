@@ -374,10 +374,51 @@ audio:hover {
     }
 }
 
-/******** ON TOUCHDEVICES OVER 720px ************/
 
+@media only screen and (max-width: 720px) and (orientation: portrait)  {
+/* force Landscape Mode when in Portrait-mode*/
+
+html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+body {
+    height: 100vw;
+    width: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    width: unset;
+    max-width: 100%;
+    height: 100vw;
+    position: relative;
+}
+
+#bgScreen {
+    width: 100%;
+    height: 100%;
+}
+
+.game-instructions{
+    display: none;
+}
+}
+
+
+/******** ON TOUCHDEVICES OVER 720px ************/
+/* 
 @media only screen and (min-width: 720px) and (orientation: portrait) and (pointer: coarse) {
-    /* force Landscape Mode when in Portrait-mode*/
+    
     html {
         transform: rotate(-90deg);
         transform-origin: left top;
@@ -407,9 +448,9 @@ audio:hover {
     #bgScreen {
         width: 100%;
         height: 100%;
-    }
+    } */
 
-    /* touchbuttons for mobile */
+    /* touchbuttons for mobile
     .m-switches,
     .m-buttons {
         display: flex !important;
@@ -507,8 +548,8 @@ audio:hover {
         position: absolute;
         bottom: -1vw;
         right: 8vw;
-    }
-}
+    } */
+/* } */
 
 
 /******** MOBILE UNDER 720px ************/
