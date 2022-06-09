@@ -130,9 +130,13 @@ body {
 }
 
 .textEndboss {
+    font-size: 24px;
+    letter-spacing: 1px;
+    line-height: 1.2em;
     text-align: center;
     width: 100%;
-    color: #0af7c4;
+    color: white;
+    margin: 12px 0px;
 }
 
 /** in instruction panel**/
@@ -190,11 +194,11 @@ body {
 .bgImageWelcome {
     position: absolute;
     filter: brightness(0.8) blur(2px);
+    background-size: contain;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    /* max-width: 100%; */
 }
 
 #sharkyGIF {
@@ -204,19 +208,17 @@ body {
 
 .wrapper-instructions {
     display: flex;
-    background-color: #642aafc0;
+    background-color: #6a33b089;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     align-items: flex-start;
     max-width: 1200px;
     gap: 5.5em;
-    padding: 15px 15px 15px 15px;
+    padding: 20px 16px 16px 16px;
     border-radius: 20px;
     justify-content: space-evenly;
 }
 
 .wrapper-startBtn {
-    /* background-color: rgba(248, 244, 1, 0.431); */
-    /* width: fit-content; */
     padding: 10px;
     border-radius: 20px;
 }
