@@ -2,7 +2,7 @@ class Pufferfish extends MoveableObject {
     width = 80;
     height = 70;
     changedColor = false; // color change when hurt with bubble
-    gotHurt = false; // toggle to true, after beeing hurt, irreversible
+    gotHurtbyBubble = false; // toggle to true, after beeing hurt, irreversible
     swimUp = false; // toggle between up and down movement if making zigzagMove after hurt
 
     // normal
@@ -32,6 +32,11 @@ class Pufferfish extends MoveableObject {
         'img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition5.png'
     ]
 
+    // DYING hurt
+    IMAGES_DYING = [
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png',
+    ]
+
 
     /**
      * Create new Instance of Pufferfish
@@ -44,8 +49,9 @@ class Pufferfish extends MoveableObject {
         this.loadImages(this.IMAGES_GREEN)
         this.loadImages(this.IMAGES_SWIM_RED)
         this.loadImages(this.IMAGES_TRANSITION_RED)
-        this.x = 300 + Math.random() * (3*500);// min = 400 max=700  
-        this.y = 1 + Math.random() * 430;// min = 1 max=700  
+        this.loadImages(this.IMAGES_DYING)
+        this.x = 300 + Math.random() * (3 * 500); // min = 400 max=700  
+        this.y = 1 + Math.random() * 430; // min = 1 max=700  
         this.animate();
     }
 
@@ -57,20 +63,22 @@ class Pufferfish extends MoveableObject {
      */
     animate() {
         let pufferfishInterval = setInterval(() => {
-            if(this.gotHurt == true){
-                this.swimZigZag();
-            }
             this.playAnimation(this.IMAGES_GREEN);
             this.moveLeft(1);
-            if (this.isHurt()) {                
+
+            if (this.gotHurtbyFinslap == true) {
+                this.playDyingAnimation(this.IMAGES_DYING);
+            }
+            if (this.gotHurtbyBubble == true) {
+                this.swimZigZag();
+            }
+            if (this.isHurt()) {
                 this.growBigger();
-                this.gotHurt = true;
+                this.gotHurtbyBubble = true;
                 this.changedColor = true;
                 this.playAnimation(this.IMAGES_TRANSITION_RED);
                 this.moveLeft(2);
-            }
-
-            else if (this.changedColor == true) {
+            } else if (this.changedColor == true) {
                 this.playAnimation(this.IMAGES_SWIM_RED);
                 this.moveLeft(2);
             }
@@ -83,29 +91,29 @@ class Pufferfish extends MoveableObject {
      * Increase Width and height after beeing hurt first time
      * Not triggered when hurt multiple times
      */
-    growBigger(){
-        if(!this.gotHurt){
-            this.width+=12;
-            this.height+=12;
+    growBigger() {
+        if (!this.gotHurtbyBubble) {
+            this.width += 12;
+            this.height += 12;
         }
     }
 
     /**
-    * Pufferfish Animation 
-    * Swim Zig Zag Movement after beeing hurt
-    */
-    swimZigZag(){
-        if(this.swimUp){
-            this.y = this.y+ 1 + Math.random() * 4;
-           setTimeout(()=>{
-            this.swimUp = false
-           },700) 
+     * Pufferfish Animation 
+     * Swim Zig Zag Movement after beeing hurt
+     */
+    swimZigZag() {
+        if (this.swimUp) {
+            this.y = this.y + 1 + Math.random() * 4;
+            setTimeout(() => {
+                this.swimUp = false
+            }, 700)
         }
-        if(!this.swimUp){
-            this.y = this.y- (1 + Math.random() * 3);
-            setTimeout(()=>{
+        if (!this.swimUp) {
+            this.y = this.y - (1 + Math.random() * 3);
+            setTimeout(() => {
                 this.swimUp = true
-               },700) 
+            }, 700)
 
         }
     }

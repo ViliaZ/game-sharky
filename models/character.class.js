@@ -135,7 +135,7 @@ class Character extends MoveableObject {
     animateConditions() {
         let intervalSharky2 = setInterval(() => {
             if (this.isDead()) {
-                clearInterval(intervalSharky2)
+                clearInterval(intervalSharky2);
                 pauseAudio(AUDIOS.characterHurt);
                 this.deadAnimation();
             } else if (this.isHurt() && !this.isDead()) {
