@@ -6,6 +6,7 @@ class Character extends MoveableObject {
     speed = 3;
     world;
     finslapping = false;
+    isImmuneAfterFinslap = false;
 
     // Sharky, when chilling
     IMAGES_IDLE = [
@@ -131,6 +132,7 @@ class Character extends MoveableObject {
      * Animations for different states of sharky: dead, hurt 
      * Animations for different directions: change directeion to left (attach camera-movement to character-movement), swim up, swim down
      * Animations for Attacks: bubbles throwing, finslap
+     * Character only get hurt, if he does not make a finslap
      */
     animateConditions() {
         let intervalSharky2 = setInterval(() => {
@@ -138,7 +140,7 @@ class Character extends MoveableObject {
                 clearInterval(intervalSharky2);
                 pauseAudio(AUDIOS.characterHurt);
                 this.deadAnimation();
-            } else if (this.isHurt() && !this.isDead()) {
+            } else if (this.isHurt() && !this.isDead() && !this.finslapping) {
                 this.playAnimation(this.IMAGES_HURT);
                 playAudio(AUDIOS.characterHurt, 0.06);
             }
@@ -154,7 +156,6 @@ class Character extends MoveableObject {
             }
             if (this.insideUpperView() && (this.world.keyboard.UP || this.world.touchevents.touchUP == true)) {
                 this.y -= this.speed;
-
             }
             if (this.isAboveGround() && (this.world.keyboard.DOWN || this.world.touchevents.touchDOWN == true)) {
                 this.y += this.speed;

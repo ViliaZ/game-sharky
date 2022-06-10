@@ -1,13 +1,12 @@
 class ThrowableObject extends MoveableObject {  
     // throwableObjects are bubbles 
-
     x;
     y;
     width = 24;
     height = 24;
     speedGravity = 0.4;
     acceleration = 10;
-    moveBubbles = () => { this.x += 4 };    // default when character looks to right side, moves the bubble plus 4px each time
+    bubbleMovement = () => { this.x += 4 };    // default when character looks to right side, moves the bubble plus 4px each time
     collidedEnemy = false                   // used in world to prevent multipleCollissions
 
     IMAGE = 'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png';
@@ -34,10 +33,10 @@ class ThrowableObject extends MoveableObject {
     throw() {                               
         if (world.character.otherDirection === true) {  //character is looking to left side
             this.x -= 200;                              // offset pixel 200 to shoot out of sharkys mouth and not in the middle of sharky
-            this.moveBubbles = () => { this.x -= 4 };  // redefine to other shooting direction  (minus 4 instead of plus 4)
+            this.bubbleMovement = () => { this.x -= 4 };  // redefine to other shooting direction  (minus 4 instead of plus 4)
         }
         let throwInterval = setInterval(() => {
-            this.moveBubbles();
+            this.bubbleMovement();
         }, 1000 / 50);
         allIntervals.push(throwInterval);
         super.applyGravity();

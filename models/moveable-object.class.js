@@ -9,6 +9,7 @@ class MoveableObject extends Drawableobject {
     lastHit = 0;                            // time when character is last hit
     index = 0;                              // needed for playAnimationOnce function
     hurtAnimationPlays = false;
+    
 
 
     /**
@@ -18,6 +19,7 @@ class MoveableObject extends Drawableobject {
     applyGravity() {
         let gravityInterval = setInterval(() => {
             if (this.objectIsAboveGround()) {
+                console.log('applyGravity');
                 this.y += this.speedGravity;
                 this.speedY += this.acceleration;  // speedY number changes with every Interval
             };
@@ -47,8 +49,11 @@ class MoveableObject extends Drawableobject {
      * @returns {boolean}
      */
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
-        return timepassed < 500;    //  true or fals >> duration of hurt-animation >> as long as "timepassed" is <1sec 
+        if ( this.isImmuneAfterFinslap) { return false; }
+        else{
+            let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
+            return timepassed < 100;    //  true or false >> duration of hurt-animation >> as long as "timepassed" is <1sec 
+        }
     }
 
 
@@ -65,7 +70,7 @@ class MoveableObject extends Drawableobject {
     * Placement detection for objects - bubbles should not stop at ground
     * 270px on y Axis is sea ground level (measured for character Object --> is different for all objects depending on png size )
     * @returns {boolean}
-    */
+    */ 
     objectIsAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -134,7 +139,7 @@ class MoveableObject extends Drawableobject {
     * @param {object} TypeOfObject 
     * @returns {boolean} if object is colliding with character
     * calculates crossing points with adjustments 
-    * png images are much bigger than real visual objects --> collision coordinates are adjusted here
+    * png images are much bigger than real visual objects --> collision coordinates are adjusted for CHARACTER
     */
     isColliding(object) {
         // give the corrdinates an offset to compensate for empty space around images
@@ -144,6 +149,12 @@ class MoveableObject extends Drawableobject {
             (this.y + 130) < object.y + object.height
     }
 
-
-
+    isCollidingWithFinslapCoordinates(object) {
+        if(object instanceof Pufferfish) {
+            return this.x + 20 + (this.width - 100) > (object.x -10) &&
+            (this.y + 100) + (this.height - 150) > (object.y -10) &&
+            (this.x + 10) < (object.x -10) &&
+            (this.y + 100) < (object.y -10) + (object.height * 1.2)
+        }
+    }
 }

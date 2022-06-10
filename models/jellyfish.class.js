@@ -54,7 +54,6 @@ class Jellyfish extends MoveableObject {
     animate() {
         let intervalJellyfish = setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE)
-
             if (this.escape === true) {
                 this.speedEscaping();
             } else if (this.isHurt()) { // triggert in world.checkIfEnemyHurt(bubble)  --> hit() --> isHurt()

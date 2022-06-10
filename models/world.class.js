@@ -9,7 +9,6 @@ class World {
     enemies = level1.enemies;
     endboss = level1.enemies[level1.enemies.length - 1];
     gameOver = false;
-
     throwableObjects = [];
     timeBubbleCreated = 0;
     timeSinceLastBubble;
@@ -94,6 +93,7 @@ class World {
         let runCheckInterval = setInterval(() => {
             this.checkCollisionsEnemies(); // character gets hurt
             this.checkFinslapJellyfish(); // jellyfish changes animation, but nothing happens. just for fun
+            this.checkFinslapPufferfish();
             this.checkCollectCoins(); // statusbar coins increases
             this.checkThrowing();
             this.checkDistanceToEndboss();
@@ -206,7 +206,7 @@ class World {
         this.bubbleCreating = true; // for bubble animation character
         let checkThrowingInterval = setInterval(() => {
             this.checkEnemyBubbleDamage(bubble);
-            this.checkJellyfishBubbleDamage(bubble);    
+            this.checkJellyfishBubbleDamage(bubble);
         }, 1000 / 20);
         allIntervals.push(checkThrowingInterval);
     }
@@ -219,7 +219,7 @@ class World {
      * If Enemy Hurt: trigger hit() for enemy
      * If Endboss got hurt: Audio hitEndboss triggered
      */
-    checkEnemyBubbleDamage(bubble){
+    checkEnemyBubbleDamage(bubble) {
         this.enemies.forEach((enemy) => {
             if (bubble.isCollidingEnemy(enemy) && !bubble.collidedEnemy) { // bubble has not been collided before
                 bubble.collidedEnemy = true;
@@ -239,16 +239,15 @@ class World {
      * hit() in movableObjects triggers isHurt() to be true --> start animation in jellyfish class
      * bubble removed after collision
      */
-    checkJellyfishBubbleDamage(bubble){
+    checkJellyfishBubbleDamage(bubble) {
         this.jellyfishes.forEach((jellyfish) => {
             if (bubble.isCollidingEnemy(jellyfish) && !bubble.collidedEnemy) { // bubble has not been collided before
                 bubble.collidedEnemy = true;
-                jellyfish.hit(0);  // here: trigger a timestamp and isHurt() to toggle to true
+                jellyfish.hit(0); // here: trigger a timestamp and isHurt() to toggle to true
                 this.bubblesDissappear(bubble);
             }
         })
     }
-
 
 
     /**
@@ -273,7 +272,7 @@ class World {
     checkCollisionsEnemies() {
         this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit(2); // decrease energy
+                this.character.hit(1); // decrease energy
                 this.statusbar.setPercentage(this.character.energy) // this.character.energy is the number that we need to set our percentage of the statusbar
             }
         });
@@ -310,6 +309,24 @@ class World {
                 jellyfish.playAnimation(jellyfish.IMAGES_HURT);
                 jellyfish.escape = true;
                 playAudio(AUDIOS.hitJellyfish, 0.4);
+            };
+        });
+    }
+
+
+    /**
+     * Checking Function:  Finslap hit Pufferfish
+     * Triggers dying animation for Pufferfish
+     * Check if Collision is true on special Finslap Coordinates - coordinates are adjusted for function purpose
+     */
+    checkFinslapPufferfish() {
+        this.enemies.forEach((enemie) => {
+            if (enemie instanceof Pufferfish && this.character.isCollidingWithFinslapCoordinates(enemie) && this.keyboard.KEYD) {
+                enemie.gotHurtbyFinslap = true;
+                this.character.isImmuneAfterFinslap = true;
+                setTimeout(() => {
+                    this.character.isImmuneAfterFinslap = false;
+                },1000)
             };
         });
     }

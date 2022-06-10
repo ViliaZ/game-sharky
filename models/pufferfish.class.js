@@ -4,6 +4,12 @@ class Pufferfish extends MoveableObject {
     changedColor = false; // color change when hurt with bubble
     gotHurtbyBubble = false; // toggle to true, after beeing hurt, irreversible
     swimUp = false; // toggle between up and down movement if making zigzagMove after hurt
+    gotHurtbyFinslap = false;
+    pufferfishInterval;
+    speedGravity = 0.8;
+    acceleration = 5;
+    speedY = 4;;
+
 
     // normal
     IMAGES_GREEN = [
@@ -62,12 +68,11 @@ class Pufferfish extends MoveableObject {
      * isHUrt() returns from world checkIfEnemyHurt(bubble)
      */
     animate() {
-        let pufferfishInterval = setInterval(() => {
+        this.pufferfishInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_GREEN);
             this.moveLeft(1);
-
             if (this.gotHurtbyFinslap == true) {
-                this.playDyingAnimation(this.IMAGES_DYING);
+                this.letFishDie();
             }
             if (this.gotHurtbyBubble == true) {
                 this.swimZigZag();
@@ -76,14 +81,13 @@ class Pufferfish extends MoveableObject {
                 this.growBigger();
                 this.gotHurtbyBubble = true;
                 this.changedColor = true;
-                this.playAnimation(this.IMAGES_TRANSITION_RED);
-                this.moveLeft(2);
-            } else if (this.changedColor == true) {
+            } 
+            if (this.changedColor == true) {
                 this.playAnimation(this.IMAGES_SWIM_RED);
                 this.moveLeft(2);
             }
         }, 150);
-        allIntervals.push(pufferfishInterval);
+        allIntervals.push(this.pufferfishInterval);
     }
 
     /**
@@ -114,7 +118,21 @@ class Pufferfish extends MoveableObject {
             setTimeout(() => {
                 this.swimUp = true
             }, 700)
-
         }
+    }
+
+     /**
+     * Pufferfish Dying after Finslap 
+     * Swim Zig Zag Movement after beeing hurt
+     */
+    letFishDie() {
+        clearInterval(this.pufferfishInterval);
+        let groundingInterval = setInterval(() => {
+            this.playAnimation(this.IMAGES_DYING)
+            this.moveLeft(8);
+            this.y += this.speedY;
+            this.speedY += this.acceleration;
+        }, 100);
+        allIntervals.push(groundingInterval);
     }
 }
