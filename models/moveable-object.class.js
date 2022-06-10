@@ -49,7 +49,7 @@ class MoveableObject extends Drawableobject {
      * @returns {boolean}
      */
     isHurt() {
-        if ( this.isImmuneAfterFinslap) { return false; }
+        if (this.isImmuneAfterFinslap) { return false; }
         else{
             let timepassed = new Date().getTime() - this.lastHit  // timepassed since last hurt in milliseconds
             return timepassed < 100;    //  true or false >> duration of hurt-animation >> as long as "timepassed" is <1sec 

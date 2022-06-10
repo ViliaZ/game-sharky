@@ -271,8 +271,8 @@ class World {
      */
     checkCollisionsEnemies() {
         this.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit(1); // decrease energy
+            if (this.character.isColliding(enemy) && !this.character.isImmuneAfterFinslap) {
+                this.character.hit(2); // decrease energy
                 this.statusbar.setPercentage(this.character.energy) // this.character.energy is the number that we need to set our percentage of the statusbar
             }
         });
@@ -326,7 +326,7 @@ class World {
                 this.character.isImmuneAfterFinslap = true;
                 setTimeout(() => {
                     this.character.isImmuneAfterFinslap = false;
-                },1000)
+                },500)
             };
         });
     }

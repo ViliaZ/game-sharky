@@ -6,9 +6,9 @@ class Pufferfish extends MoveableObject {
     swimUp = false; // toggle between up and down movement if making zigzagMove after hurt
     gotHurtbyFinslap = false;
     pufferfishInterval;
-    speedGravity = 0.8;
-    acceleration = 5;
-    speedY = 4;;
+    speedGravity = 3;
+    acceleration = 2;
+    speedY = 2;
 
 
     // normal
@@ -129,10 +129,10 @@ class Pufferfish extends MoveableObject {
         clearInterval(this.pufferfishInterval);
         let groundingInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_DYING)
-            this.moveLeft(8);
+            this.moveLeft(12);
             this.y += this.speedY;
             this.speedY += this.acceleration;
-        }, 100);
+        }, 1000 / 50);
         allIntervals.push(groundingInterval);
     }
 }
